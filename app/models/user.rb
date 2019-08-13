@@ -9,9 +9,26 @@ class User < ApplicationRecord
   has_many :perks, through: :products
   has_one :business
 
-
   def perks
     Perk.where(providing_product_id: self.products.pluck(:id))
+  end
+
+  def unverified_purchases
+    Purchase.where("verified = false AND user_id = ?", self.id)
+  end
+
+  def method_name
+
+  end
+
+  def available_products
+    product_ids = self.perks.collect(&:receiving_product_id)
+    product_ids.map { |p| Product.find(p) }
+  end
+
+  def offering_businesses
+    business_ids = self.available_products.collect(&:business_id)
+    business_ids.map { |b| Business.find(b) }
   end
 
 end

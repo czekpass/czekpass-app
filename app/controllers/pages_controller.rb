@@ -5,5 +5,6 @@ class PagesController < ApplicationController
   end
 
   def business_page
+    @perks = Perk.all
   end
 end
