@@ -10,7 +10,6 @@ gem 'rails', '5.2.3'
 gem 'redis'
 gem 'turbolinks',   '5.0.1'
 gem 'jquery-rails', '4.3.1'
-gem 'coffee-rails', '4.2.2'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
