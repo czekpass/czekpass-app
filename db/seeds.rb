@@ -8,6 +8,38 @@ Employee.destroy_all
 Business.destroy_all
 User.destroy_all
 
+
+
+
+  name = Faker::FunnyName.unique.two_word_name
+  first_name = name.split(' ')[0]
+  last_name = name.split(' ')[1]
+
+czekpass_user = User.create!(
+    email: Faker::Internet.unique.email,
+    first_name: first_name,
+    last_name: last_name,
+     password: '1234567'
+  )
+
+czekpass = Business.create!(
+    name: "Czeckpass",
+    description: "Loyalty for nomads",
+    user_id: czekpass_user.id,
+    logo: Faker::Company.logo,
+    location: Faker::Address.unique.city
+    )
+
+
+
+czekpass_product = Product.create!(
+    name: "Czekpass sign up" ,
+    description: "Perk from the first purchase",
+    price_cents: 0,
+    category: "Lifestyle" ,
+    business_id: czekpass.id
+  )
+
 10.times do
   name = Faker::FunnyName.unique.two_word_name
   first_name = name.split(' ')[0]
@@ -61,8 +93,8 @@ User.destroy_all
   perk = Perk.new(
     kind: ["percentage", "dollars", "non-monetary"].sample,
     amount: rand(1..50),
-    providing_business_id: business.id,
-    providing_product_id: product.id,
+    providing_business_id: business.id - 1,
+    providing_product_id: product.id - 1,
     receiving_product_id: product.id,
     )
   perk.save!
