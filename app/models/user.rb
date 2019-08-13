@@ -9,8 +9,9 @@ class User < ApplicationRecord
   has_many :perks, through: :products
   has_one :business
 
-  validates :name, presence: true
-  validates :location, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  # validates :location, presence: true
 
   def perks
     Perk.where(providing_product_id: self.products.pluck(:id))

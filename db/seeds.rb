@@ -46,16 +46,17 @@ czekpass_product = Product.create!(
   name = Faker::FunnyName.unique.two_word_name
   first_name = name.split(' ')[0]
   last_name = name.split(' ')[1]
+
   user = User.new(
     email: Faker::Internet.unique.email,
     first_name: first_name,
     last_name: last_name,
-     password: '1234567',
+     password: '1234567'
     )
   user.save!
 
   business = Business.new(
-    name: Faker::Name.unique.name,
+    name: Faker::Company.unique.name,
     description: Faker::Company.bs,
     user_id: user.id,
     logo: Faker::Company.logo,
@@ -95,6 +96,7 @@ czekpass_product = Product.create!(
   perk = Perk.new(
     kind: ["percentage", "dollars", "non-monetary"].sample,
     amount: rand(1..50),
+    description: Faker::Vehicle.manufacture,
     providing_business_id: business.id - 1,
     providing_product_id: product.id - 1,
     receiving_product_id: product.id,
