@@ -9,7 +9,7 @@ class BusinessesController < ApplicationController
 
   def create
     @business = Business.new(business_params)
-    user = current_user  #Not sure about this part
+    @business.user_id = current_user.id
     if @business.save
       redirect_to @business
     else

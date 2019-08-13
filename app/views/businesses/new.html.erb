@@ -1,2 +1,15 @@
-<h1>Businesses#new</h1>
-<p>Find me in app/views/businesses/new.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create a new business</h1>
+
+      <%= simple_form_for @business do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :logo %>
+        <%= f.input :location %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
