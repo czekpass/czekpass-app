@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def business_page
+    @perks = Perk.all
+  end
 end

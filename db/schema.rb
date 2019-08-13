@@ -1,3 +1,5 @@
+
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_13_061754) do
+ActiveRecord::Schema.define(version: 2019_08_13_090709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_08_13_061754) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_061754) do
     t.bigint "receiving_product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["providing_business_id"], name: "index_perks_on_providing_business_id"
     t.index ["providing_product_id"], name: "index_perks_on_providing_product_id"
     t.index ["receiving_product_id"], name: "index_perks_on_receiving_product_id"
@@ -126,6 +131,7 @@ ActiveRecord::Schema.define(version: 2019_08_13_061754) do
 
   add_foreign_key "business_category_tags", "business_categories"
   add_foreign_key "business_category_tags", "businesses"
+  add_foreign_key "businesses", "users"
   add_foreign_key "employees", "businesses"
   add_foreign_key "employees", "users"
   add_foreign_key "perk_templates", "businesses"
