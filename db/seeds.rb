@@ -2,7 +2,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
-
+Perk.destroy_all
+Purchase.destroy_all
 BusinessCategory.destroy_all
 Product.destroy_all
 Employee.destroy_all
@@ -50,5 +51,22 @@ User.destroy_all
     business_id: business.id
    )
   product.save!
+
+  purchase = Purchase.new(
+    verified: [true, false].sample,
+    expiration_date: Date.today + rand(1..30),
+    user_id: user.id,
+    product_id: product.id
+    )
+  purchase.save!
+
+  perk = Perk.new(
+    kind: ["percentage", "dollars", "non-monetary"].sample,
+    amount: rand(1..50),
+    providing_business_id: business.id,
+    providing_product_id: product.id,
+    receiving_product_id: product.id,
+    )
+  perk.save!
   end
 
