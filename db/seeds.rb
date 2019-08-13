@@ -1,5 +1,3 @@
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
 # Destroy all the objects before running the seed to prevent duplication
