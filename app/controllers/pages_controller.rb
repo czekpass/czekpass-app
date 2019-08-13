@@ -3,4 +3,7 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def business_page
+  end
 end
