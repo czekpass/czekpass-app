@@ -53,9 +53,8 @@ czekpass_product = Product.create!(
     email: Faker::Internet.unique.email,
     first_name: first_name,
     last_name: last_name,
-     password: '1234567',
+     password: '1234567'
     )
-
 
 business = Business.create!(
     name: Faker::Name.unique.name,
@@ -93,7 +92,8 @@ Purchase.create!(
 Perk.create!(
     kind: ["percentage", "dollars", "non-monetary"].sample,
     amount: rand(1..50),
-    providing_business_id: business.id,
+    description: Faker::Vehicle.manufacture,
+    providing_business_id: business.id - 1,
     providing_product_id: product.id - 1,
     receiving_product_id: product.id,
     )
