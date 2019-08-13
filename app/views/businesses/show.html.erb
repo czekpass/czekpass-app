@@ -1,2 +1,10 @@
-<h1>Businesses#show</h1>
-<p>Find me in app/views/businesses/show.html.erb</p>
+<div class="container">
+<%= @business.name %>
+<ul>
+  <li><%= @business.name %></li>
+  <li><%= @business.description %></li>
+  <li><%= @business.location %></li>
+  <li><%= @business.logo %></li>
+  </li>
+</ul>
+<%= link_to "edit", edit_business_path %>

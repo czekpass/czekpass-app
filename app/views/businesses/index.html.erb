@@ -1,2 +1,15 @@
-<h1>Businesses#index</h1>
-<p>Find me in app/views/businesses/index.html.erb</p>
+<section class="clean-block clean-catalog dark">
+<div class="container">
+  <div class="block-heading">
+    <h2 class="text-info">Member businesses</h2>
+  </div>
+
+  <div class="content">
+    <div class="products pl-5 card-grid-3c">
+      <% @businesses.each do |business| %>
+              <%= business.name %>
+      <% end %>
+    </div>
+  </div>
+</div>
+</section>
