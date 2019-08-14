@@ -1,10 +1,11 @@
 <div class="container">
 <%= @business.name %>
 <ul>
-  <li><%= @business.name %></li>
-  <li><%= @business.description %></li>
-  <li><%= @business.location %></li>
+  <li>Name: <%= @business.name %></li>
+  <li>Description: <%= @business.description %></li>
+  <li>Location: <%= @business.location %></li>
   <li><%= @business.logo %></li>
   </li>
 </ul>
+<%= link_to "view products", business_products_path(@business.id) %>
 <%= link_to "edit", edit_business_path %>

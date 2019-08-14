@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @business = Business.find(params[:business_id])
+    @products = @business.products
   end
 
   def new

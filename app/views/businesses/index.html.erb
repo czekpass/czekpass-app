@@ -8,7 +8,9 @@
     <div class="products pl-5 card-grid-3c">
       <% @businesses.each do |business| %>
         <div>
+          <%= link_to business_path(business.id) do %>
           <%= business.name %>
+          <% end %>
         </div>
       <% end %>
     </div>
