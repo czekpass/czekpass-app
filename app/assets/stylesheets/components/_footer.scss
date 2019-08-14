@@ -2,9 +2,9 @@
   background-color: red;
   padding: 10px;
   display: flex;
-  align-content: space-between;
+  justify-content: space-around;
 }
 
-.items {
-  align-content: space-between;
+.footer-item{
+  width: 50px;
 }
