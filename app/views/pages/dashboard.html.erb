@@ -1,0 +1,11 @@
+<h1>Hi! <%= @user.first_name %></h1>
+
+<h3>Your perks</h3>
+<ul>
+  <% @user.all_perks.each do |perk| %>
+    <li>
+      <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
+
+    </li>
+  <% end %>
+</ul>

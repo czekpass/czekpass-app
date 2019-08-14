@@ -1,3 +1,4 @@
+
 class ProductsController < ApplicationController
   def index
     @business = Business.find(params[:business_id])
@@ -5,14 +6,16 @@ class ProductsController < ApplicationController
   end
 
   def new
+    @business = Business.find(params[:business_id])
     @product = Product.new
   end
 
   def create
     @product = Product.new(product_params)
-    @product.business_id = current_user.id
+    @business = Business.find(params[:business_id])
+    @product.business = @business
     if @product.save
-      redirect_to @product
+      redirect_to business_product_path(@business, @product)
     else
       render :new
     end
@@ -25,7 +28,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to @product
+      redirect_to business_product_path(@product.business, @product)
     else
       render 'edit'
     end
@@ -38,7 +41,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @business = Business.find(params[:id])
+    @product = Product.find(params[:id])
+    @business = Business.find(params[:business_id])
   end
 
   def product_params

@@ -1,10 +1,10 @@
 <div class="container">
   <h1>Edit your product</h1>
-  <%= simple_form_for(@product) do |f| %>
+  <%= simple_form_for [@business, @product] do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :logo %>
-  <%= f.input :location %>
+  <%= f.input :photo %>
+  <%= f.input :price_cents %>
   <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 </div>
