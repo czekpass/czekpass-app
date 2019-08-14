@@ -17,16 +17,21 @@ class PurchasesController < ApplicationController
 #  end
 
   def new
-    @user = User.find(params[:user_id])
-    @product = @user.products(params[:id])
-
+    @purchase = Purchase.new
+    @user = User.find(54) # placeholder to be replaced with qr code
+    # @perk = @user.all_perks
+    @perk
+    raise
   end
 
   def create
+    @purchase = Purchase.new(purchase_params)
+    @purchase.user = User.find(54) # random user to replace QR code user
   end
 
   private
 
   def purchase_params
+    require(:purchase).permit(:user_id, :product_id)
   end
 end

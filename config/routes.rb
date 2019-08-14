@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     resources :perk_templates
   end
 
-  resources :users, except: [:new, :create] do
-    resources :purchases, except: [:edit, :update, :destroy]
-  end
+  resources :users, except: [:new, :create]
+
+  resources :purchases, except: [:edit, :update, :destroy]
 
 
   get 'b_page', to: 'pages#business_page', as: 'test_business_page'
