@@ -128,7 +128,7 @@ end
 puts "Create users for Czekpass developers"
 
 czekpass_employees = ['Myles', 'Nick', 'Amir', 'Alex']
-who_is_seeder = 1 # Use reference to create the seeds
+who_is_seeder = 3 # Use reference to create the seeds
 businesses = Business.all
 
 czekpass_user = User.create!(
