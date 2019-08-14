@@ -9,26 +9,26 @@ class User < ApplicationRecord
   has_many :perks, through: :products
   has_one :business
 
-
   validates :first_name, presence: true
   validates :last_name, presence: true
-  # validates :location, presence: true
 
-
-  def perks
+  def all_perks
     Perk.where(providing_product_id: self.products.pluck(:id))
+  end
+
+  def perks(business)
+    # Select the perks for the
+    business.perks.select do |perk|
+      all_perks.include? perk.providing_product_id
+    end
   end
 
   def unverified_purchases
     Purchase.where("verified = false AND user_id = ?", self.id)
   end
 
-  def method_name
-
-  end
-
   def available_products
-    product_ids = self.perks.collect(&:receiving_product_id)
+    product_ids = self.all_perks.collect(&:receiving_product_id)
     product_ids.map { |p| Product.find(p) }
   end
 
@@ -36,5 +36,4 @@ class User < ApplicationRecord
     business_ids = self.available_products.collect(&:business_id)
     business_ids.map { |b| Business.find(b) }
   end
-
 end
