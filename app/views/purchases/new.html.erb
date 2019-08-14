@@ -6,7 +6,9 @@
    <p>User's Name: <%= @user.first_name %> <%= @user.last_name %></p>
   </div>
   <div>
+    <!-- !!!!!!!!!! -->
     <% @perk.each do |perk_type| %>
+    <!-- ONCE @PERK FROM PURCHASES_CONTROLLER(NEW) GETS REPLACED WE DONT NEED TO ITERATE -->
     <div>
       <p>Providing Business: <%= perk_type.providing_business.name %> </p>
     </div>
