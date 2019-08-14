@@ -10,7 +10,16 @@ class PurchasesController < ApplicationController
     # @product = Product.find(params[:id])
   end
 
+# def validation
+    # either boolean
+    # or
+    # reroute
+#  end
+
   def new
+    @user = User.find(params[:user_id])
+    @product = @user.products(params[:id])
+
   end
 
   def create
