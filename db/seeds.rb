@@ -98,4 +98,3 @@ Perk.create!(
     receiving_product_id: product.id,
     )
   end
-
