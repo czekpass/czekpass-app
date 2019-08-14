@@ -19,6 +19,7 @@ class BusinessesController < ApplicationController
 
   def show
     @business = Business.find(params[:id])
+    @user = current_user
   end
 
   def update
