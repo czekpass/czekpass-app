@@ -99,7 +99,6 @@ puts "10 times ruby loop for users, businesses, products and perks"
 
 
   new_products_array.each do |product|
-    puts "I'm in the loop!"
     perk = Perk.new(
       receiving_product_id: product.id,
       kind: ["percentage", "dollars", "non-monetary"].sample,
@@ -128,7 +127,7 @@ czekpass_user = User.create!(
   password: '1234567'
 )
 
-rand(5).times do
+rand(1..5).times do
   Purchase.create!(
     verified: [true, false].sample,
     expiration_date: Date.today + rand(1..30),
@@ -157,7 +156,7 @@ czekpass_admin_business = Business.create!(
 
 czekpass_admin_business_products_array = []
 
-rand(10).times do
+rand(1..10).times do
   product = Product.create!(
     name: Faker::Appliance.equipment ,
     description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
@@ -171,7 +170,7 @@ end
 
 czekpass_admin_business_products_array.each do |product|
 
-  rand(10).times do
+  rand(1..10).times do
 
     providing_business = businesses.sample
 
