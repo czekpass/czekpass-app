@@ -5,10 +5,13 @@ puts "Destroy everything"
 
 Perk.destroy_all
 Purchase.destroy_all
-BusinessCategory.destroy_all
 Product.destroy_all
 Employee.destroy_all
+
 Business.destroy_all
+BusinessCategory.destroy_all
+
+
 User.destroy_all
 
 # User faker to create the name then split the name into the first_name and last_name attributes.
@@ -27,12 +30,17 @@ czekpass_user = User.create!(
      password: '1234567'
   )
 
+  BusinessCategory.create!(
+    name: Faker::Company.industry
+    )
+
 czekpass = Business.create!(
     name: "Czeckpass",
     description: "Loyalty for nomads",
     user_id: czekpass_user.id,
     logo: Faker::Company.logo,
-    location: Faker::Address.unique.city
+    location: Faker::Address.unique.city,
+    business_category: BusinessCategory.last
     )
 
 
@@ -58,22 +66,23 @@ puts "10 times ruby loop for users, businesses, products and perks"
      password: '1234567'
     )
 
+  BusinessCategory.create!(
+    name: Faker::Company.industry
+    )
+
   business = Business.create!(
     name: Faker::Company.unique.name,
     description: Faker::Company.bs,
     user_id: user.id,
     logo: Faker::Company.logo,
-    location: Faker::Address.unique.city
+    location: Faker::Address.unique.city,
+    business_category: BusinessCategory.last
     )
 
   Employee.create!(
     business_id: business.id,
     roles: Faker::Company.profession,
     user_id: user.id
-    )
-
-  BusinessCategory.create!(
-    name: Faker::Company.industry
     )
 
   new_products_array = []
@@ -153,7 +162,8 @@ czekpass_admin_business = Business.create!(
   description: Faker::Company.bs,
   user_id: czekpass_admin.id,
   logo: Faker::Company.logo,
-  location: Faker::Address.unique.city
+  location: Faker::Address.unique.city,
+  business_category: BusinessCategory.last
 )
 
 czekpass_admin_business_products_array = []
