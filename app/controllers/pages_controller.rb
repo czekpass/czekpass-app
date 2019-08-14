@@ -5,6 +5,8 @@ class PagesController < ApplicationController
   end
 
   def business_page
-    @perks = Perk.all
+    # This is all perks available to the user
+    @perks = current_user.perks
+    raise
   end
 end
