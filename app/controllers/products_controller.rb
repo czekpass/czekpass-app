@@ -1,7 +1,8 @@
 
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @business = Business.find(params[:business_id])
+    @products = @business.products
   end
 
   def new
@@ -43,6 +44,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @business = Business.find(params[:business_id])
   end
+
+  private
 
   def product_params
     params.require(:product).permit(:name, :description, :price_cents, :category, :photo)
