@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   resources :businesses do
     resources :employees
-    resources :products
+    resources :products do
+      resources :perks, only: [:show]
+    end
     resources :perk_templates
   end
 
