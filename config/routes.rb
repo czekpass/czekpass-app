@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+
   devise_for :users
   root to: 'pages#home'
 
   resources :businesses do
     resources :employees
-    resources :products
+    resources :products do
+      resources :perks, only: [:show]
+    end
     resources :perk_templates
   end
 
@@ -13,5 +16,6 @@ Rails.application.routes.draw do
   end
 
   get 'b_page', to: 'pages#business_page', as: 'test_business_page'
+  get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
 
 end

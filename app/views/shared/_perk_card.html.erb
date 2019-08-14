@@ -1,1 +1,18 @@
-_perk_card.html.erb
+<div class="perk-card">
+  <% if perk.kind == "percentage" %>
+    <%= "#{perk.amount} % off" %>
+  <% elsif perk.kind == "amount" %>
+  <!-- This needs to be refactored to adjust to any currency-->
+    <%= "#{perk.amount} $ off" %>
+  <% else %>
+    <p class="mb-0">Free</p>
+  <% end %>
+   <%= link_to perk.receiving_product.name, business_product_perk_path(perk.receiving_product.business, perk.receiving_product, perk) %>
+
+  <div><%= perk.description%></div>
+  <div>
+    <span class="discounted-initial-price">
+      <%= humanized_money_with_symbol(perk.receiving_product.price) %>
+    </span>
+  </div>
+</div>

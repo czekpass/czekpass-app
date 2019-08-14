@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Edit your information</h1>
+  <%= simple_form_for @user do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :encrypted_password %>
+  <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
