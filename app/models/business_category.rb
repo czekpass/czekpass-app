@@ -1,5 +1,5 @@
 class BusinessCategory < ApplicationRecord
-  has_many :business_category_tags
+  has_many :businesses
 
   validates :name, presence: true
 end

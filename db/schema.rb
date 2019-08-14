@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_14_053658) do
+
+ActiveRecord::Schema.define(version: 2019_08_14_085609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,7 +41,9 @@ ActiveRecord::Schema.define(version: 2019_08_14_053658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.index ["user_id"], name: "index_businesses_on_user_id"
+    t.bigint "business_category_id"
+    t.index ["business_category_id"], name: "index_businesses_on_business_category_id"
+    t.index ["user_id"], name: "index_businesses_on_user_id", unique: true
   end
 
   create_table "employees", force: :cascade do |t|
@@ -130,6 +133,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_053658) do
 
   add_foreign_key "business_category_tags", "business_categories"
   add_foreign_key "business_category_tags", "businesses"
+  add_foreign_key "businesses", "business_categories"
   add_foreign_key "businesses", "users"
   add_foreign_key "employees", "businesses"
   add_foreign_key "employees", "users"
