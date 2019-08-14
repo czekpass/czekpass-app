@@ -8,6 +8,6 @@ body {
 .mobile-viewport-container{
   background-color: white;
   padding: 20px;
-  height: 100vh;
+  height: calc(100vh - 126px);
   overflow: scroll;
 }
