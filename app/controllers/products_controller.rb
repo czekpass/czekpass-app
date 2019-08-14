@@ -45,6 +45,8 @@ class ProductsController < ApplicationController
     @business = Business.find(params[:business_id])
   end
 
+  private
+
   def product_params
     params.require(:product).permit(:name, :description, :price_cents, :category, :photo)
   end
