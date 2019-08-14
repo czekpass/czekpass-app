@@ -1,5 +1,5 @@
 
- <div class="container">
+<div class="container">
 <%= @business.name %>
 <ul>
   <li>Name: <%= @business.name %></li>
@@ -21,3 +21,4 @@
   <% end %>
 <%= link_to "view products", business_products_path(@business.id) %>
 <%= link_to "edit", edit_business_path %>
+</div>
