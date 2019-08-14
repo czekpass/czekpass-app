@@ -1,6 +1,12 @@
 .footer{
-  background-color: red;
+  background-color: grey;
   padding: 10px;
   display: flex;
   justify-content: space-around;
+}
+
+.footer > a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
 }

@@ -77,15 +77,17 @@ puts "10 times ruby loop for users, businesses, products and perks"
     )
 
   new_products_array = []
+
   rand(1..10).times do
-    product = Product.create!(
+    product = Product.new(
         name: Faker::Appliance.equipment ,
         description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
         price_cents: Faker::Number.number(digits: 5),
-        category: Faker::Job.field ,
+        category: Faker::Job.field,
         business_id: business.id
        )
     new_products_array << product
+    product.save!
   end
 
   Purchase.create!(
