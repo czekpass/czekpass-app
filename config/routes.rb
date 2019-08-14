@@ -13,5 +13,6 @@ Rails.application.routes.draw do
   end
 
   get 'b_page', to: 'pages#business_page', as: 'test_business_page'
+  get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
 
 end
