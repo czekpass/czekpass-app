@@ -3,10 +3,19 @@
   <%= link_to 'Edit', edit_user_path(current_user) %>
 </div>
 
+<br>
 
-
-
-<h3>Your perks</h3>
+<ul class="nav nav-tabs nav-pills nav-fill stick">
+  <li class="nav-item">
+    <a class="nav-link" href="#">Savings</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="#">Perks</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Purchases</a>
+  </li>
+</ul>
 
 <% 10.times do %>
 
@@ -15,3 +24,6 @@
   <% end %>
 
 <% end %>
+
+</div>
+

@@ -5,8 +5,13 @@
   justify-content: space-around;
 }
 
-.footer > a {
+.footer > div > a {
   text-decoration: none;
   color: white;
+}
+
+.footer > div > a:hover {
+  text-decoration: none;
+  color: red;
   font-weight: bold;
 }
