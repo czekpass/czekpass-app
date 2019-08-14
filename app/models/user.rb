@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :purchases
   has_many :products, through: :purchases
   has_many :perks, through: :products
-  has_one :businessq
+  has_many :businesses
 
 
   # validates :first_name, presence: true
@@ -18,11 +18,17 @@ class User < ApplicationRecord
     Perk.where(providing_product_id: self.products.pluck(:id))
   end
 
-  def perks(business)
-    # Select the perks for the
-    business.perks.select do |perk|
-      all_perks.include? perk.providing_product_id
-    end
+  def perks(businesses)
+    #perks = Perk.where(receiving_product_id: businesses)
+    # businesses[0].perks
+
+    # A business has many perks thorugh products
+    # business.perks.select do |perk|
+    #   # Iterate through all the perks available to the user and only include
+    #   # the perk if it's providing_product_id matches the id of a product purchased
+    #   # by the user
+    #   all_perks.include? perk.providing_product_id
+    # end
   end
 
   def unverified_purchases

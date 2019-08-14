@@ -4,6 +4,7 @@ class Business < ApplicationRecord
   has_many :perk_templates
 
   has_many :business_categories, through: :business_category_tags
+
   has_many :perks, through: :products
 
   belongs_to :user

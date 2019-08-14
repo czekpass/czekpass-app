@@ -6,7 +6,7 @@
   <!-- This needs to be refactored to adjust to any currency-->
     <%= "#{perk.amount} $ off" %>
   <% else %>
-    <p class="mb-0">Free</p>
+    Free
   <% end %>
    <%= link_to perk.receiving_product.name, business_product_perk_path(perk.receiving_product.business, perk.receiving_product, perk) %>
 

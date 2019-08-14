@@ -1,6 +1,7 @@
-
 <div class="container">
+
 <%= @business.name %>
+
 <ul>
   <li>Name: <%= @business.name %></li>
   <li>Description: <%= @business.description %></li>
@@ -8,11 +9,11 @@
   <li><%= @business.logo %></li>
   </li>
 </ul>
+
   <ul class="list-inline">
     <li class="list-inline-item">perks</li>
     <li class="list-inline-item">Products</li>
   </ul>
-
 
   <% @user.all_perks.each do |perk| %>
       <div>
