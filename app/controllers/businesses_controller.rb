@@ -10,10 +10,12 @@ class BusinessesController < ApplicationController
   def create
     @business = Business.new(business_params)
     @business.user_id = current_user.id
+    @business.business_category_id = params[:business][:business_category]
     if @business.save
       redirect_to @business
     else
-      render :new
+      # New should be in quotes not a key
+      render "new"
     end
   end
 
