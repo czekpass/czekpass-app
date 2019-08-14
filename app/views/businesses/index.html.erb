@@ -7,7 +7,9 @@
   <div class="content">
     <div class="products pl-5 card-grid-3c">
       <% @businesses.each do |business| %>
-              <%= business.name %>
+        <div>
+          <%= business.name %>
+        </div>
       <% end %>
     </div>
   </div>

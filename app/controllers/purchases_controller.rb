@@ -1,10 +1,13 @@
 class PurchasesController < ApplicationController
 
   def index
-    @purchases = Purchase.all
+    @user = User.find(params[:user_id])
+    @purchases = @user.purchases
   end
 
   def show
+    # @user = User.find(params[:user_id])
+    # @product = Product.find(params[:id])
   end
 
   def new
