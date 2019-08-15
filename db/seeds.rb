@@ -3,14 +3,13 @@ require 'faker'
 # Destroy all the objects before running the seed to prevent duplication
 puts "Destroy everything"
 
+# Reordered these by association because seed failing.
 Perk.destroy_all
 Purchase.destroy_all
 Product.destroy_all
 Employee.destroy_all
-
 Business.destroy_all
 BusinessCategory.destroy_all
-
 User.destroy_all
 
 ####################
@@ -35,21 +34,22 @@ name = Faker::FunnyName.unique.two_word_name
 first_name = name.split(' ')[0]
 last_name = name.split(' ')[1]
 
-czekpass_user = User.create!(
+user = User.create!(
+
     email: Faker::Internet.unique.email,
     first_name: first_name,
     last_name: last_name,
      password: '1234567'
-  )
+    )
 
   BusinessCategory.create!(
     name: Faker::Company.industry
     )
 
-czekpass = Business.create!(
-    name: "Czeckpass",
-    description: "Loyalty for nomads",
-    user_id: czekpass_user.id,
+  business = Business.create!(
+    name: Faker::Company.unique.name,
+    description: Faker::Company.bs,
+    user_id: user.id,
     logo: Faker::Company.logo,
     location: Faker::Address.unique.city,
     business_category: BusinessCategory.last
