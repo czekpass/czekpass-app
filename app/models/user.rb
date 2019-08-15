@@ -31,7 +31,7 @@ class User < ApplicationRecord
 
   def available_products(business = nil)
     if business.nil?
-      product_ids = self.all_perks.collect(&:product_id)
+      product_ids = self.perks.collect(&:product_id)
     else
       product_ids = self.perks(business).collect(&:product_id)
     end
