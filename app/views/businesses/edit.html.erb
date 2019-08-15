@@ -3,6 +3,8 @@
   <%= f.input :business_category, collection: BusinessCategory.all, selected: @business.business_category.id %>
   <%= f.input :description %>
   <%= f.input :location %>
+  <%= f.input :logo %>
+  <%= f.input :logo_cache, as: :hidden %>
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
 
