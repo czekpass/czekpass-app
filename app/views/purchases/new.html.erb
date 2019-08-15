@@ -1,0 +1,21 @@
+<h2>Info we need passed from QR code</h2>
+<p>This is the business owner/employee view</p>
+
+<div class="container">
+  <div>
+   <p>User's Name: <%= @user.first_name %> <%= @user.last_name %></p>
+  </div>
+  <div>
+    <!-- !!!!!!!!!! -->
+    <% @perk.each do |perk_type| %>
+    <!-- ONCE @PERK FROM PURCHASES_CONTROLLER(NEW) GETS REPLACED WE DONT NEED TO ITERATE -->
+    <div>
+      <p>Providing Business: <%= perk_type.providing_business.name %> </p>
+    </div>
+    <div>
+      <p>Perk: <%= perk_type.amount %> <%= perk_type.kind %> </p>
+    </div>
+    <% end %>
+  </div>
+
+</div>

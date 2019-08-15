@@ -1,3 +1,22 @@
 .edit-button {
   float: right;
+
+// Specific CSS for your home-page
+
+body {
+  max-width: 480px;
+  margin: auto;
+  background-color: black;
+}
+
+.mobile-viewport-container{
+  background-color: white;
+  padding: 0 20px 0 20px;
+  height: calc(100vh - 126px);
+  overflow: scroll;
+}
+
+.stick {
+  position: sticky; top: 0;
+  background-color: white;
 }

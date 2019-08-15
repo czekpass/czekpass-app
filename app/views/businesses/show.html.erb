@@ -1,3 +1,4 @@
+<div class="container">
 
 <%= link_to "edit", edit_business_path %>
 
@@ -111,3 +112,28 @@
     </div>
 
   </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+<%= @business.name %>
+
+<ul>
+  <li>Name: <%= @business.name %></li>
+  <li>Description: <%= @business.description %></li>
+  <li>Location: <%= @business.location %></li>
+  <li><%= @business.logo %></li>
+  </li>
+</ul>
+
+  <ul class="list-inline">
+    <li class="list-inline-item">perks</li>
+    <li class="list-inline-item">Products</li>
+  </ul>
+
+  <% @user.perks(@business).each do |perk| %>
+      <div>
+        <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
+      </div>
+  <% end %>
+<%= link_to "view products", business_products_path(@business.id) %>
+<%= link_to "edit", edit_business_path %>
+</div>
+
