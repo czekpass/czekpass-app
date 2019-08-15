@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
   has_many :purchases
   has_many :products, through: :purchases
-  has_many :perks, through: :products
-  has_one :businessq
+  # This won't work as it the association is too deep.
+  # has_many :perks, through: :products
+  has_one :business
 
 
   # validates :first_name, presence: true
@@ -15,14 +16,20 @@ class User < ApplicationRecord
   # validates :location, presence: true
 
   def all_perks
-    Perk.where(providing_product_id: self.products.pluck(:id))
+    Perk.where(purchased_product_id: self.products.pluck(:id))
   end
 
   def perks(business)
-    # Select the perks for the
+  #   # perks = Perk.where(receiving_product_id: businesses)
+  #   # businesses[0].perks
+
+  #   # A business has many perks thorugh products
     business.perks.select do |perk|
-      all_perks.include? perk.providing_product_id
-    end
+  #   #   # Iterate through all the perks available to the user and only include
+  #   #   # the perk if it's providing_product_id matches the id of a product purchased
+  #   #   # by the user
+      all_perks.include? perk.purchased_product_id
+     end
   end
 
   def unverified_purchases
@@ -30,7 +37,7 @@ class User < ApplicationRecord
   end
 
   def available_products
-    product_ids = self.all_perks.collect(&:receiving_product_id)
+    product_ids = self.all_perks.collect(&:product_id)
     product_ids.map { |p| Product.find(p) }
   end
 
