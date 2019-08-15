@@ -4,12 +4,21 @@ class PagesController < ApplicationController
   def home
   end
 
-  def business_page
+  def business_dashboard
     # This is all perks available to the user
-    @perks = current_user.perks
+    if current_user.business.nil? == false
+      @business = current_user.business
+      @perks = @business.perks
+    else
+      redirect_to dashboard_page_path
+    end
   end
 
   def dashboard
     @user = current_user
+  end
+
+  def discover
+    @businesses = current_user.offering_businesses
   end
 end

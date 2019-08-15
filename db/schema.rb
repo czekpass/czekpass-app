@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_08_14_085609) do
+=======
+ActiveRecord::Schema.define(version: 2019_08_15_022610) do
+>>>>>>> bf5674ab548e37a1b06d20c16e4c771ecbe90c93
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,25 +64,27 @@ ActiveRecord::Schema.define(version: 2019_08_14_085609) do
     t.integer "amount"
     t.string "kind"
     t.bigint "business_id"
-    t.bigint "receiving_product_id"
+    t.bigint "product"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_perk_templates_on_business_id"
-    t.index ["receiving_product_id"], name: "index_perk_templates_on_receiving_product_id"
+    t.index ["product"], name: "index_perk_templates_on_product"
   end
 
   create_table "perks", force: :cascade do |t|
     t.string "kind"
     t.integer "amount"
-    t.bigint "providing_business_id"
-    t.bigint "providing_product_id"
-    t.bigint "receiving_product_id"
+    t.bigint "patronized_business_id"
+    t.bigint "purchased_product_id"
+    t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
-    t.index ["providing_business_id"], name: "index_perks_on_providing_business_id"
-    t.index ["providing_product_id"], name: "index_perks_on_providing_product_id"
-    t.index ["receiving_product_id"], name: "index_perks_on_receiving_product_id"
+    t.bigint "business_id"
+    t.index ["business_id"], name: "index_perks_on_business_id"
+    t.index ["patronized_business_id"], name: "index_perks_on_patronized_business_id"
+    t.index ["product_id"], name: "index_perks_on_product_id"
+    t.index ["purchased_product_id"], name: "index_perks_on_purchased_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -100,6 +106,8 @@ ActiveRecord::Schema.define(version: 2019_08_14_085609) do
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "perk_id"
+    t.index ["perk_id"], name: "index_purchases_on_perk_id"
     t.index ["product_id"], name: "index_purchases_on_product_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
@@ -126,6 +134,7 @@ ActiveRecord::Schema.define(version: 2019_08_14_085609) do
     t.string "first_name"
     t.string "last_name"
     t.boolean "admin"
+    t.string "photo"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -137,10 +146,11 @@ ActiveRecord::Schema.define(version: 2019_08_14_085609) do
   add_foreign_key "employees", "businesses"
   add_foreign_key "employees", "users"
   add_foreign_key "perk_templates", "businesses"
-  add_foreign_key "perk_templates", "products", column: "receiving_product_id"
-  add_foreign_key "perks", "businesses", column: "providing_business_id"
-  add_foreign_key "perks", "products", column: "providing_product_id"
-  add_foreign_key "perks", "products", column: "receiving_product_id"
+  add_foreign_key "perk_templates", "products", column: "product"
+  add_foreign_key "perks", "businesses"
+  add_foreign_key "perks", "businesses", column: "patronized_business_id"
+  add_foreign_key "perks", "products"
+  add_foreign_key "perks", "products", column: "purchased_product_id"
   add_foreign_key "products", "businesses"
   add_foreign_key "purchases", "products"
   add_foreign_key "purchases", "users"

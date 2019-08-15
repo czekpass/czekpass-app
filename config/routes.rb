@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'pages#discover'
 
   resources :businesses do
     resources :employees
@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   resources :purchases, except: [:edit, :update, :destroy]
 
 
-  get 'b_page', to: 'pages#business_page', as: 'test_business_page'
-  get 'dashboard', to: 'pages#dashboard', as: 'dashboard'
-
+  get 'business_dashboard', to: 'pages#business_dashboard', as: 'business_dashboard'
+  get 'dashboard', to: 'pages#dashboard', as: 'dashboard_page'
 end
