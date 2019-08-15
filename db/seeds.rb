@@ -12,19 +12,30 @@ Business.destroy_all
 BusinessCategory.destroy_all
 User.destroy_all
 
+####################
+# Global variables #
+####################
+
+products_array = []
+users_array = []
+businesses_array = []
+
+
+############################################################
+#   Create Czekpass to start partronized/purchased chain   #
+############################################################
+
+# Here we seed the database with a 'Genesis' czekpass product so that we can decrement the purchased_product_id to differentiate it from the purchased_product_id in the perk seed.
+# To have a product before we run the perk seed, we need to create the associated entities of the product which belongs to a business which belongs to a user.
+puts "Creating network bootstrap objects (Czeckpass)"
+
 # User faker to create the name then split the name into the first_name and last_name attributes.
 name = Faker::FunnyName.unique.two_word_name
 first_name = name.split(' ')[0]
 last_name = name.split(' ')[1]
 
-# Here we seed the database with a 'Genesis' entity in each table, using standard user so we don't have to signup every time we drop the
-puts "Creating network bootstrap objects (Czeckpass)"
+user = User.create!(
 
-  name = Faker::FunnyName.unique.two_word_name
-  first_name = name.split(' ')[0]
-  last_name = name.split(' ')[1]
-
-  user = User.create!(
     email: Faker::Internet.unique.email,
     first_name: first_name,
     last_name: last_name,
@@ -44,51 +55,41 @@ puts "Creating network bootstrap objects (Czeckpass)"
     business_category: BusinessCategory.last
     )
 
-  Employee.create!(
-    business_id: business.id,
-    roles: Faker::Company.profession,
-    user_id: user.id
-    )
+czekpass_product = Product.create!(
+    name: "Czekpass sign up" ,
+    description: "Perk from the first purchase",
+    price_cents: 0,
+    category: "Lifestyle" ,
+    business_id: czekpass.id
+  )
 
-  new_products_array = []
-  rand(1..10).times do
-    product = Product.create!(
-        name: Faker::Appliance.equipment ,
-        description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
-        price_cents: Faker::Number.number(digits: 5),
-        category: Faker::Job.field ,
-        business_id: business.id
-       )
-    new_products_array << product
-  end
-
-  Purchase.create!(
-    verified: [true, false].sample,
-    expiration_date: Date.today + rand(1..30),
-    user_id: user.id,
-    product_id: new_products_array.sample.id
-    )
-
+##############################################################
+#   First loop of businesses and users to seed the database  #
+##############################################################
 
 # to seed the file 10 times we need a ruby loop. We use the faker gem (required above)
 puts "10 times ruby loop for users, businesses, products and perks"
+
 10.times do
   name = Faker::FunnyName.unique.two_word_name
   first_name = name.split(' ')[0]
   last_name = name.split(' ')[1]
 
-  user = User.create!(
+  user = User.new(
     email: Faker::Internet.unique.email,
     first_name: first_name,
     last_name: last_name,
      password: '1234567'
     )
 
+  users_array << user
+  user.save!
+
   BusinessCategory.create!(
     name: Faker::Company.industry
     )
 
-  business = Business.create!(
+  business = Business.new(
     name: Faker::Company.unique.name,
     description: Faker::Company.bs,
     user_id: user.id,
@@ -96,50 +97,89 @@ puts "10 times ruby loop for users, businesses, products and perks"
     location: Faker::Address.unique.city,
     business_category: BusinessCategory.last
     )
+  businesses_array << business
+  business.save!
 
-  Employee.create!(
-    business_id: business.id,
-    roles: Faker::Company.profession,
-    user_id: user.id
-    )
+  # Removed employees.
+  # Add employess after inital loop so that they are not the same users as the owners.
 
-  new_products_array = []
-  rand(1..10).times do
-    product = Product.create!(
+  10.times do
+    product = Product.new(
         name: Faker::Appliance.equipment ,
         description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
         price_cents: Faker::Number.number(digits: 5),
-        category: Faker::Job.field ,
+        category: Faker::Job.field,
         business_id: business.id
        )
-    new_products_array << product
+    products_array << product
+    product.save!
   end
+end
 
-  Purchase.create!(
-    verified: [true, false].sample,
-    expiration_date: Date.today + rand(1..30),
-    user_id: user.id,
-    product_id: new_products_array.sample.id
-    )
+################################
+#   Create perks on products   #
+################################
 
-  providing_business = Business.find(business.id - 1)
+# Initial loop created businesses and products.
+# Now we can add perks based on passed purchases
 
+# Could be interesting to do this for all the products of a business at the same time.
+# So, create a method to take a business and get it's products.
+# If it is the business id the same as the business creating it, take again.
+# If the business is another business,
 
-  new_products_array.each do |product|
+businesses_array.each do |business|
+  # Iterate on all the products of that business
+  business.products.each do |product|
+    patronized_business = businesses_array.sample
     perk = Perk.new(
-      receiving_product_id: product.id,
+      product_id: product.id,
       kind: ["percentage", "dollars", "non-monetary"].sample,
       amount: rand(1..50),
       description: Faker::Vehicle.manufacture,
-      providing_business_id: providing_business ? providing_business.id : czekpass.id,
-      providing_product_id: providing_business.products.sample.id,
+      business_id: business.id,
+      patronized_business_id: patronized_business.id == business.id ? businesses_array.sample.id : patronized_business.id,
+      purchased_product_id: patronized_business.products.sample.id,
     )
-
     perk.save!
   end
 end
 
-# We then create a user and an admin for our own test purposes
+
+## Once all products and perks are in place, we can create purchases for users in the DB.
+
+# Do we want to do it for us or for others? Right now, most of the testing will be done on us.
+# So all the scenarios should be on current_user
+# Are there other methods we might want to call? Business.perks -
+# we might want the business to have more perks, some that might not be available to current_user
+# If so, we should do the list.
+
+
+# For the create purchase user, we want every user to have at lest five purchases
+
+users_array.each do |user|
+  rand(5..10).times do
+    purchased_products = products_array.select do |product|
+      # return product unless that product is offered by the user's business
+      product unless user.business.products.include? product
+    end
+
+    Purchase.create!(
+      verified: [true, false].sample,
+      expiration_date: Date.today - rand(1..30),
+      user_id: user.id,
+      product_id: purchased_products.sample.id
+    )
+  end
+end
+
+puts "Purchases created!"
+# patronized_business = Business.find(business.id - 1)
+
+
+########################################################################
+#  Creates own user and admin (with a business) for testing purposes   #
+########################################################################
 
 puts "Create users for Czekpass developers"
 
@@ -147,12 +187,14 @@ czekpass_employees = ['Myles', 'Nick', 'Amir', 'Alex']
 who_is_seeder = 3 # Use reference to create the seeds
 businesses = Business.all
 
-czekpass_user = User.create!(
+czekpass_user = User.new(
   email: "#{czekpass_employees[who_is_seeder].downcase}@czekpass.com",
   first_name: czekpass_employees[who_is_seeder],
   last_name: "Czekpass",
   password: '1234567'
 )
+
+czekpass_user.save!
 
 rand(1..5).times do
   Purchase.create!(
@@ -163,17 +205,16 @@ rand(1..5).times do
     )
 end
 
-# Creates a Czekpass admin user with a business
-
-czekpass_admin = User.create!(
+czekpass_admin = User.new(
   email: "#{czekpass_employees[who_is_seeder].downcase}.admin@czekpass.com",
   first_name: czekpass_employees[who_is_seeder],
   last_name: "Czekpass Admin",
   password: '1234567',
   admin: true
 )
+czekpass_admin.save!
 
-czekpass_admin_business = Business.create!(
+czekpass_admin_business = Business.new(
   name: Faker::Company.unique.name,
   description: Faker::Company.bs,
   user_id: czekpass_admin.id,
@@ -182,17 +223,19 @@ czekpass_admin_business = Business.create!(
   business_category: BusinessCategory.last
 )
 
+czekpass_admin_business.save!
+
 czekpass_admin_business_products_array = []
 
 rand(1..10).times do
-  product = Product.create!(
+  product = Product.new(
     name: Faker::Appliance.equipment ,
     description: Faker::Lorem.paragraph_by_chars(number: 256, supplemental: false),
     price_cents: Faker::Number.number(digits: 5),
     category: Faker::Job.field,
     business_id: czekpass_admin_business.id
   )
-
+  product.save!
   czekpass_admin_business_products_array << product
 end
 
@@ -200,15 +243,16 @@ czekpass_admin_business_products_array.each do |product|
 
   rand(1..10).times do
 
-    providing_business = businesses.sample
+    patronized_business = businesses.sample
 
     Perk.create!(
       kind: ["percentage", "dollars", "non-monetary"].sample,
       amount: rand(1..50),
       description: Faker::Vehicle.manufacture,
-      providing_business_id: providing_business.id,
-      providing_product_id: providing_business.products.sample.id,
-      receiving_product_id: product.id,
+      business_id: czekpass_admin_business.id,
+      patronized_business_id: patronized_business.id,
+      purchased_product_id: patronized_business.products.sample.id,
+      product_id: product.id,
     )
   end
 

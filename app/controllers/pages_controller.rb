@@ -4,9 +4,17 @@ class PagesController < ApplicationController
   def home
   end
 
-  def business_page
+  def business_dashboard
     # This is all perks available to the user
-    @perks = current_user.perks
-    raise
+    @business = current_user.business
+    @perks = @business.perks
+  end
+
+  def dashboard
+    @user = current_user
+  end
+
+  def discover
+    @businesses = current_user.offering_businesses
   end
 end
