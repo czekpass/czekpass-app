@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def create
     @product = Product.new(product_params)
     @business = Business.find(params[:business_id])
@@ -21,14 +25,12 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show
-    @product = Product.find(params[:id])
-  end
+
 
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to business_product_path(@product.business, @product)
+      redirect_to business_product_path(@product.business, @product) #get from rails routes
     else
       render 'edit'
     end
