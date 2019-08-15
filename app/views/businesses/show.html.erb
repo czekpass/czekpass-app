@@ -15,7 +15,7 @@
     <li class="list-inline-item">Products</li>
   </ul>
 
-  <% @user.all_perks.each do |perk| %>
+  <% @user.perks(@business).each do |perk| %>
       <div>
         <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
       </div>
