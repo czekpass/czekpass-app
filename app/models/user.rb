@@ -20,15 +20,11 @@ class User < ApplicationRecord
   end
 
   def perks(business)
-  #   # perks = Perk.where(receiving_product_id: businesses)
-  #   # businesses[0].perks
-
-  #   # A business has many perks thorugh products
+      # Iterate through all the perks available to the user and only include
+      # the perk if it's providing_product_id matches the id of a product purchased
+      # by the user
     business.perks.select do |perk|
-  #   #   # Iterate through all the perks available to the user and only include
-  #   #   # the perk if it's providing_product_id matches the id of a product purchased
-  #   #   # by the user
-      all_perks.include? perk.purchased_product_id
+      all_perks.include? perk
      end
   end
 
@@ -36,8 +32,12 @@ class User < ApplicationRecord
     Purchase.where("verified = false AND user_id = ?", self.id)
   end
 
-  def available_products
-    product_ids = self.all_perks.collect(&:product_id)
+  def available_products(business = nil)
+    if business.nil?
+      product_ids = self.all_perks.collect(&:product_id)
+    else
+      product_ids = self.perks(business).collect(&:product_id)
+    end
     product_ids.map { |p| Product.find(p) }
   end
 
