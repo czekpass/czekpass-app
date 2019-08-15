@@ -6,8 +6,8 @@ class PagesController < ApplicationController
 
   def business_dashboard
     # This is all perks available to the user
-    @businesses = current_user.businesses
-    @perks = current_user.perks(current_user.businesses)
+    @business = current_user.business
+    @perks = @business.perks
   end
 
   def dashboard

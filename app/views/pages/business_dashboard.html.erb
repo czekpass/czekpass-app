@@ -1,10 +1,5 @@
 <h1>My business dashboard</h1>
 
-<p> <%= @businesses[0].name %> <br>
-<strong>Description:</strong>
-<%= @businesses[0].description %>
-</p>
-
-<%# @perks.each do |perk| %>
-  <div><%#= perk.description %></div>
-<%# end %>
+<% @perks.each do |perk| %>
+  <div><%= perk.amount %></div>
+<% end %>
