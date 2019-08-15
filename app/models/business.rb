@@ -1,5 +1,8 @@
 class Business < ApplicationRecord
-  mount_uploader :logo, LogoUploader
+  mount_uploader :logo, PhotoUploader
+
+# Here I'm specifying that our business model has an attribute that will upload something, in this case the business photo.
+
 
   has_many :employees
   has_many :products
@@ -14,4 +17,5 @@ class Business < ApplicationRecord
   validates :name, presence: true
   validates :location, presence: true
   validates :description, presence: true
+
 end

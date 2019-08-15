@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
   def business_dashboard
     # This is all perks available to the user
-    if current_user.business == true
+    if current_user.business.nil? == false
       @business = current_user.business
       @perks = @business.perks
     else
