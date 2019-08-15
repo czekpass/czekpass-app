@@ -10,7 +10,6 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :location, presence: true
 
   def perks(business = nil)
       # Iterate through all the perks available to the user and only include
@@ -23,6 +22,8 @@ class User < ApplicationRecord
         all_perks.include? perk
       end
     end
+
+    all_perks
   end
 
   def unverified_purchases
