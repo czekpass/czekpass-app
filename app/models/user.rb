@@ -6,26 +6,23 @@ class User < ApplicationRecord
 
   has_many :purchases
   has_many :products, through: :purchases
-  # This won't work as it the association is too deep.
-  # has_many :perks, through: :products
   has_one :business
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :location, presence: true
 
-  # validates :first_name, presence: true
-  # validates :last_name, presence: true
-  # validates :location, presence: true
-
-  def all_perks
-    Perk.where(purchased_product_id: self.products.pluck(:id))
-  end
-
-  def perks(business)
+  def perks(business = nil)
       # Iterate through all the perks available to the user and only include
       # the perk if it's providing_product_id matches the id of a product purchased
       # by the user
-    business.perks.select do |perk|
-      all_perks.include? perk
-     end
+    all_perks = Perk.where(purchased_product_id: self.products.pluck(:id))
+
+    if business.nil? == false
+      all_perks = business.perks.select do |perk|
+        all_perks.include? perk
+      end
+    end
   end
 
   def unverified_purchases
