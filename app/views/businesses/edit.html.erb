@@ -1,4 +1,12 @@
+<%= simple_form_for @business do |f| %>
+  <%= f.input :name %>
+  <%= f.input :business_category, collection: BusinessCategory.all, selected: @business.business_category.id %>
+  <%= f.input :description %>
+  <%= f.input :location %>
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
 
+<!--
 
 <div id="wrapper" name="page-top">
   <div class="d-flex flex-column" id="content-wrapper">
@@ -82,13 +90,7 @@
                     <p class="text-primary m-0 font-weight-bold">Business Information</p>
                   </div>
                   <div class="card-body">
-                    <%= simple_form_for @business do |f| %>
-                      <%= f.input :name %>
-                      <%= f.input :business_category, collection: BusinessCategory.all, selected: @business.business_category.id %>
-                      <%= f.input :description %>
-                      <%= f.input :location %>
-                      <%= f.button :submit, class: 'btn btn-primary' %>
-                    <% end %>
+
 
                   </div>
                 </div>
@@ -105,3 +107,4 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
 <script src="assets/js/script.min.js"></script>
+ -->

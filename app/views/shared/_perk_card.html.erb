@@ -6,14 +6,14 @@
   <!-- This needs to be refactored to adjust to any currency-->
     <%= "#{perk.amount} $ off" %>
   <% else %>
-    <p class="mb-0">Free</p>
+    Free
   <% end %>
-   <%= link_to perk.receiving_product.name, business_product_perk_path(perk.receiving_product.business, perk.receiving_product, perk) %>
+   <%= link_to perk.product.name, business_product_perk_path(perk.product.business, perk.product, perk) %>
 
   <div><%= perk.description%></div>
   <div>
     <span class="discounted-initial-price">
-      <%= humanized_money_with_symbol(perk.receiving_product.price) %>
+      <%= humanized_money_with_symbol(perk.product.price) %>
     </span>
   </div>
 </div>
