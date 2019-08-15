@@ -19,7 +19,7 @@
 
 <% 10.times do %>
 
-  <% @user.all_perks.each do |perk| %>
+  <% @user.perks.each do |perk| %>
       <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
   <% end %>
 

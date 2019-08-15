@@ -26,6 +26,7 @@ gem 'pg_search'
 gem 'searchkick', '~> 3.0'
 gem 'money-rails'
 gem 'faker'
+gem 'gibbon'
 gem 'simple_form'
 
 group :development do
