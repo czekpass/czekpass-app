@@ -1,5 +1,4 @@
 class PerksController < ApplicationController
-  # @scheduled_activities = ScheduledActivity.where(instructor_id: params[:id])
 
   # def index
   #   @product = Product.find(params[:product_id])
@@ -18,37 +17,36 @@ class PerksController < ApplicationController
 
   def create
     @product = Product.find(params[:product_id])
+    @business = Business.find(params[:business_id])
     @perk = Perk.new(perk_params)
-    raise
-    @perk.providing_business = Business.find(params[:business_id])
-    @perk.providing_product = @product
-    @perk.receiving_product_id = 69  #Rayhon filler, what to do?
+    @perk.patronized_business = @business
+    @perk.purchased_product = @product
     if @perk.save
-      redirect_to @product
+      redirect_to business_product_path(@business, @product)
     else
       render "new"
     end
   end
 
+  def edit
+    @perk = Perk.find(params[:id])
+    @product = @perk.purchased_product
+    @business = @perk.patronized_business
+  end
+
   def update
-    @product = Product.find(params[:product_id])
-    if @product.update(product_params)
-      redirect_to @product
-      redirect_to business_product_path(@product.business, @product)
+    @perk = Perk.find(params[:id])
+    if @perk.update(perk_params)
+      redirect_to business_product_path(@perk.patronized_business, @perk.purchased_product)
     else
       render 'edit'
     end
   end
 
   def delete
-    @product = Product.find(params[:product_id])
-    @perk.product.destroy
-    redirect_to @business
-  end
-
-  def edit
     @perk = Perk.find(params[:id])
-    @product = Product.find(params[:product_id])
+    @perk.destroy
+    redirect_to business_product_path(@perk.patronized_business, @perk.purchased_product)
   end
 
   private

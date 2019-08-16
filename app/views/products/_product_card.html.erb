@@ -1,0 +1,18 @@
+<div class="card-product">
+  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+  <div class="card-product-infos">
+    <h2><%= product.name %></h2>
+    <p>Product description with <strong>relevant info</strong> only.</p>
+  </div>
+  <% product.perks.each do |perk| %>
+  <p><%= perk.kind %></p>
+  <%  end  %>
+</div>
+
+   <%= link_to product.name, business_product_path %>
+
+    t.string "name"
+    t.text "description"
+    t.string "category"
+    t.string "photo"
+

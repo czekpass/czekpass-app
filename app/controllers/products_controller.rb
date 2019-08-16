@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @business = Business.find(params[:business_id])
     @product = Product.find(params[:id])
   end
 
@@ -24,7 +25,6 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-
 
 
   def update

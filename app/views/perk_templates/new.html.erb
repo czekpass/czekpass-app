@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create a new perk template for your perks</h1>
+
+      <%= simple_form_for [@business, @perk_template] do |f| %>
+        <%= f.input :description %>
+        <%= f.input :kind %>
+        <%= f.input :amount %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+

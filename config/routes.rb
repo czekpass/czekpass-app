@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :businesses do
     resources :employees
     resources :products do
-      resources :perks, only: [:show, :new, :create]
+      resources :perks, only: [:show, :new, :create, :edit, :update, :destroy]
     end
     resources :perk_templates, only: [:new, :create]
   end

@@ -6,10 +6,7 @@ class User < ApplicationRecord
 
   has_many :purchases
   has_many :products, through: :purchases
-<<<<<<< HEAD
   has_many :perks, through: :products
-=======
->>>>>>> master
   has_one :business
 
   validates :first_name, presence: true
