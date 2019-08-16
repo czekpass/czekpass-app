@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
+
   has_many :purchases
   has_many :products, through: :purchases
   has_many :perks, through: :products
@@ -37,11 +39,11 @@ class User < ApplicationRecord
     else
       product_ids = self.perks(business).collect(&:product_id)
     end
-    product_ids.map { |p| Product.find(p) }
+    Product.where(id: product_ids)
   end
 
   def offering_businesses
     business_ids = self.available_products.collect(&:business_id)
-    business_ids.map { |b| Business.find(b) }
+    Business.where(id: business_ids)
   end
 end

@@ -1,5 +1,17 @@
-<div class="footer mt-auto">
-    <div ><%= link_to 'Discover', root_path %></div>
-    <div><%= link_to "Scan (Business Dash)", business_dashboard_path %></div>
-    <div><%= link_to "Profile", dashboard_page_path %></div>
+<div class="footer mt-auto bg-light">
+    <div >
+      <%= link_to root_path do%>
+        <i class="far fa-compass"></i>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to business_dashboard_path do %>
+        <i class="fas fa-qrcode"></i>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to dashboard_page_path do %>
+        <%= image_tag 'icons/user.png', class:'footer-nav-icon' %>
+      <% end %>
+    </div>
 </div>

@@ -1,10 +1,73 @@
-<div class="search">
-  <div>Test</div>
-  <div>Test</div>
+<div class="page-header bg-light">
+  <h3>Perks near you</h3>
 </div>
 
-I'm discover, yo!
+<form>
+  <!-- This should be a form -->
+  <div class="form-row no-gutters">
+    <div class="form-group flex-grow-1">
 
-<% @businesses.each do |business| %>
-  <div><%= business.name %></div>
-<% end %>
+    <!-- This is the first half -->
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn btn-secondary" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
+        </div>
+        <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        <button class="btn btn-primary input-group-append">Search</button>
+      </div>
+    </div>
+
+    <!-- This is the second half -->
+    <div class="form-group">
+      <div class="btn btn-secondary" id="filter"><i class="fas fa-filter"></i></div>
+    </div>
+  </div>
+
+  <!-- This is the filters -->
+
+  <div class="form-row">
+    <div id="formFilters">This should be the filters</div>
+  </div>
+</form>
+
+
+<!-- End of search form -->
+
+<nav>
+  <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Map</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">List</a>
+  </div>
+</nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" style="width: 480px; height: 100vw;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div
+        id="map"
+        style="width: 100%;
+        height: 100%;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+      ></div>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <% @businesses.each do |business| %>
+        <div>
+          <%= render partial: 'shared/business_card', locals: {business: business} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+<script>
+  loc.addEventListener('click', (e) => {
+    window.navigator.geolocation.getCurrentPosition(
+      position => console.log(position),
+      err => console.error(err)
+    );
+  })
+
+  filter.addEventListener('click', (e) => {
+    formFilters.classList.toggle('colourred');
+  })
+</script>
