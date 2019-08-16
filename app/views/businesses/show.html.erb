@@ -1,17 +1,28 @@
-<%= @business.name %>
+<p>
+  <%= link_to 'Back', :back %>
+</p>
 
-<%= cl_image_tag @business.photo, height: 300, width: 400, crop: :fill %>
+<div class="d-flex business-info">
+  <div class="business-logo logo">
+    <%= @business.logo %>
+  </div>
+  <div class="business-description">
+    <%= @business.name %>
+    <%= @business.description %>
+    <%= @business.location %>
+    <%= @business.logo %>
+  </div>
+</div>
 
-<ul>
-  <li>Name: <%= @business.name %></li>
-  <li>Description: <%= @business.description %></li>
-  <li>Location: <%= @business.location %></li>
-  <li><%= @business.logo %></li>
-  </li>
-</ul>
+
+
+
+
+
+<%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
 
   <ul class="list-inline">
-    <li class="list-inline-item">perks</li>
+    <li class="list-inline-item">Perks</li>
     <li class="list-inline-item">Products</li>
   </ul>
 
@@ -20,7 +31,5 @@
         <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
       </div>
   <% end %>
-<%= link_to "view products", business_products_path(@business.id) %>
-<%= link_to "edit", edit_business_path %>
 </div>
 

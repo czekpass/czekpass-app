@@ -1,29 +1,40 @@
-<div>
+<div class="user-profile-header">
   <h1>Hi! <%= @user.first_name %></h1>
   <%= link_to 'Edit', edit_user_path(current_user) %>
 </div>
 
 <br>
 
-<ul class="nav nav-tabs nav-pills nav-fill stick">
-  <li class="nav-item">
-    <a class="nav-link" href="#">Savings</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="#">Perks</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Purchases</a>
-  </li>
-</ul>
 
-<% 10.times do %>
+
+<nav>
+  <div class="nav nav-tabs nav-pills nav-fill sticky" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Savings</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perks</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  My savings, yo!
+  </div>
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <% 10.times do %>
 
   <% @user.perks.each do |perk| %>
       <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
   <% end %>
 
 <% end %>
+  </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+</div>
+
+
+
+
+
+
 
 </div>
 
