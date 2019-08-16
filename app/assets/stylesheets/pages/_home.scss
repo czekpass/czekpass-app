@@ -31,3 +31,26 @@ body {
 .colourred{
   display: none;
 }
+
+.validated{
+  background-color: #31F812;
+  height: 100%;
+  padding: 20px;
+}
+
+.invalidated {
+  background-color: #F81212;
+  height: 100%;
+}
+
+.product-card-test {
+  background-color: white;
+  padding: 20px;
+}
+
+.user-info{
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}

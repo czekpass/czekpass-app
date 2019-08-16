@@ -4,6 +4,7 @@
   <li><%= @user.first_name %></li>
   <li><%= @user.last_name %></li>
   <li><%= @user.email %></li>
+  <li><%= cl_image_tag(@user.photo, class: 'rounded-circle mb-3 mt-4', width: 150, crop: :fill) %></li>
   </li>
 </ul>
 <%= link_to "edit", edit_user_path(@user.id) %>

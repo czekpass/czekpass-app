@@ -2,6 +2,15 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      if /admin/.match(current_user.email)
+        redirect_to business_dashboard_path
+      else
+        redirect_to dashboard_page_path
+      end
+    end
   end
 
   def business_dashboard
