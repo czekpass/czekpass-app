@@ -45,6 +45,7 @@ class PagesController < ApplicationController
       @businesses = current_user.offering_businesses.geocoded
     end
 
+
     @markers = @businesses.map do |business|
       {
         lat: business.latitude,
@@ -53,6 +54,13 @@ class PagesController < ApplicationController
         infoWindow: render_to_string(partial: "info_window", locals: { businesses: business })
       }
     end
+
+    # trying to get the tabs to not refresh on 'search'
+
+    # respond_to do |format|
+    #   format.html {render}
+    #   format.js
+    # end
   end
 end
 
