@@ -1,9 +1,9 @@
 class PerksController < ApplicationController
 
-  # def index
-  #   @product = Product.find(params[:product_id])
-  #   @perks = @product.perks
-  # end
+  def index
+    @product = Product.find(params[:product_id])
+    @perks = @product.perks
+  end
 
   def new
     @business = Business.find(params[:business_id])
@@ -16,11 +16,12 @@ class PerksController < ApplicationController
   end
 
   def create
+    @perk = Perk.new(perk_params)
     @product = Product.find(params[:product_id])
     @business = Business.find(params[:business_id])
-    @perk = Perk.new(perk_params)
-    @perk.patronized_business = @business
-    @perk.purchased_product = @product
+    @perk.business = @business
+    @perk.product = @product
+
     if @perk.save
       redirect_to business_product_path(@business, @product)
     else
@@ -52,7 +53,7 @@ class PerksController < ApplicationController
   private
 
   def perk_params
-    params.require(:perk).permit(:kind, :amount, :description)
+    params.require(:perk).permit(:kind, :amount, :description, :product_id)
   end
 
 end
