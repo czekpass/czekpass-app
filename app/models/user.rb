@@ -7,7 +7,7 @@ class User < ApplicationRecord
   mount_uploader :photo, PhotoUploader
 
   has_many :purchases
-  #has_many :products, through: :purchases
+  has_many :products, through: :purchases
   has_one :business
 
   validates :first_name, presence: true
