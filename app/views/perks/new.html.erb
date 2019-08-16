@@ -1,0 +1,27 @@
+Load perk template on the new page here somewhere.
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Create a new perk for your product</h1>
+
+      <%= simple_form_for [@business, @product, @perk] do |f| %>
+      <%= f.input :description %>
+      <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
+      <%= f.input :amount %>
+      <%= f.input :business, collection: Business.all %>
+      <%= f.label :purchased_product_id, 'Purchased Product' %>
+      <%= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
+      <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const businessSelect = document.querySelector('#perk_business')
+  businessSelect.addEventListener('change', () => {
+    console.log('CHANGE PRODCT OPTIONS BASED ON BUSINESS SELECTED')
+  })
+</script>

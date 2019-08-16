@@ -28,8 +28,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def validate
+    @user = User.find(params[:id])
+    @product = Product.find(params[:pid])
+    @product_ids = @user.products.ids
+    @validated = @product_ids.include?(params[:ppid].to_i)
+    @perk = Perk.find(params[:ped])
+  end
+
+
   def user_params
-    params.require(:user).permit(:email, :encrypted_password, :first_name, :last_name)
+    params.require(:user).permit(:email, :encrypted_password, :first_name, :last_name, :photo)
   end
 end
 

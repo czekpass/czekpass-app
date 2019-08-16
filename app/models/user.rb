@@ -4,8 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
+  mount_uploader :photo, PhotoUploader
+
   has_many :purchases
   has_many :products, through: :purchases
+  has_many :perks, through: :products
   has_one :business
 
   validates :first_name, presence: true
@@ -32,15 +35,20 @@ class User < ApplicationRecord
 
   def available_products(business = nil)
     if business.nil?
+      # if no business is given, get the product id of all perks the user has.
       product_ids = self.perks.collect(&:product_id)
     else
       product_ids = self.perks(business).collect(&:product_id)
     end
-    product_ids.map { |p| Product.find(p) }
+    # Do a search with the product id as key. Return array of available products.
+    Product.where(id: product_ids)
   end
 
   def offering_businesses
+    # Gets a list of products (with perks) that are available to the user
     business_ids = self.available_products.collect(&:business_id)
-    business_ids.map { |b| Business.find(b) }
+    # takes the ids of these products and returns the businesses for the business_ids array.
+    Business.where(id: business_ids)
+    # Should it be uniq?
   end
 end
