@@ -1,8 +1,8 @@
 class Business < ApplicationRecord
   mount_uploader :logo, PhotoUploader
 
-# Here I'm specifying that our business model has an attribute that will upload something, in this case the business photo.
-
+  geocoded_by :location
+  after_validation :geocode, if: :will_save_change_to_location?
 
   has_many :employees
   has_many :products

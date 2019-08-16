@@ -1,5 +1,5 @@
-
-<div class="perk-card">
+<div class="card-perk">
+  <%= link_to business_product_perk_path(perk.product.business, perk.product, perk) do%>
   <% if perk.kind == "percentage" %>
     <%= "#{perk.amount} % off" %>
   <% elsif perk.kind == "amount" %>
@@ -8,8 +8,8 @@
   <% else %>
     Free
   <% end %>
-   <%= link_to perk.product.name, business_product_perk_path(perk.product.business, perk.product, perk) %>
-
+   <%= perk.product.name  %>
+  <% end %>
   <div><%= perk.description%></div>
   <div>
     <span class="discounted-initial-price">
