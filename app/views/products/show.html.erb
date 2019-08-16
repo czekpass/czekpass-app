@@ -5,7 +5,7 @@ Show perks here.
 <ul>
   <li><%= @product.name %></li>
   <li><%= @product.description %></li>
-  <li><%= @product.price_cents %></li>
+  <li><%= humanized_money_with_symbol(@product.price) %></li>
   <li><%= @product.category %></li>
   <li><%= @product.photo %></li>
 </ul>

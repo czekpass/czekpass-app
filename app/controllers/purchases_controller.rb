@@ -25,12 +25,17 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
-    @purchase.user = User.find(54) # random user to replace QR code user
+    @purchase.verified = true
+    if @purchase.save
+      redirect_to root_path
+    else
+      redirect_to :back
+    end
   end
 
   private
 
   def purchase_params
-    require(:purchase).permit(:user_id, :product_id)
+    params.require(:purchase).permit(:user_id, :product_id, :perk_id)
   end
 end

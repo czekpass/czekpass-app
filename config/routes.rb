@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  root to: 'pages#discover'
+  root to: 'pages#home'
 
   resources :businesses do
     resources :employees
@@ -16,7 +16,10 @@ Rails.application.routes.draw do
 
   resources :purchases, except: [:edit, :update, :destroy]
 
+
   resources :new_connection
+
+  get 'users/:id/validate', to: 'users#validate'
 
 
   get 'business_dashboard', to: 'pages#business_dashboard', as: 'business_dashboard'

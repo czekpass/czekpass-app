@@ -2,6 +2,15 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
 
   def home
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      if /admin/.match(current_user.email)
+        redirect_to business_dashboard_path
+      else
+        redirect_to dashboard_page_path
+      end
+    end
   end
 
   def business_dashboard
@@ -26,24 +35,57 @@ class PagesController < ApplicationController
     # render these businesses in a view below the button.
 
     @location_info = request.location.city
-
-    @businesses = current_user.offering_businesses.geocoded
+    # @businesses = current_user.offering_businesses.geocoded
     @all_businesses = Business.geocoded
 
-    if @businesses.nil?
-      @markers = @businesses.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude
-        }
-      end
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR location ILIKE :query"
+      @businesses = current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").geocoded
     else
-      @markers = @businesses.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude
-        }
-      end
+      @businesses = current_user.offering_businesses.geocoded
+    end
+
+    @markers = @businesses.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        # This is for the pop-ups on the map
+        infoWindow: render_to_string(partial: "info_window", locals: { businesses: business })
+      }
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
