@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       if /admin/.match(current_user.email)
         redirect_to business_dashboard_path
       else
-        redirect_to dashboard_page_path
+        redirect_to discover_path
       end
     end
   end

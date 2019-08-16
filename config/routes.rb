@@ -16,11 +16,8 @@ Rails.application.routes.draw do
 
   resources :purchases, except: [:edit, :update, :destroy]
 
-
-  resources :new_connection
-
   get 'users/:id/validate', to: 'users#validate'
-
+  get 'discover', to: 'pages#discover'
 
   get 'business_dashboard', to: 'pages#business_dashboard', as: 'business_dashboard'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard_page'

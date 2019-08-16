@@ -46,6 +46,7 @@ GEM
     autoprefixer-rails (9.6.1)
       execjs
     aws_cf_signer (0.1.3)
+    barby (0.6.8)
     bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.4)
@@ -56,6 +57,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chunky_png (1.3.11)
     cloudinary (1.9.1)
       aws_cf_signer
       rest-client
@@ -220,6 +222,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rqrcode (0.10.1)
+      chunky_png (~> 1.0)
     sassc (2.0.1)
       ffi (~> 1.9)
       rake
@@ -280,6 +284,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
+  barby (~> 0.6.8)
   bootsnap
   carrierwave (~> 1.2)
   cloudinary (~> 1.9.1)
@@ -303,6 +308,7 @@ DEPENDENCIES
   pundit
   rails (= 5.2.3)
   redis
+  rqrcode
   sassc-rails
   searchkick (~> 3.0)
   simple_form
