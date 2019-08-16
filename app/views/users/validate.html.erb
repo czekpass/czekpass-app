@@ -1,0 +1,37 @@
+<% if @validated %>
+  <div class="validated">
+    <div class="user-info">
+      <div>
+        <%= cl_image_tag(@user.photo, class: 'rounded-circle mb-3 mt-4', width: 150, crop: :fill) %>
+      </div>
+      <h3 style="margin-left: 20px; "><%= @user.first_name %> <%= @user.last_name %> </h3>
+    </div>
+    <div style="height: 20px"></div>
+    <div class="product-card-test">
+      <div>
+        <%= @product.name %>
+      </div>
+      <div>
+        <%= @product.description %>
+      </div>
+      <div style="color:red; text-decoration: line-through;">
+        <%= humanized_money_with_symbol(@product.price) %>
+      </div>
+      <div>
+        <strong>New price</strong> 5000
+      </div>
+    </div>
+
+    <%= simple_form_for Purchase.new do |f| %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.hidden_field :user_id, value: @user.id %>
+      <%= f.hidden_field :perk_id, value: @perk.id %>
+      <%= f.button :submit, class: 'btn btn-secondary' %>
+    <% end %>
+
+  </div>
+<% else %>
+  <div class="invalidated">
+    <!-- I shou -->
+  </div>
+<% end %>
