@@ -35,24 +35,57 @@ class PagesController < ApplicationController
     # render these businesses in a view below the button.
 
     @location_info = request.location.city
-
-    @businesses = current_user.offering_businesses.geocoded
+    # @businesses = current_user.offering_businesses.geocoded
     @all_businesses = Business.geocoded
 
-    if @businesses.nil?
-      @markers = @businesses.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude
-        }
-      end
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR location ILIKE :query"
+      @businesses = current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").geocoded
     else
-      @markers = @businesses.map do |business|
-        {
-          lat: business.latitude,
-          lng: business.longitude
-        }
-      end
+      @businesses = current_user.offering_businesses.geocoded
+    end
+
+    @markers = @businesses.map do |business|
+      {
+        lat: business.latitude,
+        lng: business.longitude,
+        # This is for the pop-ups on the map
+        infoWindow: render_to_string(partial: "info_window", locals: { businesses: business })
+      }
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
