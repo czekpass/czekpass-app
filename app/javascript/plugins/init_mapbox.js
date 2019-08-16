@@ -15,14 +15,37 @@ const buildMap = () => {
     style: 'mapbox://styles/mapbox/streets-v10'
   });
 };
-
 const addMarkersToMap = (map, markers) => {
-  markers.forEach((marker) => {
-    new mapboxgl.Marker()
-      .setLngLat([ marker.lng, marker.lat ])
-      .addTo(map);
-  });
+  if (markers.length >= 1) {
+    markers.forEach((marker) => {
+        const popup = new mapboxgl.Popup().setHTML(marker.infoWindow); // add this
+
+        new mapboxgl.Marker()
+            .setLngLat([marker.lng, marker.lat])
+            .setPopup(popup)
+            .addTo(map);
+    });
+  } else {
+      const popup = new mapboxgl.Popup().setHTML(markers.infoWindow); // add this
+
+      new mapboxgl.Marker()
+          .setLngLat([markers.lng, markers.lat])
+          .setPopup(popup)
+          .addTo(map);
+  }
 };
+
+// CUT this****
+
+// const addMarkersToMap = (map, markers) => {
+//   markers.forEach((marker) => {
+//     new mapboxgl.Marker()
+//       .setLngLat([ marker.lng, marker.lat ])
+//       .addTo(map);
+//   });
+// };
+
+//********
 
 const initMapbox = () => {
   if (mapElement) {
