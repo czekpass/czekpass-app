@@ -7,9 +7,7 @@ class Product < ApplicationRecord
   # has_many :receiving_products, foreign_key: "receiving_product_id", class_name: "Perk"
   has_many :purchases
 
-  has_many :perks
   # has_many :perks, through: :purchases
-
 
   has_many :perks, foreign_key: "product_id", class_name: "Perk"
 
