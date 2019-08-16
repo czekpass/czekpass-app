@@ -3,6 +3,9 @@
 <!-- <= link_to "edit", edit_business_path %> -->
 
 <!-- For the show If current_user = @Business.user then show edit form(partial) else show business_card partial-->
+
+<%= link_to "My business", business_path(current_user.business) %>
+
 <div id="wrapper" name="page-top">
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">

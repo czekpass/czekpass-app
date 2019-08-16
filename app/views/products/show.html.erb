@@ -1,12 +1,39 @@
+Show perks here.
+
 <div class="container">
 <%= @product.name %>
 <ul>
   <li><%= @product.name %></li>
   <li><%= @product.description %></li>
-  <li><%= @product.price_cents %></li>
+  <li><%= humanized_money_with_symbol(@product.price) %></li>
   <li><%= @product.category %></li>
   <li><%= @product.photo %></li>
-  </li>
 </ul>
-<%= link_to "edit", edit_business_product_path %>
+
+<h4>Perks tied to this product</h4>
+<% @product.perks.each do |perk| %>
+  <div class="perk-card">
+    <% if perk.kind == "percentage" %>
+      <%= "#{perk.amount} % off" %>
+    <% elsif perk.kind == "amount" %>
+    <!-- This needs to be refactored to adjust to any currency-->
+      <%= "#{perk.amount} $ off" %>
+    <% else %>
+      Free
+    <% end %>
+     <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
+
+    <div><%= perk.description%></div>
+    <div>
+      <span class="discounted-initial-price">
+        <%= humanized_money_with_symbol(perk.purchased_product.price) %>
+      </span>
+    </div>
+  </div>>
+<% end %>
+
+
+<%= link_to "Edit", edit_business_product_path %>
+<br>
+<%= link_to "Add a perk",  new_business_product_perk_path(product_id:params[:id]) %>
 </div>

@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Edit your perk</h1>
+  <%= simple_form_for [@business, @product, @perk] do |f| %>
+  <%= f.input :description %>
+  <%= f.input :kind %>
+  <%= f.input :amount %>
+  <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>

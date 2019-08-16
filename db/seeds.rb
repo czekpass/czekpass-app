@@ -20,6 +20,7 @@ products_array = []
 users_array = []
 businesses_array = []
 
+cities = ["Canggu", "Paris", "Montreal", "London", "Bangkok", "Los Angeles" ]
 
 ############################################################
 #   Create Czekpass to start partronized/purchased chain   #
@@ -46,12 +47,12 @@ user = User.create!(
     name: Faker::Company.industry
     )
 
-  business = Business.create!(
-    name: Faker::Company.unique.name,
-    description: Faker::Company.bs,
+czekpass = Business.create!(
+    name: "Czekpass",
+    description: "Loyalty for nomads",
     user_id: user.id,
     logo: Faker::Company.logo,
-    location: Faker::Address.unique.city,
+    location: "Canggu",
     business_category: BusinessCategory.last
     )
 
@@ -68,9 +69,9 @@ czekpass_product = Product.create!(
 ##############################################################
 
 # to seed the file 10 times we need a ruby loop. We use the faker gem (required above)
-puts "10 times ruby loop for users, businesses, products and perks"
+puts "15 times ruby loop for users, businesses, products and perks"
 
-10.times do
+15.times do
   name = Faker::FunnyName.unique.two_word_name
   first_name = name.split(' ')[0]
   last_name = name.split(' ')[1]
@@ -94,7 +95,7 @@ puts "10 times ruby loop for users, businesses, products and perks"
     description: Faker::Company.bs,
     user_id: user.id,
     logo: Faker::Company.logo,
-    location: Faker::Address.unique.city,
+    location: cities.sample,
     business_category: BusinessCategory.last
     )
   businesses_array << business
@@ -184,7 +185,7 @@ puts "Purchases created!"
 puts "Create users for Czekpass developers"
 
 czekpass_employees = ['Myles', 'Nick', 'Amir', 'Alex']
-who_is_seeder = 3 # Use reference to create the seeds
+who_is_seeder = 2 # Use reference to create the seeds
 businesses = Business.all
 
 czekpass_user = User.new(
@@ -219,7 +220,7 @@ czekpass_admin_business = Business.new(
   description: Faker::Company.bs,
   user_id: czekpass_admin.id,
   logo: Faker::Company.logo,
-  location: Faker::Address.unique.city,
+  location: cities.sample,
   business_category: BusinessCategory.last
 )
 

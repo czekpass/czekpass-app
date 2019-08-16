@@ -43,6 +43,11 @@ class BusinessesController < ApplicationController
     @business = Business.find(params[:id])
   end
 
+  def new_connection
+    @business = Business.find(params[:id])
+    @product = @business.products
+  end
+
   def business_params
     params.require(:business).permit(:location, :name, :description, :logo)
   end
