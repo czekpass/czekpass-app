@@ -1,23 +1,20 @@
 .edit-button {
   float: right;
 }
+
 // Specific CSS for your home-page
-
-body {
-  max-width: 480px;
-  margin: auto;
-  background-color: black;
-}
-
-.mobile-viewport-container{
+.stick {
+  position: sticky;
+  top: 0;
   background-color: white;
+
   height: calc(100vh - 126px);
   overflow: scroll;
 }
 
-.stick {
-  position: sticky; top: 0;
-  background-color: white;
+img {
+  obj-fit: contain;
+  width: 100%;
 }
 
 .user-profile-header{
