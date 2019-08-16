@@ -1,6 +1,8 @@
 class Business < ApplicationRecord
-# Here I'm specifying that our business model has an attribute that will upload something, in this case the business photo.
   mount_uploader :logo, PhotoUploader
+
+# Here I'm specifying that our business model has an attribute that will upload something, in this case the business photo.
+
 
   has_many :employees
   has_many :products
