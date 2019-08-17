@@ -1,35 +1,50 @@
 <p>
-  <%= link_to 'Back', :back %>
+  <%= link_to 'Back', :back, class: 'btn btn-info mt-2' %>
 </p>
 
 <div class="d-flex business-info">
   <div class="business-logo logo">
     <%= @business.logo %>
   </div>
-  <div class="business-description">
-    <%= @business.name %>
-    <%= @business.description %>
-    <%= @business.location %>
-    <%= @business.logo %>
+  <div class="business-description col-8">
+    <div>
+      <h5><%= @business.name %></h5>
+      <%= @business.description %>
+      <%= @business.location %>
+      <%= @business.logo %>
+    </div>
+    <%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
   </div>
 </div>
 
 
+<!-- Tabbed view -->
+  <nav class="mt-3">
+    <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-perks" role="tab" aria-controls="nav-home" aria-selected="true">Perks</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-products" role="tab" aria-controls="nav-profile" aria-selected="false">Products</a>
+    </div>
+  </nav>
 
+  <div class="tab-content" id="nav-tabContent" style="height:50vh; overflow: scroll;">
+    <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
 
-
-
-<%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
-
-  <ul class="list-inline">
-    <li class="list-inline-item">Perks</li>
-    <li class="list-inline-item">Products</li>
-  </ul>
-
-  <% @user.perks(@business).each do |perk| %>
+    <% @user.perks(@business).each do |perk| %>
       <div>
         <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
       </div>
-  <% end %>
+    <% end %>
+
+    </div>
+    <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+    <% @business.products.each do |product| %>
+      <div>
+        <%= render partial: 'shared/product_card', locals: {product: product} %>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
 </div>
 

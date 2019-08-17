@@ -54,11 +54,11 @@
 
 
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" style="width: 480px; height: 100vw;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane fade show active" style="width: 480px; height: 80vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <div
         id="map"
         style="width: 100%;
-        height: 40%;"
+        height: 100%;"
         data-markers="<%= @markers.to_json %>"
         data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
       ></div>

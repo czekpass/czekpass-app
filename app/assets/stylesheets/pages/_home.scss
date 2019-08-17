@@ -13,8 +13,9 @@
 }
 
 img {
-  obj-fit: contain;
-  width: 100%;
+  object-fit: contain;
+  // Needs to be more specific. Was breaking the footer.
+  // width: 100%;
 }
 
 .user-profile-header{
