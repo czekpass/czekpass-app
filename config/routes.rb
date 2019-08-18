@@ -21,5 +21,5 @@ Rails.application.routes.draw do
 
   get 'business_dashboard', to: 'pages#business_dashboard', as: 'business_dashboard'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard_page'
-  get 'businesses/:id/new_connection', to: 'businesses#new_connection'
+  get 'businesses/:id/new_connection', to: 'businesses#new_connection', as: 'business_connection'
 end

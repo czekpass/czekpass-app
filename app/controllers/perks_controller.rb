@@ -19,7 +19,7 @@ class PerksController < ApplicationController
 
   def show
     @perk = Perk.find(params[:id])
-    qrcode = RQRCode::QRCode.new("http://github.com/")
+    qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{params[:id]}")
 
     @qr = qrcode.as_svg(
       offset: 0,
@@ -28,16 +28,10 @@ class PerksController < ApplicationController
       module_size: 6
     )
 
-    # @qr2 = generate_qr('test')
-
+     IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), @qr.to_s)
   end
 
-  # private
-  # def generate_qr(text)
 
-  #   barcode = Barby::QrCode.new(text, level: :q, size: 5)
-  #   @output = Base64.encode64(barcode.to_png({ xdim: 5 }))
-# end
 
   def create
     @perk = Perk.new(perk_params)
@@ -80,3 +74,23 @@ class PerksController < ApplicationController
     params.require(:perk).permit(:kind, :amount, :description, :product_id)
   end
 end
+
+
+
+
+
+
+
+ # <% if Rails.env.development? %>
+ #      <% qrcode = RQRCode::QRCode.new("https://38c9a5e1.ngrok.io/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+ #    <% else %>
+ #      <% qrcode = RQRCode::QRCode.new("https://trashbounty.herokuapp.com/banks/" + @bank.id.to_s + "/verifications/" + @verification.id.to_s) %>
+ #    <% end %>
+
+ #    <% svg = qrcode.as_svg(
+ #      offset: 0,
+ #      color: '000',
+ #      shape_rendering: 'crispEdges',
+ #      module_size: 6
+ #    ) %>
+
