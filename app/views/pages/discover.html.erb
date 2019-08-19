@@ -29,15 +29,54 @@
 
   <!-- This is the second half -->
   <div class="form-group">
-    <div class="btn btn-secondary" id="filter"><i class="fas fa-filter"></i></div>
+      <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fas fa-filter"></i>
+  </button>
+
   </div>
 </div>
 
 <!-- This is the filters -->
 
-<div class="form-row">
-  <div id="formFilters">This should be the filters</div>
-</div>
+<!-- *******NEED TO ADD EVENT LISTENER TO BRING UP FILTER FORM?******** -->
+
+
+<div id="formFilters">Search within 10km</div>
+  <div class="collapse" id="collapseExample">
+        <h3>Categories:</h3>
+    <div class="container">
+
+      <!-- Used this to make cards for all business categories(not location specific) -->
+      <%# @businesses = Business.all %>
+
+      <% @all_businesses = Business.near('Canggu', 10) %>
+      <!-- Iterating through all businesses near Canggu -->
+        <% @all_businesses.each do |business| %>
+      <div class="row">
+          <div class="filter-card d-inline text-white m-2 p-3">
+      <!-- putting the categories of businesses near me -->
+      <%= link_to business_path(business.id) do %>
+              <%= business.business_category.name %>
+              <% end %>
+          </div>
+      </div>
+        <% end %>
+    </div>
+  </div>
+
+
+
+<!-- ITeration for all perks available to current_user, if we want them for filtering -->
+
+           <!-- <h3>All Perks</h3> -->
+            <%# current_user.perks.each do |perk| %>
+                <!-- <strong><%#= perk.business.name%></strong>     -->
+                <%#= perk.amount %>
+                <%#= perk.kind %>
+                  <!-- <br> -->
+                <%#= perk.description %>
+            <%# end %>
+
 
 
 <!-- End of search form -->
