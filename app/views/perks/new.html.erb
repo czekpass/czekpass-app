@@ -9,7 +9,8 @@ Load perk template on the new page here somewhere.
       <%= f.input :description %>
       <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
       <%= f.input :amount %>
-      <%= f.input :business, collection: Business.all %>
+      <%= f.label :business, 'Patronized business?*' %>
+      <%= f.input :business, collection: Business.all, label: false %>
       <%= f.label :purchased_product_id, 'Purchased Product' %>
       <%= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
       <%= f.button :submit, class: 'btn btn-primary' %>

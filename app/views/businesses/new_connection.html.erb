@@ -1,17 +1,34 @@
- <h1>Create a new business connection</h1>
+ <h1>Add a partner</h1>
  <p>Create a perk available for all patrons of a business, or select a specific product for your perk</p>
 
- <%= simple_form_for [@business, @product, @perk] do |f| %>
+<p>
+  1. First, I want to list all businesses
+</p>
+
+
+
+<p>
+2. Then, after selecting a business, I want to show the list of products for that business.
+This will be done using ajax.
+</p>
+
+
+
+
+
+
+<!--
+ <%#= simple_form_for [@business, @product, @perk] do |f| %>
  <p>Select the business</p>
- <%= f.input :business, collection: Business.all %>
+ <%#= f.input :business, collection: Business.all %>
  <p>Select the product if desired</p>
- <%= f.label :purchased_product_id, 'Purchased Product' %>
- <%= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
- <%= f.input :description %>
- <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
- <%= f.input :amount %>
- <%= f.button :submit, class: 'btn btn-primary' %>
- <% end %>
+ <%#= f.label :purchased_product_id, 'Purchased Product' %>
+ <%#= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
+ <%#= f.input :description %>
+ <%#= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
+ <%#= f.input :amount %>
+ <%#= f.button :submit, class: 'btn btn-primary' %>
+ <%# end %>
 </div>
 </div>
 </div>
@@ -22,3 +39,4 @@
     console.log('CHANGE PRODUCT OPTIONS BASED ON BUSINESS SELECTED')
   })
 </script>
+ -->
