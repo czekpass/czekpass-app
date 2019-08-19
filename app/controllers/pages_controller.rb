@@ -29,6 +29,14 @@ class PagesController < ApplicationController
     ids = @user.purchases.pluck(:id)
     # iterating through the ids to find all the saving instances that have the purchase_id
     @savings = ids.collect {|i| Saving.where(:purchase_id => i) }.flatten
+    @dollar_savings = @savings.select {|e| e.kind == "dollars" }
+
+    # all the user savings
+    @saving_dollars_amount = @dollar_savings.pluck(:amount).inject(:+)
+    # the user savings of the last 7 days
+    @weekly_savings = @savings.select {|e| e.created_at >= Date.today - 7 }.pluck(:amount).inject(:+)
+    # the user savings of the last 30 days
+    @monthly_savings = @savings.select {|e| e.created_at >= Date.today - 30 }.pluck(:amount).inject(:+)
 
   end
 

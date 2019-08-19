@@ -1,10 +1,9 @@
 <div class="user-profile-header">
   <h1>Hello <%= @user.first_name %>!</h1>
-  <%= link_to 'Edit', edit_user_path(current_user) %>
+  <%= link_to 'Edit your profile', edit_user_path(current_user) %>
+  <br>
+  <%= link_to 'Add your business', new_business_path(current_user) %>
 </div>
-
-<br>
-
 
 
 <nav>
@@ -16,9 +15,9 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    <% @savings.each do |saving| %>
-    <%= saving.amount %> - <%= saving.kind %>
-    <% end %>
+    <p>Your total savings are: $<%= @saving_dollars_amount %></p>
+    <p>In the past week you have saved: <%= @weekly_savings %>$!</p>
+    <p>In the past month you have saved: <%= @monthly_savings %>$!</p>
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
     <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
@@ -34,7 +33,7 @@
       Free
       <% end %>
       <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
-
+      <% end %>
       <div><%= perk.description%></div>
       <div>
         <span class="discounted-initial-price">
@@ -46,18 +45,35 @@
     <% end %>
   </div>
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
    <% @user.purchases.each do |purchase| %>
    <%= purchase.product.name %>
    Purchased on:
-   <%= purchase.created_at %>
+   <%= purchase.created_at.strftime("%B %d, %Y") %>
    Expires on:
    <%= purchase.expiration_date %>
    <br>
    <% end %>
+
+
+   <% @user.purchases.each do |purchase| %>
+   <div>
+     <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+   </div>
+   <% end %>
+
  </div>
 
-
+</div>
 </div>
 
-</div>
+copy and paste from master to edit properly
+
+<div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+  <% @business.products.each do |product| %>
+  <div>
+    <%= render partial: 'shared/product_card', locals: {product: product} %>
+  </div>
+  <% end %>
 
