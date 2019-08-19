@@ -2,43 +2,42 @@
   <h3>Perks near you</h3>
 </div>
 
-<form>
-  <!-- This should be a form -->
-  <div class="form-row no-gutters">
-    <div class="form-group flex-grow-1">
+<!-- This should be a form -->
+<div class="form-row no-gutters">
+  <div class="form-group flex-grow-1">
 
-    <!-- This is the first half -->
+  <!-- This is the first half -->
 
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <button class="btn btn-secondary" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
-        </div>
-        <%= form_tag dashboard_page_path, method: :get do %>
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "Search Name or Location"
-            %>
-            <%= submit_tag "Search", class: "btn btn-primary" %>
-        <% end %>
-
-       <!--  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-        <button class="btn btn-primary input-group-append">Search</button> -->
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <button class="btn btn-secondary" name="coords" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
       </div>
-    </div>
 
-    <!-- This is the second half -->
-    <div class="form-group">
-      <div class="btn btn-secondary" id="filter"><i class="fas fa-filter"></i></div>
+      <%= form_tag dashboard_page_path, method: :get do %>
+          <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Search Name or Location"
+          %>
+          <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+
+     <!--  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+      <button class="btn btn-primary input-group-append">Search</button> -->
     </div>
   </div>
 
-  <!-- This is the filters -->
-
-  <div class="form-row">
-    <div id="formFilters">This should be the filters</div>
+  <!-- This is the second half -->
+  <div class="form-group">
+    <div class="btn btn-secondary" id="filter"><i class="fas fa-filter"></i></div>
   </div>
-</form>
+</div>
+
+<!-- This is the filters -->
+
+<div class="form-row">
+  <div id="formFilters">This should be the filters</div>
+</div>
 
 
 <!-- End of search form -->
@@ -79,12 +78,21 @@
   </div>
 
 <script>
-  loc.addEventListener('click', (e) => {
-    window.navigator.geolocation.getCurrentPosition(
-      position => console.log(position),
-      err => console.error(err)
-    );
-  })
+  // function getCoords(position) {
+  //   console.log(position);
+  //   $.post('/discover', {
+  //     lat: position.coords.lat,
+  //     lng: position.coords.lng
+  //   });
+  // }
+
+  // loc.addEventListener('click', (e) => {
+  //   console.log(e);
+  //   window.navigator.geolocation.getCurrentPosition(
+  //     position => console.log(position),
+  //     err => console.error(err)
+  //   );
+  // })
 
   filter.addEventListener('click', (e) => {
     formFilters.classList.toggle('colourred');
