@@ -1,7 +1,5 @@
-Have a list of all available perks here.
-
 <div class="user-profile-header">
-  <h1>Hi! <%= @user.first_name %></h1>
+  <h1>Hello <%= @user.first_name %>!</h1>
   <%= link_to 'Edit', edit_user_path(current_user) %>
 </div>
 
@@ -23,11 +21,9 @@ Have a list of all available perks here.
     <% end %>
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <% 10.times do %>
-
-    <% @user.perks.each do |perk| %>
     <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
 
+    <% @user.perks.each do |perk| %>
     <div class="perk-card">
       <% if perk.kind == "percentage" %>
       <%= "#{perk.amount} % off" %>
@@ -47,22 +43,21 @@ Have a list of all available perks here.
       </div>
     </div>
 
-
-    <% end %>
-
     <% end %>
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-  <% @purchases.each do |purchase| %>
-  <%= purchase.amount %> - <%= purchase.kind %>
-  <% end %>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+   <% @user.purchases.each do |purchase| %>
+   <%= purchase.product.name %>
+   Purchased on:
+   <%= purchase.created_at %>
+   Expires on:
+   <%= purchase.expiration_date %>
+   <br>
+   <% end %>
+ </div>
+
+
 </div>
-
-
-
-
-
-
 
 </div>
 
