@@ -45,7 +45,8 @@ class BusinessesController < ApplicationController
 
   def new_connection
     @business = Business.find(params[:id])
-    @product = @business.products
+    @product = @business.products.where("product.business = ?", @business).find(rand(Product.first.id..Product.last.id))
+    @perk = @business.perks.select { |perk| perk.business == @business }.find(rand(Perk.first.id..Perk.last.id))
   end
 
   def business_params
