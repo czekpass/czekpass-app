@@ -53,9 +53,11 @@
       <!-- Iterating through all businesses near Canggu -->
         <% @all_businesses.each do |business| %>
       <div class="row">
-          <div class="filter-card d-inline bg-primary text-white m-2 p-3">
+          <div class="filter-card d-inline text-white m-2 p-3">
       <!-- putting the categories of businesses near me -->
+      <%= link_to business_path(business.id) do %>
               <%= business.business_category.name %>
+              <% end %>
           </div>
       </div>
         <% end %>
