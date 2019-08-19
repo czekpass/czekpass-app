@@ -13,7 +13,7 @@
         <button class="btn btn-secondary" name="coords" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
       </div>
 
-      <%= form_tag dashboard_page_path, method: :get do %>
+      <%= form_tag discover_path, method: :get do %>
           <%= text_field_tag :query,
             params[:query],
             class: "form-control",
@@ -21,9 +21,6 @@
           %>
           <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
-
-     <!--  <input type="text" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
-      <button class="btn btn-primary input-group-append">Search</button> -->
     </div>
   </div>
 
@@ -37,9 +34,6 @@
 </div>
 
 <!-- This is the filters -->
-
-<!-- *******NEED TO ADD EVENT LISTENER TO BRING UP FILTER FORM?******** -->
-
 
 <div id="formFilters">Search within 10km</div>
   <div class="collapse" id="collapseExample">
@@ -64,32 +58,12 @@
     </div>
   </div>
 
-
-
-<!-- ITeration for all perks available to current_user, if we want them for filtering -->
-
-           <!-- <h3>All Perks</h3> -->
-            <%# current_user.perks.each do |perk| %>
-                <!-- <strong><%#= perk.business.name%></strong>     -->
-                <%#= perk.amount %>
-                <%#= perk.kind %>
-                  <!-- <br> -->
-                <%#= perk.description %>
-            <%# end %>
-
-
-
-<!-- End of search form -->
-
 <nav>
   <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Map</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">List</a>
   </div>
 </nav>
-
-
-
 
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" style="width: 480px; height: 80vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -102,37 +76,15 @@
       ></div>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-      <%# @businesses.each do |business| %>
-        <%# current_user.perks.each do |perk| %>
-          <%# if perk.patronized_business_id == business.id %>
           <% @businesses.each do |business| %>
             <div>
                 <%= render partial: 'shared/business_card', locals: {business: business} %>
             </div>
           <% end %>
-          <%# end %>
-        <%# end %>
-      <%# end %>
     </div>
   </div>
 
 <script>
-  // function getCoords(position) {
-  //   console.log(position);
-  //   $.post('/discover', {
-  //     lat: position.coords.lat,
-  //     lng: position.coords.lng
-  //   });
-  // }
-
-  // loc.addEventListener('click', (e) => {
-  //   console.log(e);
-  //   window.navigator.geolocation.getCurrentPosition(
-  //     position => console.log(position),
-  //     err => console.error(err)
-  //   );
-  // })
-
   filter.addEventListener('click', (e) => {
     formFilters.classList.toggle('colourred');
   })
