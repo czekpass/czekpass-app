@@ -27,6 +27,8 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new(purchase_params)
     @purchase.verified = true
     if @purchase.save
+      perk = Perk.find(@purchase.perk_id)
+      Saving.create!(amount: perk.amount, kind: perk.kind, purchase_id: @purchase.id, perk_id: perk.id)
       redirect_to root_path
     else
       redirect_to :back

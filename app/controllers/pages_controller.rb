@@ -25,6 +25,11 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    # retrieving all the ids of the purchases of the current user and storing inside 'ids' var
+    ids = @user.purchases.pluck(:id)
+    # iterating through the ids to find all the saving instances that have the purchase_id
+    @savings = ids.collect {|i| Saving.where(:purchase_id => i) }.flatten
+
   end
 
   def discover
