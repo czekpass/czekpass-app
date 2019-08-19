@@ -28,12 +28,18 @@ a {
 }
 
 // Set container padding to match gutter width instead of default 15px
-.container,
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  // grid-template-rows: 100px 200px 100px;
+
 .container-fluid {
+
   padding-left: $grid-gutter-width;
   padding-right: $grid-gutter-width;
 }
-
+}
 // Scroll to top button probably best to ut this at the top of individual /page/*erb
 .scroll-to-top {
   position: fixed;
@@ -59,6 +65,6 @@ a {
 }
 
 .profilephoto {
-  obj-fit: contain;
+  object-fit: contain;
   width: 100%;
 }
