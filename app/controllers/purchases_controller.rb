@@ -25,11 +25,22 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
-    @purchase.verified = true
-    if @purchase.save
-      redirect_to root_path
+
+    perk_redeemed = Purchase.where(perk_id: purchase_params[:perk_id])
+
+    if perk_redeemed.nil?
+      @purchase.verified = true
+
+      if @purchase.save
+        # Once the purchase is complete, it should redirect to the business dashboard (purchases). We should see the new purchase.
+        redirect_to root_path
+      else
+        # If it doesn't work... should show error messages.
+        redirect_to :back
+      end
     else
-      redirect_to :back
+      # Need to change this route so that a "this perk has already been redeemed" message gets shown.
+      redirect_to user_path(purchase_params[:user_id])
     end
   end
 

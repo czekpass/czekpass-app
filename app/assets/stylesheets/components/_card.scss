@@ -1,4 +1,4 @@
-.card-perk {
+.custom-card {
   border: 1px solid grey;
   border-radius: 3px;
   margin: 10px;
@@ -37,4 +37,14 @@
   border-radius: 3px;
   color: white;
   background-color: grey;
+}
+
+.product-perk-card-parent{
+  position: relative;
+}
+
+.product-perk-card{
+    position: relative;
+    top: -25px;
+    left: 30px;
 }

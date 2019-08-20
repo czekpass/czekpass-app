@@ -44,8 +44,21 @@ class BusinessesController < ApplicationController
   end
 
   def new_connection
+    # @business = Business.new
+    @businesses = Business.all
     @business = Business.find(params[:id])
-    @product = @business.products
+    # @selected_business = Business.find(params[:business_id])
+    @products = @business.products
+  end
+
+  def filter_new_connection
+    @business = Business.find(params[:business_id])
+    @products = @business.products
+    respond_to do |format|
+        format.html { redirect_to business_connection_path(business_id: params[:business_id]) }
+        format.js
+      end
+
   end
 
   def business_params
