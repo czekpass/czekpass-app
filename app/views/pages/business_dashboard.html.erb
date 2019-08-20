@@ -30,7 +30,7 @@
               <%  @business.products.each do |prod| %>
                 <% prod.purchased_in_the_last_year.each do |purchase| %>
                   <div class="card">
-                                        <%= purchase.id %>
+                   <%= purchase.id %>
 
                     <%= prod.name %>
                     <%= prod.purchased_in_the_last_year.count %>
@@ -43,6 +43,23 @@
               <% end %>
            </div>
         </div>
+<!-- Iterate throguh current bus perks -->
+    <% @business.perks.each do |perk| %>
+      <% total = 0 %>
+      <!-- Find where that perk matches the purchase of an away business product -->
+        <% @connected_purchase = Purchase.where(id: perk.purchased_product_id) %>
+
+        <%  @connected_purchase.each do |connect| %>
+
+          <% if connect.verified? %>
+            <% total += perk.amount %>
+          <p>Business partner: <%= perk.patronized_business.name %></p>
+        <p>Revenue: <%= total %></p>
+          <% end %>
+
+      <% end %>
+    <% end %>
+
 
 
 
