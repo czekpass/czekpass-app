@@ -4,13 +4,8 @@
 
   <div class="business-info">
     <div>
-
-
           <%= link_to business.name, business_path(business.id)%>
           <p class="mb-0"><%= business.description.capitalize %></p>
           <p><%= current_user.perks(business).count %> perk available</p>
-        </div>
-          <span class="category"><%= business.business_category.name %></span>
     </div>
-
 </div>

@@ -8,6 +8,22 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
 };
 
+const fitMapToLocation = (map, coords) => {
+  const bounds = new mapboxgl.LngLatBounds();
+  bounds.extend([coords.lng, coords.lat]);
+  // console.log(map);
+  map.fitBounds(bounds, { padding: 70, maxZoom: 15 });
+};
+
+function getCoords(map, position) {
+  const coords = {
+    lng: position.coords.longitude,
+    lat: position.coords.latitude
+  }
+
+  fitMapToLocation(map, coords);
+}
+
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
@@ -15,6 +31,7 @@ const buildMap = () => {
     style: 'mapbox://styles/mapbox/streets-v10'
   });
 };
+
 const addMarkersToMap = (map, markers) => {
   if (markers.length >= 1) {
     markers.forEach((marker) => {
@@ -53,6 +70,17 @@ const initMapbox = () => {
     const markers = JSON.parse(mapElement.dataset.markers);
     addMarkersToMap(map, markers);
     fitMapToMarkers(map, markers);
+    // loc is the button on the view page
+    loc.addEventListener('click', (e) => {
+      window.navigator.geolocation.getCurrentPosition(
+        (position) => {
+          getCoords(map, position)
+        },
+        (err) => {
+          console.error(err)
+        }
+      );
+    })
   }
 };
 

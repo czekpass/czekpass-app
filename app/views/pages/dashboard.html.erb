@@ -26,7 +26,7 @@ Have a list of all available perks here.
   <% @user.perks.each do |perk| %>
       <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
 
-      <div class="perk-card">
+      <div class="custom-card">
         <% if perk.kind == "percentage" %>
           <%= "#{perk.amount} % off" %>
         <% elsif perk.kind == "amount" %>

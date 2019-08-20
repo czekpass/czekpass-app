@@ -1,8 +1,4 @@
 require 'rqrcode'
-# require 'barby'
-# require 'barby/barcode'
-# require 'barby/barcode/qr_code'
-# require 'barby/outputter/png_outputter'
 
 class PerksController < ApplicationController
 
@@ -19,7 +15,7 @@ class PerksController < ApplicationController
 
   def show
     @perk = Perk.find(params[:id])
-    qrcode = RQRCode::QRCode.new("http://github.com/")
+    qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{params[:id]}")
 
     @qr = qrcode.as_svg(
       offset: 0,
@@ -28,28 +24,34 @@ class PerksController < ApplicationController
       module_size: 6
     )
 
-    # @qr2 = generate_qr('test')
-
+     IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), @qr.to_s)
   end
 
-  # private
-  # def generate_qr(text)
 
-  #   barcode = Barby::QrCode.new(text, level: :q, size: 5)
-  #   @output = Base64.encode64(barcode.to_png({ xdim: 5 }))
-# end
 
   def create
-    @perk = Perk.new(perk_params)
-    @product = Product.find(params[:product_id])
-    @business = Business.find(params[:business_id])
-    @perk.business = @business
-    @perk.product = @product
 
-    if @perk.save
-      redirect_to business_product_path(@business, @product)
+
+   @business = Business.find(params[:business_id])
+
+   valid = true
+    params["perk"].each do |p|
+      unless p["product_id"].empty?
+        @perk = Perk.new
+        @perk.product = Product.find(p[:product_id])
+        @perk.business = @business
+        @perk.patronized_business = Business.find(p[:patronized_business_id])
+        @perk.purchased_product = Product.find(p[:purchased_product_id])
+        @perk.description = p[:description]
+        @perk.kind = p[:kind]
+        @perk.amount = p[:amount]
+        valid = false if !@perk.save
+      end
+    end
+    if valid
+      redirect_to business_dashboard_path
     else
-      render "new"
+      redirect_to "/businesses/#{@business.id}/new_connection?bid=#{params['perk'].first[:patronized_business_id]}"
     end
   end
 
@@ -77,6 +79,8 @@ class PerksController < ApplicationController
   private
 
   def perk_params
-    params.require(:perk).permit(:kind, :amount, :description, :product_id)
+    params.require(:perk).map do |p|
+      p.permit(:kind, :purchased_product_id, :amount, :product_id, :description, :business_id, :patronized_business_id)
+    end
   end
 end

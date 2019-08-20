@@ -13,8 +13,7 @@
 }
 
 img {
-  obj-fit: contain;
-  width: 100%;
+  object-fit: contain;
 }
 
 .user-profile-header{
@@ -51,3 +50,8 @@ img {
   align-items: center;
   padding: 20px;
 }
+
+.viewport-wrapper{
+  height: 50vh;
+}
+

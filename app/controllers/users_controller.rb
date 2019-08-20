@@ -30,10 +30,11 @@ class UsersController < ApplicationController
 
   def validate
     @user = User.find(params[:id])
-    @product = Product.find(params[:pid])
-    @product_ids = @user.products.ids
-    @validated = @product_ids.include?(params[:ppid].to_i)
-    @perk = Perk.find(params[:ped])
+    @perk = Perk.find(params[:pid])
+    @product = @perk.product
+    @product_ids = @user.products
+    @validated = @product_ids.include?(@perk.purchased_product)
+    # raise
   end
 
 
