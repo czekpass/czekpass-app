@@ -1,3 +1,4 @@
+<div id="discover-header">
 <div class="page-header bg-light">
   <h3>Perks near you</h3>
 </div>
@@ -7,21 +8,21 @@
   <div class="form-group flex-grow-1">
 
   <!-- This is the first half -->
-
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <button class="btn btn-secondary" name="coords" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
-      </div>
-
-      <%= form_tag discover_path, method: :get do %>
-          <%= text_field_tag :query,
-            params[:query],
-            class: "form-control",
-            placeholder: "Search Name or Location"
-          %>
-          <%= submit_tag "Search", class: "btn btn-primary" %>
+      <%= form_tag discover_path, method: :get, class: 'flex-grow-1' do %>
+          <div class="input-group">
+            <div class="input-group-prepend">
+                 <button class="btn btn-secondary" name="coords" type="button" id="loc"><i class="fas fa-crosshairs"></i></button>
+            </div>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Search Name or Location"
+            %>
+            <div class="input-group-append">
+              <%= submit_tag "Search", class: "btn btn-primary" %>
+            </div>
+          </div>
       <% end %>
-    </div>
   </div>
 
   <!-- This is the second half -->
@@ -57,16 +58,16 @@
         <% end %>
     </div>
   </div>
-
+</div>
 <nav>
   <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Map</a>
+    <a class="nav-item nav-link active" id="nav-map-tab" data-toggle="tab" href="#nav-map" role="tab" aria-controls="nav-map" aria-selected="true">Map</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">List</a>
   </div>
 </nav>
 
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" style="width: 480px; height: 80vh;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane fade show active" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
       <div
         id="map"
         style="width: 100%;
@@ -83,9 +84,3 @@
           <% end %>
     </div>
   </div>
-
-<script>
-  filter.addEventListener('click', (e) => {
-    formFilters.classList.toggle('colourred');
-  })
-</script>

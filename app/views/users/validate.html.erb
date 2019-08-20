@@ -1,4 +1,5 @@
-<% if @validated %>
+
+<% if @validated == true %>
   <div class="validated">
     <div class="user-info">
       <div>
@@ -26,12 +27,30 @@
       <%= f.hidden_field :product_id, value: @product.id %>
       <%= f.hidden_field :user_id, value: @user.id %>
       <%= f.hidden_field :perk_id, value: @perk.id %>
-      <%= f.button :submit, class: 'btn btn-secondary' %>
+      <%= f.button :submit, class: 'btn btn-secondary mt-4 w-100' %>
     <% end %>
 
   </div>
-<% else %>
-  <div class="invalidated">
-    <!-- I shou -->
-  </div>
+  <% elsif @validated == "No perk"  %>
+    <div class="bg-warning">
+       <div class="user-info">
+      <div>
+        <%= cl_image_tag(@user.photo, class: 'rounded-circle mb-3 mt-4', width: 150, crop: :fill) %>
+      </div>
+      <h3 style="margin-left: 20px; "><%= @user.first_name %> <%= @user.last_name %> </h3>
+    </div>
+    <div class="bg-white p-4">
+      <div class="card p-4 bg-light mb-4">Perk not found</div>
+      <p><strong>Available perks:</strong></p>
+      <% @user.perks.each do |p| %>
+        <div class="card p-2 m-2 col-2 text-center">
+          <%= link_to p.description, "?pid=#{p.id}" %>
+        </div>
+      <% end %>
+    </div>
+
+    </div>
+  <% else %>
+    <div class="invalidated">
+    </div>
 <% end %>

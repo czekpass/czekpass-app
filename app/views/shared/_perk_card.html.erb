@@ -1,20 +1,23 @@
 <div class="custom-card">
-  <%= link_to business_product_perk_path(perk.product.business, perk.product, perk) do%>
-  <% if perk.kind == "percentage" %>
-    <%= "#{perk.amount} % off" %>
-  <% elsif perk.kind == "amount" %>
-  <!-- This needs to be refactored to adjust to any currency-->
-    <%= "#{perk.amount} $ off" %>
-  <% else %>
-    Free
-  <% end %>
-   <%= perk.product.name  %>
-  <% end %>
-  <div><%= perk.description%></div>
+
+<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <% if perk.kind == "percentage" %>
+      <%= perk.amount %> % off
+    <% elsif perk.kind == "amount" %>
+      <%= perk.amount %> $ off
+    <% else %>
+      Free
+    <% end %>
+    <%= perk.product.name %>
+  </a>
+
+  <div class="collapse" id="collapseExample">
+  <%= render partial:  'perks/perk_show', locals: {perk: perk}%>
+  </div>
+
   <div>
     <span class="discounted-initial-price">
       <%= humanized_money_with_symbol(perk.product.price) %>
     </span>
   </div>
 </div>
-

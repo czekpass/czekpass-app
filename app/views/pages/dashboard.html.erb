@@ -25,8 +25,12 @@
     </form>
   </div>
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    <p>Your total savings are: $<%= @saving_dollars_amount + @discounted_price_total %></p>
-    <p>Your total savings: $<%= @total_saving %></p>
+    <% if @saving_dollars_amount.nil? %>
+        You have no savings! You should get busy!
+      <% else %>
+        <p>Your total savings are: $<%= @saving_dollars_amount + @discounted_price_total %></p>
+        <p>Your total savings: $<%= @total_saving %></p>
+    <% end %>
 <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
     <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
   </div>
