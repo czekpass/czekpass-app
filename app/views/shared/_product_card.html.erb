@@ -1,8 +1,12 @@
+
+<div class="card-product custom-card">
 <div class="card-product">
   <div class="photo">
     <p><%= product.photo %></p>
   </div>
   <div class="card-product-infos">
+    <h2><%= link_to product.name, business_product_path(@business, product) %>/h2>
+    <p><%= humanized_money_with_symbol(product.price) %></p>
     <h2><%= link_to product.name, business_products_path %></h2>
     <p class="mb-0"><strong> <%= product.description %></strong></p>
     <p><%= product.price_cents %></p>
