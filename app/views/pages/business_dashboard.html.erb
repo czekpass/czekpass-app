@@ -4,6 +4,9 @@
 
 <!-- For the show If current_user = @Business.user then show edit form(partial) else show business_card partial-->
 
+
+
+
 <%= link_to "My business", business_path(current_user.business) %>
 
 <div id="wrapper" name="page-top">
@@ -93,20 +96,19 @@
                   <div class="card-header py-3">
                     <p class="text-primary m-0 font-weight-bold">Business Information</p>
                   </div>
-                  <div class="card-body">
-                    <%= simple_form_for @business do |f| %>
-                      <%= f.input :name %>
-                      <%= f.input :business_category, collection: BusinessCategory.all, selected: @business.business_category.id %>
-                      <%= f.input :location %>
-                      <%= f.input :description %>
-                      <%= f.input :logo, label: "Change Logo" %>
-                      <%= f.input :logo_cache, as: :hidden %>
-                      <%= f.button :submit, class: 'btn btn-primary edit-button', value: 'Update Business' %>
-                    <% end %>
 
-                  </div>
                 </div>
                 <div class="card shadow"></div>
+                  <div class="card">
+                    <%= @business.name %>
+                  </div>
+                  <div class="card">
+                    <%= @business.location %>
+                  </div>
+                  <div class="card">
+                    <%= @business.description %>
+                  </div>
+                  <div><%=  link_to "edit business", edit_business_path(@business.id) %></div>
               </div>
             </div>
           </div>

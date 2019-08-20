@@ -39,6 +39,7 @@ class PagesController < ApplicationController
     @all_businesses = Business.geocoded
 
     sql_query = "name ILIKE :query OR location ILIKE :query"
+    #allow
     if params[:query].present?
       if current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").empty? && current_user.offering_businesses.near(params[:query], 1000).geocoded.empty?
         @businesses = current_user.offering_businesses.geocoded
