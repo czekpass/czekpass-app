@@ -1,37 +1,22 @@
 <div class="card-purchase">
-  <div class="photo">
-    <p><%= purchase.product.photo %></p>
+<!--   <div class="photo">
+    <p><%#= purchase.product.photo %></p>
   </div>
+ -->
   <div class="card-product-infos">
-    <h2><%= link_to purchase.product.name, business_products_path %></h2>
-    <p class="mb-0"><strong> <%= purchase.product.description %></strong></p>
-    Price: <p><%= purchase.product.price_cents %></p>
-    Purchased on:
-    <%= purchase.created_at.strftime("%B %d, %Y") %>
+    <p>Purchased on: <strong><%= purchase.created_at.strftime("%B %d, %Y") %></strong></p>
+    <h2><%= link_to purchase.product.name, business_product_path(purchase.product.business, purchase.product) %></h2>
+    <h3><%= purchase.product.business.name %></h3>
+    <% purchase.product.perks.each do |perk| %>
+      <%= link_to perk.description, business_product_perk_path(purchase.product.business, purchase.product, perk) %>
+    <% end %>
+    <p class="mb-0">
+      <strong><%= purchase.product.description %></strong>
+    </p>
+
+    Price: <p class="mb-0"><%= purchase.product.price_cents %></p>
+    <div class="border my-2"></div>
     Expires on:
     <%= purchase.expiration_date %>
   </div>
-
-
-perk card to copy n paste
-
-<div class="custom-card">
-  <%= link_to business_product_perk_path(perk.product.business, perk.product, perk) do%>
-  <% if perk.kind == "percentage" %>
-    <%= "#{perk.amount} % off" %>
-  <% elsif perk.kind == "amount" %>
-  <!-- This needs to be refactored to adjust to any currency-->
-    <%= "#{perk.amount} $ off" %>
-  <% else %>
-    Free
-  <% end %>
-   <%= perk.product.name  %>
-  <% end %>
-  <div><%= perk.description%></div>
-  <div>
-    <span class="discounted-initial-price">
-      <%= humanized_money_with_symbol(perk.product.price) %>
-    </span>
-  </div>
 </div>
-
