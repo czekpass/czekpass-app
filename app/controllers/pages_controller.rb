@@ -52,7 +52,7 @@ class PagesController < ApplicationController
         lng: business.longitude,
         # This is for the pop-ups on the map
         infoWindow: render_to_string(partial: "info_window", locals: { businesses: business })
-      }
+     }
     end
 
     # trying to get the tabs to not refresh on 'search'
