@@ -21,6 +21,7 @@ class PagesController < ApplicationController
     else
       redirect_to dashboard_page_path
     end
+    
   end
 
   def dashboard
