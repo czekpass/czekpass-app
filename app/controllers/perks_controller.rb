@@ -35,6 +35,7 @@ class PerksController < ApplicationController
    @business = Business.find(params[:business_id])
 
    valid = true
+   errors = []
     params["perk"].each do |p|
       unless p["product_id"].empty?
         @perk = Perk.new
@@ -46,12 +47,17 @@ class PerksController < ApplicationController
         @perk.kind = p[:kind]
         @perk.amount = p[:amount]
         valid = false if !@perk.save
+        errors << @perk.errors.full_messages
       end
     end
     if valid
       redirect_to business_dashboard_path
+      flash[:notice] = "Perks created successfully!"
     else
       redirect_to "/businesses/#{@business.id}/new_connection?bid=#{params['perk'].first[:patronized_business_id]}"
+
+      newline_errors = errors.join(", ")
+      flash[:notice] = "#{newline_errors}"
     end
   end
 
