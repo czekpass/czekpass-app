@@ -1,119 +1,190 @@
 <div class="container">
+    <div class="card">
+        <!-- Iterate through all of those purchases -->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-month-tab" data-toggle="tab" href="#nav-month" role="tab" aria-controls="nav-month" aria-selected="true">Month</a>
+                <a class="nav-item nav-link" id="nav-annual-tab" data-toggle="tab" href="#nav-annual" role="tab" aria-controls="nav-annual" aria-selected="false">Annual</a>
+            </div>
+        </nav>
 
-<!-- <= link_to "edit", edit_business_path %> -->
 
-<!-- For the show If current_user = @Business.user then show edit form(partial) else show business_card partial-->
-
-
-
-
-<%= link_to "My business", business_path(current_user.business) %>
-
-<div id="wrapper" name="page-top">
-  <div class="d-flex flex-column" id="content-wrapper">
-    <div id="content">
-      <div class="container-fluid">
-        <h3 class="text-dark mb-4">Edit my Business Details</h3>
-        <div class="row mb-3">
-          <div class="col-lg-4">
-            <div class="card mb-3">
-              <div class="card-body text-center shadow">
-
-                <!--<img class="rounded-circle mb-3 mt-4" src="https://scontent.fjog1-1.fna.fbcdn.net/v/t1.0-9/53121420_157141011864141_7733435971928064000_n.png?_nc_cat=107&amp;_nc_oc=AQkDPscvlPqt8x91rV4VlttdfDPqL2jcrJwMAxsk3zuZGItxdDfzX_VdpIJTMvWVCxY&amp;_nc_ht=scontent.fjog1-1.fna&amp;oh=c78dc92a9e7a3bc742333f744f690884&amp;oe=5DDF1C63"-->
-                <!--  width="160" height="160" alt="Business.logo">-->
-              <% if !@business.logo.blank? %>
-                <%= cl_image_tag( @business.logo, class: 'rounded-circle mb-3 mt-4') %>
-              <% else %>
-                <%= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4') %>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
+              <%  @business.products.each do |prod| %>
+                <% prod.purchased_in_the_last_month.each do |purchase| %>
+                  <div class="card">
+                    <%= purchase.id %>
+                    <%= prod.name %>
+                    <%= prod.purchased_in_the_last_month.count %>
+                    <%= humanized_money_with_symbol(purchase.product.price) %>
+                    <p>Total Revenue:
+                      <%=humanized_money_with_symbol(purchase.product.price * prod.purchased_in_the_last_month.count)%>
+                    </p>
+                  </div>
+                 <% end %>
               <% end %>
+           </div>
+          <div class="tab-pane fade" id="nav-annual" role="tabpanel" aria-labelledby="nav-annual-tab">
+              <%  @business.products.each do |prod| %>
+                <% prod.purchased_in_the_last_year.each do |purchase| %>
+                  <div class="card">
+                                        <%= purchase.id %>
 
-                <div class="mb-3">
-                </div>
-              </div>
-            </div>
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="text-primary font-weight-bold m-0">Perk Usage</h6>
-              </div>
-              <div class="card-body">
-                <h4 class="small font-weight-bold">LeWagon - 1 Month<span class="float-right">20%</span></h4>
-                <div class="progress progress-sm mb-3">
-                  <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
-                </div>
-                <h4 class="small font-weight-bold">Motion Cafe - 3 Months<span class="float-right">40%</span></h4>
-                <div class="progress progress-sm mb-3">
-                  <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
-                </div>
-                <h4 class="small font-weight-bold">Nude - 1 Day<span class="float-right">60%</span></h4>
-                <div class="progress progress-sm mb-3">
-                  <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
-                </div>
-                <h4 class="small font-weight-bold">Perk Savings<span class="float-right">$8040.33</span></h4>
-                <div class="progress progress-sm mb-3">
-                  <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span></div>
-                </div>
-                <h4 class="small font-weight-bold">Added Product Value<span class="float-right">12%</span></h4>
-                <div class="progress progress-sm mb-3">
-                  <div class="progress-bar bg-success" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;"><span class="sr-only">12%</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="row mb-3 d-none">
-              <div class="col">
-                <div class="card text-white bg-primary shadow">
-                  <div class="card-body">
-                    <div class="row mb-2">
-                      <div class="col">
-                        <p class="m-0">Peformance</p>
-                        <p class="m-0"><strong>65.2%</strong></p>
-                      </div>
-                      <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                    </div>
-                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                    <%= prod.name %>
+                    <%= prod.purchased_in_the_last_year.count %>
+                    <%= humanized_money_with_symbol(purchase.product.price) %>
+                    <p>Total Revenue:
+                      <%=humanized_money_with_symbol(purchase.product.price * prod.purchased_in_the_last_year.count)%>
+                    </p>
                   </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card text-white bg-success shadow">
-                  <div class="card-body">
-                    <div class="row mb-2">
-                      <div class="col">
-                        <p class="m-0">Peformance</p>
-                        <p class="m-0"><strong>65.2%</strong></p>
-                      </div>
-                      <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
-                    </div>
-                    <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col">
-                <div class="card shadow mb-3">
-                  <div class="card-header py-3">
-                    <p class="text-primary m-0 font-weight-bold">Business Information</p>
-                  </div>
-
-                </div>
-                <div class="card shadow"></div>
-                  <div class="card">
-                    <%= @business.name %>
-                  </div>
-                  <div class="card">
-                    <%= @business.location %>
-                  </div>
-                  <div class="card">
-                    <%= @business.description %>
-                  </div>
-                  <div><%=  link_to "edit business", edit_business_path(@business.id) %></div>
-              </div>
-            </div>
-          </div>
+                 <% end %>
+              <% end %>
+           </div>
         </div>
-      </div>
-    </div>
 
-  </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+
+    </div>
+    <!-- <= link_to "edit", edit_business_path %> -->
+    <!-- For the show If current_user = @Business.user then show edit form(partial) else show business_card partial-->
+    <%= link_to "My business", business_path(current_user.business) %>
+    <div id="wrapper" name="page-top">
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-4">Edit my Business Details</h3>
+                    <div class="row mb-3">
+                        <div class="col-lg-4">
+                            <div class="card mb-3">
+                                <div class="card-body text-center shadow">
+                                    <!--<img class="rounded-circle mb-3 mt-4" src="https://scontent.fjog1-1.fna.fbcdn.net/v/t1.0-9/53121420_157141011864141_7733435971928064000_n.png?_nc_cat=107&amp;_nc_oc=AQkDPscvlPqt8x91rV4VlttdfDPqL2jcrJwMAxsk3zuZGItxdDfzX_VdpIJTMvWVCxY&amp;_nc_ht=scontent.fjog1-1.fna&amp;oh=c78dc92a9e7a3bc742333f744f690884&amp;oe=5DDF1C63"-->
+                                    <!--  width="160" height="160" alt="Business.logo">-->
+                                    <% if !@business.logo.blank? %>
+                                    <%= cl_image_tag( @business.logo, class: 'rounded-circle mb-3 mt-4') %>
+                                    <% else %>
+                                    <%= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4') %>
+                                    <% end %>
+                                    <div class="mb-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="text-primary font-weight-bold m-0">Perk Usage</h6>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="small font-weight-bold">LeWagon - 1 Month<span class="float-right">20%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Motion Cafe - 3 Months<span class="float-right">40%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Nude - 1 Day<span class="float-right">60%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Perk Savings<span class="float-right">$8040.33</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold">Added Product Value<span class="float-right">12%</span></h4>
+                                    <div class="progress progress-sm mb-3">
+                                        <div class="progress-bar bg-success" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width: 12%;"><span class="sr-only">12%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class="row mb-3 d-none">
+                                <div class="col">
+                                    <div class="card text-white bg-primary shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card text-white bg-success shadow">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    <p class="m-0">Peformance</p>
+                                                    <p class="m-0"><strong>65.2%</strong></p>
+                                                </div>
+                                                <div class="col-auto"><i class="fas fa-rocket fa-2x"></i></div>
+                                            </div>
+                                            <p class="text-white-50 small m-0"><i class="fas fa-arrow-up"></i>&nbsp;5% since last month</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header py-3">
+                                            <p class="text-primary m-0 font-weight-bold">Business Information</p>
+                                        </div>
+                                    </div>
+                                    <div class="card shadow"></div>
+                                    <div class="card">
+                                        <%= @business.name %>
+                                    </div>
+                                    <div class="card">
+                                        <%= @business.location %>
+                                    </div>
+                                    <div class="card">
+                                        <%= @business.description %>
+                                    </div>
+                                    <div>
+                                        <%=  link_to "edit business", edit_business_path(@business.id) %>
+                                    </div>
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-dashboard-tab" data-toggle="tab" href="#nav-dashboard" role="tab" aria-controls="nav-dashboard" aria-selected="true">Dashboard</a>
+                                            <a class="nav-item nav-link" id="nav-products-tab" data-toggle="tab" href="#nav-products" role="tab" aria-controls="nav-products" aria-selected="false">Products</a>
+                                            <a class="nav-item nav-link" id="nav-partners-tab" data-toggle="tab" href="#nav-partners" role="tab" aria-controls="nav-partners" aria-selected="false">Partners</a>
+                                            <a class="nav-item nav-link" id="nav-purchases-tab" data-toggle="tab" href="#nav-purchases" role="tab" aria-controls="nav-purchases" aria-selected="false">Purchases</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-dashboard" role="tabpanel" aria-labelledby="nav-dashboard-tab">
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-products-tab">
+                                            <% @business.products.each do |product| %>
+                                            <%= product.name %>
+                                            <%= humanized_money_with_symbol(product.price) %>
+                                            <% end %>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-partners" role="tabpanel" aria-labelledby="nav-partners-tab">
+                                            <%= @business.name %>
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-purchases" role="tabpanel" aria-labelledby="nav-purchases-tab">
+                                            <!-- List of all products belonging to current business -->
+                                            <% @business_products = Product.where(business_id: 34) %>
+                                            <!-- Iterate through all of those purchases -->
+                                            <% @business_products.each do |prod| %>
+                                            <!-- Match where verified purchases have a product id that matched the current |prod| -->
+                                            <%if Purchase.where(verified: true, product_id: prod.id) %>
+                                            <%= prod.price %>
+                                            <% end %>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>

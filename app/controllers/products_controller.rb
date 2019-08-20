@@ -47,6 +47,12 @@ class ProductsController < ApplicationController
     @business = Business.find(params[:business_id])
   end
 
+
+  # def price
+  #   @product = Product.find(params[:id])
+  #   @product.price
+  # end
+
   private
 
   def product_params
