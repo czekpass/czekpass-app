@@ -5,7 +5,9 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { initChartArea } from "../plugins/chart-area"
 import { initChartPie } from "../plugins/chart-pie"
+import { initChartPieRevCat } from "../plugins/chart-pie-rev-cat"
 import { initChartBar } from "../plugins/chart-bar"
+import { initChartBarRevenue } from "../plugins/chart-bar-revenue"
 import { initDataTable } from "../plugins/datatable"
 // import { bootstrapStudio } from "../plugins/bootstrapstudio"
 
@@ -17,5 +19,7 @@ initMapbox();
 
 initChartArea()
 initChartPie()
+initChartPieRevCat()
 initChartBar()
+initChartBarRevenue()
 initDataTable($)

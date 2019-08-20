@@ -3,17 +3,17 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
-const initChartPie = () => {
-  var ctx = document.getElementById("myPieChart");
+const initChartPieRevCat = () => {
+  var ctx = document.getElementById("myPieChartRevCat");
   if (ctx) {
-    var myPieChart = new Chart(ctx, {
+    var myPieChartRevCat = new Chart(ctx, {
       type: 'doughnut',
       data: {
-        labels: ["Direct", "Referral", "Social"],
+        labels: ["Education", "Health & Fitness", "Restaurant", "Accomodation", "Clothing", "Coworking Space"],
         datasets: [{
-          data: [55, 30, 15],
-          backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-          hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+          data: [1550, 300, 1105, 550, 1300, 105],
+          backgroundColor: ['#167ffc', '#1cc88a', '#36b9cc', '#4e73df', '#1cc88a', '#36b9cc'],
+          hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf', '#2e59d9', '#17a673', '#2c9faf'],
           hoverBorderColor: "rgba(234, 236, 244, 1)",
         }],
       },
@@ -28,6 +28,7 @@ const initChartPie = () => {
           yPadding: 15,
           displayColors: false,
           caretPadding: 10,
+
         },
         legend: {
           display: false
@@ -40,4 +41,4 @@ const initChartPie = () => {
 
 }
 
-export { initChartPie }
+export { initChartPieRevCat }

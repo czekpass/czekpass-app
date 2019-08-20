@@ -2,7 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-const initChartBar = () => {
+const initChartBarRevenue = () => {
 
   function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
@@ -30,18 +30,18 @@ const initChartBar = () => {
   }
 
   // Bar Chart Example
-  var ctx = document.getElementById("myBarChart");
+  var ctx = document.getElementById("myBarChartRevenue");
   if (ctx) {
-    var myBarChart = new Chart(ctx, {
+    var myBarChartRevenue = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ["Le Wagon", "Motion Cafe", "Frii Hotel", "Bamboo Blonde", "Connco Work Hub"],
         datasets: [{
-          label: "Purchases",
-          backgroundColor: "#4e73df",
+          label: "Connections",
+          backgroundColor: "#1cc98a",
           hoverBackgroundColor: "#2e59d9",
           borderColor: "#4e73df",
-          data: [14, 45, 4, 1, 15],
+          data: [1600, 560, 222, 120, 1500],
         }],
       },
       options: {
@@ -71,7 +71,7 @@ const initChartBar = () => {
           yAxes: [{
             ticks: {
               min: 0,
-              max: 50,
+              max: 1500,
               maxTicksLimit: 5,
               padding: 10,
               // Include a dollar sign in the ticks
@@ -106,7 +106,7 @@ const initChartBar = () => {
           callbacks: {
             label: function(tooltipItem, chart) {
               var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-              return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
+              return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
 
             }
           }
@@ -117,5 +117,5 @@ const initChartBar = () => {
 }
 
 export {
-  initChartBar
+  initChartBarRevenue
 }
