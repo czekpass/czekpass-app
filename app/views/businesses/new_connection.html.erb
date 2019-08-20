@@ -1,42 +1,29 @@
- <h1>Add a partner</h1>
- <p>Create a perk available for all patrons of a business, or select a specific product for your perk</p>
+<div class="viewport-wrapper">
+ <div class="container">
+  <div class="pb-2 px-4 pt-3">
+     <h1>Add a partner</h1>
+     <p>Select the business whose customer you want to give perks to:</p>
 
-<p>
-  1. First, I want to list all businesses
-</p>
+    <%= form_with(url: filter_business_connection_path, method: :get, id: 'business-select', class: 'form-group') do |f| %>
 
-
-
-<p>
-2. Then, after selecting a business, I want to show the list of products for that business.
-This will be done using ajax.
-</p>
-
-
-
-
-
-
-<!--
- <%#= simple_form_for [@business, @product, @perk] do |f| %>
- <p>Select the business</p>
- <%#= f.input :business, collection: Business.all %>
- <p>Select the product if desired</p>
- <%#= f.label :purchased_product_id, 'Purchased Product' %>
- <%#= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
- <%#= f.input :description %>
- <%#= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
- <%#= f.input :amount %>
- <%#= f.button :submit, class: 'btn btn-primary' %>
- <%# end %>
-</div>
-</div>
+      <%= select_tag(:business_id, options_from_collection_for_select(Business.all, :id, :name ), class: 'form-control-lg w-100')%>
+    <% end %>
+  </div>
 </div>
 
-<script>
-  const businessSelect = document.querySelector('#perk_business')
-  businessSelect.addEventListener('change', () => {
-    console.log('CHANGE PRODUCT OPTIONS BASED ON BUSINESS SELECTED')
+<div id="products"></div>
+
+<h1><%=  %></h1>
+ <script>
+  const selects = document.querySelector('#business-select select');
+
+  document.addEventListener("DOMContentLoaded", () => {
+    selects.value = <%= params[:bid] %>
+    Rails.fire(document.querySelector('#business-select'), "submit" )
+  });
+  selects.addEventListener("change", () => {
+    // this is not working... why?
+    console.log(document.location.search)
+    Rails.fire(document.querySelector('#business-select'), "submit" )
   })
-</script>
- -->
+ </script>

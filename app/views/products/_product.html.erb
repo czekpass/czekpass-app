@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="container px-4 pb-4 mb-5">
+
+  <%= simple_form_for Perk.new, url: business_perks_path(params[:id]) do |f| %>
+
+      <% products.each do |product| %>
+
+      <!-- Product / Perk card -->
+      <div class="px-3">
+
+        <!-- Product part -->
+        <div class="bg-light p-4 shadow-sm rounded product-perk-card-parent">
+          <h4><%= product.name %></h4>
+
+          <div>
+            <div class="product-photo">
+
+            </div>
+            <div>
+              <p><%= product.description %></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="bg-white shadow-sm p-3 rounded product-perk-card">
+
+           <div>
+
+        <!-- Card -->
+        <!-- First row -->
+        <span style="margin-left: -4px">
+          <strong>Purchasing this product unlocks a perk for: </strong>
+        </span>
+
+          <div class="form-row p-2 border-left">
+
+            <%= f.input :purchased_product_id, as: :hidden, input_html: {name: "perk[][purchased_product_id]", value: product.id} %>
+            <%= f.input :patronized_business_id, as: :hidden, input_html: {name: "perk[][patronized_business_id]", value: product.business.id} %>
+
+            <!-- Product the perk applies to -->
+            <div class="w-100">
+              <%= f.input :product_id, as: :select, collection: Product.where(business_id: params[:id]), label: false, input_html: {name: "perk[][product_id]", class:'mb-0 custom-select'} %>
+            </div>
+            </div>
+            <div class="form-row border-left p-2">
+              <p class="m-0 p-0 w-100">Perk</p>
+              <select class="custom-select col-9" name="perk[][kind]">
+                  <option ></option>
+                  <option value="free" class="dropdown-item">Free</option>
+                  <option value="percentage" class="dropdown-item">Percentage</option>
+                  <option value="amount" class="dropdown-item">Amount</option>
+                </select>
+
+              <input type="number" name="perk[][amount]" class="col-3 form-control" value="0">
+            </div>
+          </div>
+
+        <!-- Second row -->
+          <div class="form-row border-left px-2">
+            <label for="Description">Description</label>
+            <textarea class="form-control" id="Description" rows="2" name="perk[][description]"></textarea>
+          </div>
+
+        </div>
+
+      </div>
+      <% end %>
+
+    <%= f.submit "Save", class: 'btn btn-primary w-50 float-right mb-4' %>
+
+    </div>
+
+  <% end %>
+
+  </div>
+</div>
+</div> <!-- This is the end div for the viewport wrapper -->

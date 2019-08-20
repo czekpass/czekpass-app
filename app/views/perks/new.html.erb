@@ -5,7 +5,7 @@ Load perk template on the new page here somewhere.
     <div class="col-md-8">
       <h1>Create a new perk for your product</h1>
 
-      <%= simple_form_for [@business, @product, @perk] do |f| %>
+      <%= simple_form_for([@business, @perk]) do |f| %>
       <%= f.input :description %>
       <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
       <%= f.input :amount %>
