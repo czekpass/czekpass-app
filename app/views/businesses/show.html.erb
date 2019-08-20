@@ -13,11 +13,11 @@
       <%= @business.location %>
       <%= @business.logo %>
     </div>
-    <%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
+    <% if current_user.business == Business.find(params[:id]) %>
+      <%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
+    <% end %>
   </div>
 </div>
-
-<%= link_to "Connect a new business", business_connection_path, class: 'btn btn-success' %>
 
 <!-- Tabbed view -->
   <nav class="mt-3">
@@ -27,7 +27,7 @@
     </div>
   </nav>
 
-  <div class="tab-content" id="nav-tabContent" style="height:50vh; overflow: scroll;">
+  <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
 
     <% @user.perks(@business).each do |perk| %>

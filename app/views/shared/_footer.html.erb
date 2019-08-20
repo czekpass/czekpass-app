@@ -5,9 +5,9 @@
       <% end %>
     </div>
     <div>
-      <%= link_to business_dashboard_path do %>
-        <i class="fas fa-qrcode"></i>
-      <% end %>
+      <label class="qrcode-text-btn">
+        <input type="file" accept="image/*" capture="camera" tabindex=-1/>
+      </label>
     </div>
     <div>
       <%= link_to dashboard_page_path do %>

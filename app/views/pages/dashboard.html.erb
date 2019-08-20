@@ -1,13 +1,9 @@
-Have a list of all available perks here.
-
 <div class="user-profile-header">
-  <h1>Hi! <%= @user.first_name %></h1>
-  <%= link_to 'Edit', edit_user_path(current_user) %>
+  <h1>Hello <%= @user.first_name %>!</h1>
+  <%= link_to 'Edit your profile', edit_user_path(current_user) %>
+  <br>
+  <%= link_to 'Add your business', new_business_path(current_user) %>
 </div>
-
-<br>
-
-
 
 <nav>
   <div class="nav nav-tabs nav-pills nav-fill sticky" id="nav-tab" role="tablist">
@@ -16,26 +12,42 @@ Have a list of all available perks here.
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
   </div>
 </nav>
+
 <div class="tab-content" id="nav-tabContent">
+  <div class="form-time">
+    <form action="/dashboard">
+      <select name="saving">
+        <option value="7">This week</option>
+        <option value="30">This month</option>
+        <option value="90">Last 3 months</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-  My savings, yo!
+    <% if @saving_dollars_amount.nil? %>
+        You have no savings! You should get busy!
+      <% else %>
+        <p>Your total savings are: $<%= @saving_dollars_amount + @discounted_price_total %></p>
+        <p>Your total savings: $<%= @total_saving %></p>
+    <% end %>
+<!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
+    <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
   </div>
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-  <% 10.times do %>
-
-  <% @user.perks.each do |perk| %>
-      <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
-
-      <div class="custom-card">
+    <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
+    <% @user.perks.each do |perk| %>
+      <div class="perk-card">
         <% if perk.kind == "percentage" %>
           <%= "#{perk.amount} % off" %>
         <% elsif perk.kind == "amount" %>
-        <!-- This needs to be refactored to adjust to any currency-->
+          <!-- This needs to be refactored to adjust to any currency-->
           <%= "#{perk.amount} $ off" %>
         <% else %>
           Free
         <% end %>
-         <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
+
+        <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
 
         <div><%= perk.description%></div>
         <div>
@@ -44,20 +56,27 @@ Have a list of all available perks here.
           </span>
         </div>
       </div>
-
-
-  <% end %>
-
-<% end %>
+    <% end %>
   </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <% @user.purchases.each do |purchase| %>
+    <div>
+      <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+    </div>
+    <% end %>
+ </div>
+
 </div>
 
+<!-- copy and paste from master to edit properly -->
 
-
-
-
-
-
+<div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <% if @user.business %>
+    <% @user.business.products.each do |product| %>
+      <div>
+        <%= render partial: 'shared/product_card', locals: {product: product} %>
+      </div>
+    <% end %>
+  <% end %>
 </div>
-
