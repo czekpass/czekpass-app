@@ -20,7 +20,6 @@ class PurchasesController < ApplicationController
     @purchase = Purchase.new
     @user = User.find(54) # placeholder to be replaced with qr code
     @perk = @user.perks # needs to be replaced with the instance of the perk, not all perks available!
-    raise
   end
 
   def create
