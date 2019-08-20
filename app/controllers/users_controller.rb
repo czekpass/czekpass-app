@@ -34,7 +34,6 @@ class UsersController < ApplicationController
     @product = @perk.product
     @product_ids = @user.products
     @validated = @product_ids.include?(@perk.purchased_product)
-    # raise
   end
 
 

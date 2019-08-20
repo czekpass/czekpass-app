@@ -25,6 +25,28 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
+    # retrieving all the ids of the purchases of the current user and storing inside 'ids' var
+    ids = @user.purchases.pluck(:id)
+    # iterating through the ids to find all the saving instances that have the purchase_id
+    @savings = ids.collect { |i| Saving.where(purchase_id: i) }.flatten
+    @dollar_savings = @savings.select { |e| e.kind == "dollars" }
+
+    # Get all perks purchased by the user and only retrieve discounted price
+    discounted_price_perks = @user.perks.where(kind: 'percentage').where.not(product: nil).pluck(:discounted_price)
+    # Sum all discount price
+    @discounted_price_total = discounted_price_perks.inject(:+)
+    # raise
+    # all the user savings
+    @saving_dollars_amount = @dollar_savings.pluck(:amount).inject(:+)
+
+    # Get savings depending on chosen duration
+    if params[:saving].present?
+      @total_saving = calculate_savings(params[:saving])
+    end
+    # the user savings of the last 7 days
+    # @weekly_savings = @savings.select { |e| e.created_at >= Date.today - 7 }.pluck(:amount).inject(:+)
+    # the user savings of the last 30 days
+    # @monthly_savings = @savings.select { |e| e.created_at >= Date.today - 30 }.pluck(:amount).inject(:+)
   end
 
   def discover
@@ -73,38 +95,12 @@ class PagesController < ApplicationController
     #   format.js
     # end
   end
+
+  private
+
+  def calculate_savings(saving)
+    ids = @user.purchases.pluck(:id)
+    @savings = ids.collect { |i| Saving.where(purchase_id: i) }.flatten
+    @calculated_savings = @savings.select { |e| e.created_at >= Date.today - saving.to_i }.pluck(:amount).inject(:+)
+  end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
