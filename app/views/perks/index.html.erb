@@ -1,0 +1,16 @@
+<section class="clean-block clean-catalog dark">
+  <div class="container">
+    <div class="block-heading">
+      <h2 class="text-info">Product Perks</h2>
+    </div>
+
+    <div class="content">
+      <div class="products pl-5 card-grid-3c">
+        <% @perks.each do |perk| %>
+          <br>
+          <%= link_to perk.description, business_product_path(product.business, product) %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>

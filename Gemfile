@@ -27,7 +27,9 @@ gem 'searchkick', '~> 3.0'
 gem 'money-rails'
 gem 'faker'
 gem 'gibbon'
-gem 'simple_form'
+gem 'rqrcode'
+gem 'barby',  '~> 0.6.8'
+gem 'chart-js-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
