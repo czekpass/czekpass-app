@@ -7,4 +7,14 @@ class Perk < ApplicationRecord
   validates :description, presence: true
   validates :kind, presence: true
   validates :amount, presence: true
+
+  after_create :discounted_price_calculation
+
+  def discounted_price_calculation
+    if kind == 'percentage' && !product.nil?
+      product_price = product.price # Either purchased_product OR product
+      self.discounted_price = product_price * amount / 100
+      save
+    end
+  end
 end

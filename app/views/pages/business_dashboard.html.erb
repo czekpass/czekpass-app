@@ -1,3 +1,4 @@
+<<<<<<< HEAD
   <div id="wrapper">
 
     <!-- Content Wrapper -->
@@ -205,3 +206,72 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+=======
+
+<div class="container">
+    <div class="card">
+        <!-- Iterate through all of those purchases -->
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-month-tab" data-toggle="tab" href="#nav-month" role="tab" aria-controls="nav-month" aria-selected="true">Month</a>
+                <a class="nav-item nav-link" id="nav-annual-tab" data-toggle="tab" href="#nav-annual" role="tab" aria-controls="nav-annual" aria-selected="false">Annual</a>
+            </div>
+        </nav>
+
+
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-month" role="tabpanel" aria-labelledby="nav-month-tab">
+              <%  @business.products.each do |prod| %>
+                <% prod.purchased_in_the_last_month.each do |purchase| %>
+                  <div class="card">
+                    <%= purchase.id %>
+                    <%= prod.name %>
+                    <%= prod.purchased_in_the_last_month.count %>
+                    <%= humanized_money_with_symbol(purchase.product.price) %>
+                    <p>Total Revenue:
+                      <%=humanized_money_with_symbol(purchase.product.price * prod.purchased_in_the_last_month.count)%>
+                    </p>
+                  </div>
+                 <% end %>
+              <% end %>
+           </div>
+          <div class="tab-pane fade" id="nav-annual" role="tabpanel" aria-labelledby="nav-annual-tab">
+              <%  @business.products.each do |prod| %>
+                <% prod.purchased_in_the_last_year.each do |purchase| %>
+                  <div class="card">
+                   <%= purchase.id %>
+
+                    <%= prod.name %>
+                    <%= prod.purchased_in_the_last_year.count %>
+                    <%= humanized_money_with_symbol(purchase.product.price) %>
+                    <p>Total Revenue:
+                      <%=humanized_money_with_symbol(purchase.product.price * prod.purchased_in_the_last_year.count)%>
+                    </p>
+                  </div>
+                 <% end %>
+              <% end %>
+           </div>
+        </div>
+<!-- Iterate throguh current bus perks -->
+    <% @business.perks.each do |perk| %>
+      <% total = 0 %>
+      <!-- Find where that perk matches the purchase of an away business product -->
+        <% @connected_purchase = Purchase.where(id: perk.purchased_product_id) %>
+
+        <%  @connected_purchase.each do |connect| %>
+
+          <% if connect.verified? %>
+            <% total += perk.amount %>
+          <p>Business partner: <%= perk.patronized_business.name %></p>
+        <p>Revenue: <%= total %></p>
+          <% end %>
+
+      <% end %>
+    <% end %>
+
+
+
+
+    </div>
+    <!-- <= link_to "edit", edit_business_path %> -->
+    <!-- For the show If current_user = @Business.user then show edit form(partial) else show business_card partial-->

@@ -10,12 +10,13 @@
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= favicon_link_tag asset_path('favicon.png') %>
   </head>
+
   <body id="page-top">
         <div id="wrapper" class="bg-gradient-primary">
           <% if user_signed_in? %>
-          <%= render 'shared/nav' %>
+            <%= render 'shared/nav' %>
+            <%= render 'shared/flashes' %>
           <% end %>
-          <%= render 'shared/flashes' %>
           <%= yield %>
           <%= javascript_include_tag 'application' %>
           <%= javascript_pack_tag 'application' %>

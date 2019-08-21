@@ -28,6 +28,8 @@ gem 'money-rails'
 gem 'faker'
 gem 'gibbon'
 gem 'rqrcode'
+gem 'chart-js-rails'
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

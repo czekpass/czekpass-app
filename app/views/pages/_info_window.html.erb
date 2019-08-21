@@ -1,1 +1,7 @@
-<%= businesses.name %>
+
+<%= link_to business_path(businesses.id) do %>
+  <div class="container">
+    <div><%= businesses.name %></div>
+    <div><%= businesses.location %></div>
+  </div>
+<% end %>

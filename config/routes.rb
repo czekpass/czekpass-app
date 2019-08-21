@@ -17,15 +17,19 @@ Rails.application.routes.draw do
 
   resources :purchases, except: [:edit, :update, :destroy]
 
-  get 'users/:id/validate', to: 'users#validate'
+  get 'users/:id/validate', to: 'users#validate', as: 'validation_page'
   get 'discover', to: 'pages#discover'
 
   get 'business_dashboard', to: 'pages#business_dashboard', as: 'business_dashboard'
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard_page'
 
+  get 'welcome', to: 'pages#welcome', as: 'welcome_page'
+
+
 
   get 'businesses/:id/new_connection', to: 'businesses#new_connection', as: 'business_connection'
 
   get 'businesses/:id/filter_new_connection', to: 'businesses#filter_new_connection', as: 'filter_business_connection'
+
 
 end
