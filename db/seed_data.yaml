@@ -249,86 +249,89 @@ businesses:
   ###############################################################
 
 products:
-  product_one:
-    slug: 9_week_bootcamp
-    name: "9-week bootcamp"
-    description: "Intensive 9-week bootcamp in Bali. Learn everything you need to build awesome products."
-    category: education_category
-    photo:
-    business_id: lewagon
-    price_cents: 700000
-  product_two:
-    slug: data_science_intensive
-    name: "Dats science intensive"
-    description: "Learn the basics of data science in 4 days"
-    category: education_category
-    photo:
-    business_id: lewagon
-    price_cents: 200000
-  product_three:
-    slug: 1_month_pass_body_factory
-    name: "1 month unlimited pass at Body Factory"
-    description:
-    category: fitness_category
-    photo:
-    business_id: bodyfactory
-    price_cents: 16000
-  product_four:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_five:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_six:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_seven:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_eight:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_nine:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
-  product_ten:
-    slug:
-    name:
-    description:
-    category:
-    photo:
-    business_id:
-    price_cents:
+  lewagon:
+    product_one:
+      slug: 9_week_bootcamp
+      name: "9-week bootcamp"
+      description: "Intensive 9-week bootcamp in Bali. Learn everything you need to build awesome products."
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 700000
+    product_two:
+      slug: data_science_intensive
+      name: "Dats science intensive"
+      description: "Learn the basics of data science in 4 days"
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 200000
+  bodyfactory:
+    product_three:
+      slug: 1_month_pass_body_factory
+      name: "1 month unlimited pass at Body Factory"
+      description:
+      category: fitness_category
+      photo:
+      business_id: bodyfactory
+      price_cents: 16000
+    friihotel:
+      product_four:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_five:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_six:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_seven:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_eight:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_nine:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_ten:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
 
 
   ###############################################################
