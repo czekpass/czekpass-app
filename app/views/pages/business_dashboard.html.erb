@@ -46,8 +46,19 @@
 
 
 <div class="container">
+  <% @business.products.each do |product| %>
+   <% product.activated_perks.each do |result| %>
+   <h3>zzzzzzz</h3>
+    <p><%= result[:description] %></p>
+    <p><%= result[:count] %></p>
+    <p><%= result[:total_price] %></p>
+    <p><%= result[:total_activations] %></p>
+   <% end %>
+  <% end %>
+
 <!-- Iterate throguh current bus products to get much later on-->
   <% @business.products.each do |product| %>
+  <%= product.id %>
       <!-- Iterate through perks to get name for perk activated count -->
       <% product.perks.each do |perk| %>
         <% total = 0 %>
