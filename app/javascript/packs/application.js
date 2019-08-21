@@ -9,6 +9,7 @@ import { initChartPieRevCat } from "../plugins/chart-pie-rev-cat"
 import { initChartBar } from "../plugins/chart-bar"
 import { initChartBarRevenue } from "../plugins/chart-bar-revenue"
 import { initDataTable } from "../plugins/datatable"
+import { initSbAdmin } from "../plugins/sbadmin"
 // import { bootstrapStudio } from "../plugins/bootstrapstudio"
 
 import { initMapbox } from '../plugins/init_mapbox';
@@ -23,3 +24,4 @@ initChartPieRevCat()
 initChartBar()
 initChartBarRevenue()
 initDataTable($)
+initSbAdmin($)

@@ -1,39 +1,3 @@
-Have a list of all available perks here.
-
-<div class="user-profile-header">
-  <h1>Hi! <%= @user.first_name %></h1>
-  <%= link_to 'Edit', edit_user_path(current_user) %>
-</div>
-
-<br>
-
-
-
-<nav>
-  <div class="nav nav-tabs nav-pills nav-fill sticky" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Savings</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perks</a>
-    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
-
-  </div>
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-</div>
-
-
-
-
-
-
-
-</div>
-
 <div>
         <ul class="nav nav-tabs">
             <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Savings</a></li>
@@ -47,7 +11,7 @@ Have a list of all available perks here.
                         <div id="content">
                             <div class="container-fluid">
                                 <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                                    <h3 class="text-dark mb-0">My Dashboard</h3>
+                                    <h3 class="text-dark mb-0"><%= @user.first_name %>'s Dashboard</h3>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-lg-6">
