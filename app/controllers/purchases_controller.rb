@@ -25,27 +25,26 @@ class PurchasesController < ApplicationController
   def create
     @purchase = Purchase.new(purchase_params)
 
-    @purchase.verified = true
-    if @purchase.save
-      perk = Perk.find(@purchase.perk_id)
-      Saving.create!(amount: perk.amount, kind: perk.kind, purchase_id: @purchase.id, perk_id: perk.id)
-      redirect_to root_path
-
     perk_redeemed = Purchase.where(perk_id: purchase_params[:perk_id])
 
-    if perk_redeemed.nil?
+    # Create a purchase.
+    # If the perk has been redeemed, the perk has already been redeemed.
+
+    if perk_redeemed.empty?
       @purchase.verified = true
 
       if @purchase.save
-        # Once the purchase is complete, it should redirect to the business dashboard (purchases). We should see the new purchase.
+        perk = Perk.find(@purchase.perk_id)
+        Saving.create!(amount: perk.amount, kind: perk.kind, purchase_id: @purchase.id, perk_id: perk.id)
         redirect_to business_dashboard_path
+        flash[:notice] = "Purchase completed"
       else
-        # If it doesn't work... should show error messages.
-        redirect_to :back
+        redirect_to validation_page_path()
+        flash[:notice] = purchase.errors.full_messages.join(", ")
       end
     else
-      # Need to change this route so that a "this perk has already been redeemed" message gets shown.
-      redirect_to user_path(purchase_params[:user_id])
+      redirect_to validation_page_path(params[:purchase][:user_id], pid:params[:purchase][:perk_id])
+      flash[:notice] = "That perk has already been redeemed"
     end
   end
 
@@ -54,4 +53,5 @@ class PurchasesController < ApplicationController
   def purchase_params
     params.require(:purchase).permit(:user_id, :product_id, :perk_id)
   end
+
 end
