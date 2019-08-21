@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     if current_user.nil?
       redirect_to new_user_session_path
     else
-      if /admin/.match(current_user.email)
+      if current_user.admin
         redirect_to business_dashboard_path
       else
         redirect_to discover_path
