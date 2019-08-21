@@ -1,5 +1,8 @@
 require 'yaml'
 
+# Destroy all the objects before running the seed to prevent duplication
+# Puts "Destroying all content"
+
 Perk.destroy_all
 Purchase.destroy_all
 Product.destroy_all
@@ -8,11 +11,14 @@ Business.destroy_all
 BusinessCategory.destroy_all
 User.destroy_all
 
+puts User.all
+
 seed = YAML.load(open('db/seed_data.yml').read)
 
 users = {}
 
 puts "Creating main demo users"
+
 seed["users"]["demo_users"].each do |user|
 
   users[user[1]["slug"]] = User.create!(
@@ -35,26 +41,56 @@ seed["users"]["business_owners"].each do |user|
       )
 end
 
-puts users
 
-# Destroy all the objects before running the seed to prevent duplication
-# Puts "Destroying all content"
+#####################
+# Create demo users #
+#####################
+
+Puts "Creating demo users"
+
+seed["users"]["users"].each do |user|
+
+  users[user[1]["slug"]] = User.create!(
+      first_name: user[1]["first_name"],
+      last_name: user[1]["last_name"],
+      email: user[1]["email"],
+      admin: user[1]["admin"],
+      password: user[1]["password"]
+      )
+end
+
+
+####################################
+#   Create Businesses Categories   #
+####################################
+
+business_categories = {}
+
+seed["business_categories"].each do |category|
+  business_categories[category[1]["slug"]] = BusinessCategory.create!(
+      name: category[1]["name"]
+    )
+end
 
 
 
-# #####################
-# # Create demo users #
-# #####################
-
-# Puts "Creating demo users"
-
-# demo_users = {}
+#########################
+#   Create Businesses   #
+#########################
 
 
+businesses = {}
 
-# ############################################################
-# #   Create Czekpass to start partronized/purchased chain   #
-# ############################################################
+seed["businesses"].each do |business|
+  users[user[1]["slug"]] = User.create!(
+      first_name: user[1]["first_name"],
+      last_name: user[1]["last_name"],
+      email: user[1]["email"],
+      admin: user[1]["admin"],
+      password: user[1]["password"]
+      )
+end
+
 
 # # Here we seed the database with a 'Genesis' czekpass product so that we can decrement the purchased_product_id to differentiate it from the purchased_product_id in the perk seed.
 # # To have a product before we run the perk seed, we need to create the associated entities of the product which belongs to a business which belongs to a user.
@@ -100,6 +136,10 @@ puts users
 
 # # to seed the file 10 times we need a ruby loop. We use the faker gem (required above)
 # puts "15 times ruby loop for users, businesses, products and perks"
+
+
+
+
 
 # 15.times do
 #   name = Faker::FunnyName.unique.two_word_name

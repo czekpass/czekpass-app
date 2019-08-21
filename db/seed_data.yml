@@ -150,14 +150,14 @@ users:
       admin: false
       photo:
       password: "1234567"
-    user_ten:
-      slug: michelle_obama
-      email: "michelle@oneshouldbeagirl.com"
-      first_name: "Michelle"
-      last_name: "Obama"
-      admin: false
-      photo:
-      password: "1234567"
+    # user_ten:
+    #   slug: michelle_obama
+    #   email: "michelle@oneshouldbeagirl.com"
+    #   first_name: "Michelle"
+    #   last_name: "Obama"
+    #   admin: false
+    #   photo:
+    #   password: "1234567"
 
 
   ###############################################################
@@ -252,7 +252,7 @@ businesses:
   ###############################################################
 
 products:
-  lewagon:
+  lewagon_products:
     product_one:
       slug: 9_week_bootcamp
       name: "9-week bootcamp"
@@ -269,7 +269,7 @@ products:
       photo:
       business_id: lewagon
       price_cents: 200000
-  bodyfactory:
+  bodyfactory_products:
     product_one:
       slug: 1_month_pass_body_factory
       name: "1 month unlimited pass at Body Factory"
@@ -286,99 +286,98 @@ products:
       photo:
       business_id: bodyfactory
       price_cents: 10000
-    motioncafe:
-      product_one:
-        slug: 1_week_meal_plan
-        name: "1 week meal plan"
-        description: "customized meal plan for one week"
-        category: cafe_category
-        photo:
-        business_id: motioncafe
-        price_cents: 14700
-      product_two:
-        slug: 1_month_meal_plan
-        name: '1 month meal plan'
-        description: "customized meal plan for 1 month"
-        category: cafe_category
-        photo:
-        business_id: motioncafe
-        price_cents: 54800
-
-  bambooblonde:
-      product_one:
-        slug: avery_jumpsuit
-        name: "Avery jumpsuit"
-        description: "Long black and white jumpsuit for women"
-        category: clothing_category
-        photo:
-        business_id: bambooblonde
-        price_cents: 7000
-      product_two:
-        slug: maria_tote_bag
-        name: "Maria tote bag"
-        description: "Beautiful white and wood handle tote bag"
-        category: clothing_category
-        photo:
-        business_id: bambooblonde
-        price_cents: 10000
+  motioncafe_products:
+    product_one:
+      slug: 1_week_meal_plan
+      name: "1 week meal plan"
+      description: "customized meal plan for one week"
+      category: cafe_category
+      photo:
+      business_id: motioncafe
+      price_cents: 14700
+    product_two:
+      slug: 1_month_meal_plan
+      name: '1 month meal plan'
+      description: "customized meal plan for 1 month"
+      category: cafe_category
+      photo:
+      business_id: motioncafe
+      price_cents: 54800
+  bambooblonde_products:
+    product_one:
+      slug: avery_jumpsuit
+      name: "Avery jumpsuit"
+      description: "Long black and white jumpsuit for women"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 7000
+    product_two:
+      slug: maria_tote_bag
+      name: "Maria tote bag"
+      description: "Beautiful white and wood handle tote bag"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 10000
+    product_three:
+      slug: pearl_diamond_buckle_belt
+      name: "Pearl diamond buckle belt"
+      description: "Elegant designer belt"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 15000
+  concco_products:
+    product_one:
+      slug: unlimited_membership_pass
+      name: "Unlimited membership pass"
+      description: "Unlimited access to our coworking facilities"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 25000
+    product_two:
+      slug: night_owl_membership_pass
+      name: "Night owl membership pass"
+      description: "Unlimited off peak-hour membership pass"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 15000
       product_three:
-        slug: pearl_diamond_buckle_belt
-        name: "Pearl diamond buckle belt"
-        description: "Elegant designer belt"
-        category: clothing_category
-        photo:
-        business_id: bambooblonde
-        price_cents: 15000
-   concco:
-      product_one:
-        slug: unlimited_membership_pass
-        name: "Unlimited membership pass"
-        description: "Unlimited access to our coworking facilities"
-        category: Coworking
-        photo:
-        business_id: concco
-        price_cents: 25000
-      product_two:
-        slug: night_owl_membership_pass
-        name: "Night owl membership pass"
-        description: "Unlimited off peak-hour membership pass"
-        category: Coworking
-        photo:
-        business_id: concco
-        price_cents: 15000
-        product_three:
-        slug: day_pass
-        name: "Day pass"
-        description: "One day unlimited access pass"
-        category: Coworking
-        photo:
-        business_id: concco
-        price_cents: 1000
-  friihotel:
-      product_one:
-        slug: one_bedroom
-        name: "One bedroom"
-        description: "A standard one bedroom, one bathroom"
-        category: accomoations_category
-        photo:
-        business_id: friihotel
-        price_cents: 10000
-        product_two:
-        slug: king_suite
-        name: "King suite"
-        description: "Our most luxurious available room"
-        category: accomoations_category
-        photo:
-        business_id: friihotel
-        price_cents: 25000
-        product_three:
-        slug: conference_room
-        name: "Conference room"
-        description: "Our amazing conference room"
-        category: accomoations_category
-        photo:
-        business_id: friihotel
-        price_cents: 50000
+      slug: day_pass
+      name: "Day pass"
+      description: "One day unlimited access pass"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 1000
+  friihotel_products:
+    product_one:
+      slug: one_bedroom
+      name: "One bedroom"
+      description: "A standard one bedroom, one bathroom"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 10000
+    product_two:
+      slug: king_suite
+      name: "King suite"
+      description: "Our most luxurious available room"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 25000
+    product_three:
+      slug: conference_room
+      name: "Conference room"
+      description: "Our amazing conference room"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 50000
 
 
   ###############################################################
@@ -484,7 +483,7 @@ perks:
       verfied: true
       user_id_slug: ben_dover
       product_id_slug: 9_week_bootcamp
-      perk_id: perk_two 
+      perk_id: perk_two
     purchase_three:
       verfied: true
       user_id_slug: crystal_fein
