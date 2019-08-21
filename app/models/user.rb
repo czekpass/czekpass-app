@@ -29,6 +29,10 @@ class User < ApplicationRecord
     all_perks
   end
 
+  def full_name
+    self.first_name + " " + self.last_name
+  end
+
   def unverified_purchases
     Purchase.where("verified = false AND user_id = ?", self.id)
   end

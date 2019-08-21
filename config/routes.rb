@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users
-  root to: 'pages#home'
+  root to: 'pages#discover'
 
   resources :businesses do
     resources :employees
@@ -24,8 +24,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard', as: 'dashboard_page'
 
   get 'welcome', to: 'pages#welcome', as: 'welcome_page'
-
-
 
   get 'businesses/:id/new_connection', to: 'businesses#new_connection', as: 'business_connection'
 

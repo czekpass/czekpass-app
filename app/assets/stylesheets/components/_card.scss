@@ -48,13 +48,28 @@
  background-color: #F7F7F7;
 }
 
+<<<<<<< HEAD
 .product-perk-card-parent{
   position: relative;
   }
+=======
+// .product-perk-card-parent{
+//   position: relative;
+//   }
+// }
 
-.product-perk-card{
+>>>>>>> 31001bbde58a5a67029486dbb984d5d04b51bff6
+
+.product-perk-card {
     position: relative;
     top: -25px;
     left: 30px;
 }
 
+.saving-card {
+ border: 1px solid gray;
+ border-radius: 3px;
+ margin: 10px;
+ padding: 10px;
+ background-color: #F7F7F7;
+}
