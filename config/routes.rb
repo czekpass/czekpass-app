@@ -25,8 +25,6 @@ Rails.application.routes.draw do
 
   get 'welcome', to: 'pages#welcome', as: 'welcome_page'
 
-
-
   get 'businesses/:id/new_connection', to: 'businesses#new_connection', as: 'business_connection'
 
   get 'businesses/:id/filter_new_connection', to: 'businesses#filter_new_connection', as: 'filter_business_connection'
