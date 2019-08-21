@@ -3,6 +3,8 @@
   <%= link_to 'Edit your profile', edit_user_path(current_user) %>
   <br>
   <%= link_to 'Add your business', new_business_path(current_user) %>
+  <br>
+  <%= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
 </div>
 
 <nav>
@@ -15,71 +17,42 @@
 
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-  <div class="form-time">
-    <form action="/dashboard" data-remote="true">
-      <select name="saving">
-        <option value="7">This week</option>
-        <option value="30">This month</option>
-        <option value="90">Last 3 months</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
-
-  </div>
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-    <% if @saving_dollars_amount.nil? %>
-        You have no savings! You should get busy!
-      <% else %>
-        <p>Your total savings are: $<%= @saving_dollars_amount + @discounted_price_total %></p>
-        <p>Your total savings: $<%= @total_saving %></p>
-    <% end %>
+    <%= render partial: 'shared/saving_card', locals: { saving_dollars_amount: @saving_dollars_amount, discounted_price_total: @discounted_price_total, total_saving: @total_saving } %>
 
 <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
-    <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
-  </div>
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
-    <% @user.perks.each do |perk| %>
-      <div class="perk-card">
-        <% if perk.kind == "percentage" %>
-          <%= "#{perk.amount} % off" %>
-        <% elsif perk.kind == "amount" %>
-          <!-- This needs to be refactored to adjust to any currency-->
-          <%= "#{perk.amount} $ off" %>
-        <% else %>
-          Free
-        <% end %>
-
-        <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
-
-        <div><%= perk.description%></div>
-        <div>
-          <span class="discounted-initial-price">
-            <%= humanized_money_with_symbol(perk.purchased_product.price) %>
-          </span>
-        </div>
-      </div>
+  <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
+</div>
+<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+  <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
+  <% @user.perks.each do |perk| %>
+  <div class="perk-card">
+    <% if perk.kind == "percentage" %>
+    <%= "#{perk.amount} % off" %>
+    <% elsif perk.kind == "amount" %>
+    <!-- This needs to be refactored to adjust to any currency-->
+    <%= "#{perk.amount} $ off" %>
+    <% else %>
+    Free
     <% end %>
-  </div>
 
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <% @user.purchases.each do |purchase| %>
+    <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
+
+    <div><%= perk.description%></div>
     <div>
-      <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+      <span class="discounted-initial-price">
+        <%= humanized_money_with_symbol(perk.purchased_product.price) %>
+      </span>
     </div>
-    <% end %>
- </div>
-
+  </div>
+  <% end %>
 </div>
 
-<!-- copy and paste from master to edit properly -->
-
-<div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
-  <% if @user.business %>
-    <% @user.business.products.each do |product| %>
-      <div>
-        <%= render partial: 'shared/product_card', locals: {product: product} %>
-      </div>
-    <% end %>
+<div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+  <% @user.purchases.each do |purchase| %>
+  <div>
+    <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+  </div>
   <% end %>
+</div>
+
 </div>
