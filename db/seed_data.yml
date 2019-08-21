@@ -35,7 +35,7 @@ users:
       password: "987654321"
     czekpass_admin:
       slug: czekpass_admin
-      email: "amir@czekpass.com"
+      email: "amirs@czekpass.com"
       first_name: "Amir"
       last_name: "Amouralli"
       admin: true
@@ -67,7 +67,7 @@ users:
       password: "1234567"
     bambooblonde_admin:
       slug: bambooblonde_admin
-      email: "hello@friihotel.com"
+      email: "hello@bambooblonde.com"
       first_name: "Blonde"
       last_name: "Babe"
       admin: true
