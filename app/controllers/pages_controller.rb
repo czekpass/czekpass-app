@@ -30,21 +30,21 @@ class PagesController < ApplicationController
     # retrieving all the ids of the purchases of the current user and storing inside 'ids' var
     ids = @user.purchases.pluck(:id)
     # iterating through the ids to find all the saving instances that have the purchase_id
-
     @savings = ids.collect { |i| Saving.where(purchase_id: i) }.flatten
-    @dollar_savings = @savings.select { |e| e.kind == "dollars" }
+    if @savings.nil?
+      @dollar_savings = @savings.select { |e| e.kind == "dollars" }
 
     # Get all perks purchased by the user and only retrieve discounted price
 
-    discounted_price_perks = @user.perks.where(kind: 'percentage').where.not(product: nil).pluck(:discounted_price)
+      discounted_price_perks = @user.perks.where(kind: 'percentage').where.not(product: nil).pluck(:discounted_price)
     # Sum all discount price
 
-    @discounted_price_total = discounted_price_perks.inject(:+)
+      @discounted_price_total = discounted_price_perks.inject(:+)
     # raise
     # all the user savings
-    @saving_dollars_amount = @dollar_savings.pluck(:amount).inject(:+)
+      @saving_dollars_amount = @dollar_savings.pluck(:amount).inject(:+)
     # Get savings depending on chosen duration
-
+    end
     if params[:saving].present?
       @total_saving = calculate_savings(params[:saving])
       # binding.pry
