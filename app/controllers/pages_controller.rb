@@ -21,6 +21,8 @@ class PagesController < ApplicationController
     else
       redirect_to dashboard_page_path
     end
+
+
   end
 
   def dashboard
@@ -43,9 +45,15 @@ class PagesController < ApplicationController
     # @saving_dollars_amount = @dollar_savings.pluck(:amount).inject(:+)
 
     # Get savings depending on chosen duration
-    # if params[:saving].present?
-      # @total_saving = calculate_savings(params[:saving])
-    # end
+
+    if params[:saving].present?
+      @total_saving = calculate_savings(params[:saving])
+      respond_to do |format|
+        format.html { render :dashboard }
+        format.js
+      end
+    end
+
     # the user savings of the last 7 days
     # @weekly_savings = @savings.select { |e| e.created_at >= Date.today - 7 }.pluck(:amount).inject(:+)
     # the user savings of the last 30 days
@@ -64,7 +72,6 @@ class PagesController < ApplicationController
     @all_businesses = Business.geocoded
 
     sql_query = "name ILIKE :query OR location ILIKE :query"
-    #allow
     if params[:query].present?
       if current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").empty? && current_user.offering_businesses.near(params[:query], 1000).geocoded.empty?
         @businesses = current_user.offering_businesses.geocoded
@@ -81,7 +88,6 @@ class PagesController < ApplicationController
       @businesses = current_user.offering_businesses.geocoded
       # redirect_to discover_path
     end
-
 
     @markers = @businesses.map do |business|
       {
@@ -107,4 +113,8 @@ class PagesController < ApplicationController
     @savings = ids.collect { |i| Saving.where(purchase_id: i) }.flatten
     @calculated_savings = @savings.select { |e| e.created_at >= Date.today - saving.to_i }.pluck(:amount).inject(:+)
   end
+
+  def welcome
+  end
+
 end

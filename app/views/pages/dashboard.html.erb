@@ -14,8 +14,9 @@
 </nav>
 
 <div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
   <div class="form-time">
-    <form action="/dashboard">
+    <form action="/dashboard" data-remote="true">
       <select name="saving">
         <option value="7">This week</option>
         <option value="30">This month</option>
@@ -23,6 +24,7 @@
       </select>
       <button type="submit">Submit</button>
     </form>
+
   </div>
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
     <% if @saving_dollars_amount.nil? %>
@@ -31,6 +33,7 @@
         <p>Your total savings are: $<%= @saving_dollars_amount + @discounted_price_total %></p>
         <p>Your total savings: $<%= @total_saving %></p>
     <% end %>
+
 <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
     <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
   </div>
