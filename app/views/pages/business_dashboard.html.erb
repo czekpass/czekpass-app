@@ -46,54 +46,20 @@
 
 
 <div class="container">
+   <h3>Bus-stats</h3>
   <% @business.products.each do |product| %>
    <% product.activated_perks.each do |result| %>
-   <h3>zzzzzzz</h3>
-    <p><%= result[:description] %></p>
-    <p><%= result[:count] %></p>
-    <p><%= result[:total_price] %></p>
-    <p><%= result[:total_activations] %></p>
+   <div class="card">
+      <p>Perk description: <%= result[:description] %></p>
+      <p>Total perks put out? : <%= result[:count] %></p>
+      <p>Total revenue? : <%= result[:total_price] %></p>
+      <p>Total activations: <%= result[:total_activations] %></p>
+   </div>
    <% end %>
   <% end %>
-
-<!-- Iterate throguh current bus products to get much later on-->
-  <% @business.products.each do |product| %>
-  <%= product.id %>
-      <!-- Iterate through perks to get name for perk activated count -->
-      <% product.perks.each do |perk| %>
-        <% total = 0 %>
-        <% count = 0 %>
-          <!-- Find where that perk matches the purchase of an away business product -->
-          <strong>
-            <!-- EEEEE Showing perk name for # of activated perks  -->
-            <p>Perk ?name?: <%= perk.description %></p>
-          <% @connected_purchase = Purchase.where(id: perk.purchased_product_id) %>
-          <!-- Iterate through each away purchase -->
-            <% if @connected_purchase.count > 0 %>
-            <!-- EEEEEE get perk activated count -->
-            <p>Activated: <%= @connected_purchase.count %> times</p>
-            <% end %>
-          </strong>
-          <%  @connected_purchase.each do |connect| %>
-          <%# raise %>
-            <!-- Only perform code IF the purchase was validated -->
-            <% if connect.verified? %>
-                <% count += 1 %>
-                <% total += product.price %>
-              <div class="card">
-                <%= perk.description %>
-                <!-- Get name of business partner -->
-                <p>Business partner: <%= perk.patronized_business.name %></strong></p>
-                <!-- get count of customers from patronized business -->
-                <p>Total customers: <%= count %></strong></p>
-                <!-- get total revenue brought in from partner business -->
-                <p>Revenue:<%= humanized_money_with_symbol(total) %></strong></p>
-              </div>
-            <% end %>
-          <% end %>
-      <% end %>
-  <% end %>
 </div>
+
+
 
 
 
