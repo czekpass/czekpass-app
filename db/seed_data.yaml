@@ -79,42 +79,42 @@ users:
   ###############################################################
   users:
     user_one:
-      slug: user_one
-      email: "jack@inabox.com"
+      slug: jack_ma
+      email: "jack@alibaba.com"
       first_name: "Jack"
-      last_name: "Ina box"
+      last_name: "Ma"
       admin: false
       photo:
       password: "1234567"
     user_two:
-      slug: user_two
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: crystal_fein
+      email: "crystal123@gmail.com"
+      first_name: "Crystal"
+      last_name: "Fein"
       admin: false
       photo:
       password: "1234567"
     user_three:
-      slug: user_three
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: lexi_murch
+      email: "lex@yahoo.com"
+      first_name: "Lexi"
+      last_name: "Murch"
       admin: false
       photo:
       password: "1234567"
     user_four:
-      slug: user_four
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: ben_dover
+      email: "benny@gmail.com"
+      first_name: "Ben"
+      last_name: "Dover"
       admin: false
       photo:
       password: "1234567"
     user_five:
-      slug: user_five
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: christopher_wallace
+      email: "big@gmail.com"
+      first_name: "Christopher"
+      last_name: "Wallace"
       admin: false
       photo:
       password: "1234567"
@@ -273,28 +273,37 @@ products:
     product_one:
       slug: 1_month_pass_body_factory
       name: "1 month unlimited pass at Body Factory"
-      description:
+      description: "unlimited access to our gym for one month"
       category: fitness_category
       photo:
       business_id: bodyfactory
       price_cents: 16000
-  friihotel:
+    product_two:
+      slug: 3_training_sessions
+      name: "3 training sessions"
+      description: "Three personal training sessions with our lifting specialists"
+      category: fitness_category
+      photo:
+      business_id: bodyfactory
+      price_cents: 10000
+  motioncafe:
       product_one:
-        slug:
-        name:
-        description:
-        category:
+        slug: 1_week_meal_plan
+        name: "1 week meal plan"
+        description: "customized meal plan for one week"
+        category: cafe_category
         photo:
-        business_id:
-        price_cents:
-      product_one:
-        slug:
-        name:
-        description:
-        category:
+        business_id: motioncafe
+        price_cents: 14700
+      product_two:
+        slug: 1_month_meal_plan
+        name: '1 month meal plan'
+        description: "customized meal plan for 1 month"
+        category: cafe_category
         photo:
-        business_id:
-        price_cents:
+        business_id: motioncafe
+        price_cents: 54800
+
       product_six:
         slug:
         name:
@@ -344,45 +353,45 @@ products:
 
 perks:
   perk_one:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: "%"
+    amount: 40
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: 9_week_bootcamp
+    business_id_slug: bodyfactory
+    discounted_price: 6000
+    description: "40% off 1 month pass for Lewagon students"
   perk_two:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: "%"
+    amount: 10
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: 9_week_bootcamp
+    business_id_slug: motioncafe
+    discounted_price: 13230
+    description: "10% off 1 week meal plan for Lewagon students"
   perk_three:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: "%"
+    amount: 5
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: 1_month_pass_body_factory
+    business_id_slug: motioncafe
+    discounted_price: 13965
+    description: "5% off 1 week meal plan to body Factory 1 month pass customers "
   perk_four:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: "$"
+    amount: 10
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: data_science_intensive
+    business_id_slug: motioncafe
+    discounted_price: 13700
+    description: "10$ off 1 week meal plan for Lewwagon data-science students"
   perk_five:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: "%"
+    amount: 5
+    patronized_business_id_slug: motioncafe
+    purchased_product_id_slug: 1_month_meal_plan
+    business_id_slug: bodyfactory
+    discounted_price: 15200
+    description: "5% off 1 month Body Factory for 1 month Motion meal plan"
   perk_six:
     kind:
     amount:
@@ -429,6 +438,38 @@ perks:
   #                         Purchases                           #
   ###############################################################
 
+
+  purchases:
+    purchase_one:
+      verfied: true
+      user_id_slug: ben_dover
+      product_slug_id: 9_week_bootcamp
+      perk_id: perk_one
+    purchase_two:
+      verfied: true
+      user_id_slug: ben_dover
+      product_id_slug: 9_week_bootcamp
+      perk_id: perk_two
+    purchase_three:
+      verfied: true
+      user_id_slug: crystal_fein
+      product_id_slug: 1_month_meal_plan
+      perk_id: perk_five
+    purchase_four:
+      verfied: true
+      user_id_slug: lexi_murch
+      product_id_slug: 1_month_pass_body_factory
+      perk_id: perk_three
+    purchase_five:
+      verfied: true
+      user_id_slug: jack_ma
+      product_id_slug: 1_month_pass_body_factory
+      perk_id: perk_three
+    purchase_six:
+      verfied: true
+      user_id_slug: christopher_wallace
+      product_id_slug: data_science_intensive
+      perk_id: perk_four
 
 
 
