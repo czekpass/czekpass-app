@@ -264,7 +264,9 @@
                                                     </div>
                                                     <div class="card text-white bg-info shadow">
                                                         <div class="card-body">
-                                                            <p class="m-0">New Purchase Connection</p>
+                                                            <p class="m-0">
+                                                                <%= link_to "Connect a new business", business_connection_path(current_user.business) %>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -356,4 +358,3 @@
     <script src="assets/javascripts/chart.min.js"></script>
     <script src="assets/javascripts/bs-charts.js"></script>
     <script src="assets/javascripts/smooth_scrolling.js"></script>
-

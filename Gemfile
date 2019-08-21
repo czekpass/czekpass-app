@@ -28,7 +28,6 @@ gem 'money-rails'
 gem 'faker'
 gem 'gibbon'
 gem 'rqrcode'
-gem 'barby',  '~> 0.6.8'
 gem 'chart-js-rails'
 
 
