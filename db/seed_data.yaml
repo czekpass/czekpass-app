@@ -286,7 +286,7 @@ products:
         category: clothing_category
         photo:
         business_id: bambooblonde
-        price_cents: 70000
+        price_cents: 7000
         product_two:
         slug: maria_tote_bag
         name: "Maria tote bag"
@@ -294,7 +294,7 @@ products:
         category: clothing_category
         photo:
         business_id: bambooblonde
-        price_cents: 100000
+        price_cents: 10000
         product_three:
         slug: pearl_diamond_buckle_belt
         name: "Pearl diamond buckle belt"
@@ -302,7 +302,7 @@ products:
         category: clothing_category
         photo:
         business_id: bambooblonde
-        price_cents: 1000000
+        price_cents: 15000
   concco:
       product_one:
         slug: unlimited_membership_pass
@@ -311,7 +311,7 @@ products:
         category: Coworking
         photo:
         business_id: concco
-        price_cents: 700000
+        price_cents: 25000
         product_two:
         slug: night_owl_membership_pass
         name: "Night owl membership pass"
@@ -319,7 +319,7 @@ products:
         category: Coworking
         photo:
         business_id: concco
-        price_cents: 400000
+        price_cents: 15000
         product_three:
         slug: day_pass
         name: "Day pass"
@@ -327,7 +327,7 @@ products:
         category: Coworking
         photo:
         business_id: concco
-        price_cents: 10000
+        price_cents: 1000
   friihotel:
       product_one:
         slug: one_bedroom
@@ -336,7 +336,7 @@ products:
         category: accomoations_category
         photo:
         business_id: friihotel
-        price_cents: 40000
+        price_cents: 10000
         product_two:
         slug: king_suite
         name: "King suite"
@@ -344,7 +344,7 @@ products:
         category: accomoations_category
         photo:
         business_id: friihotel
-        price_cents: 4000000
+        price_cents: 25000
         product_three:
         slug: conference_room
         name: "Conference room"
@@ -352,7 +352,7 @@ products:
         category: accomoations_category
         photo:
         business_id: friihotel
-        price_cents: 10000000
+        price_cents: 50000
 
 
   ###############################################################
@@ -402,21 +402,21 @@ perks:
     discounted_price:
     description:
   perk_six:
-    kind: percentage
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
-  perk_seven:
     kind: amount
+    amount: 10000
+    patronized_business_id_slug: concco
+    purchased_product_id_slug: data_science_intensive
+    business_id_slug: lewagon
+    discounted_price: 190000
+    description: "100$ off of our data science intensive course if you have the unlimited Concco pass"
+  perk_seven:
+    kind: percentage
     amount: 10
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price: 10000
-    description:
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: unlimited_membership_pass
+    business_id_slug: concco
+    discounted_price: 22500
+    description: "10% off of your unlimited pass if you have a month long body factory membership."
   perk_eight:
     kind: free
     amount:
@@ -431,7 +431,7 @@ perks:
     patronized_business_id_slug: friihotel
     purchased_product_id_slug: 1_month_pass_body_factory
     business_id_slug: bodyfactory
-    discounted_price: 20000
+    discounted_price: 14000
     description: "20$ off of our month long membership pass if you have booked Frii hotels one bedroom before"
   perk_ten:
     kind: percentage
@@ -439,7 +439,7 @@ perks:
     patronized_business_id_slug: bambooblonde
     purchased_product_id_slug: king_suite
     business_id_slug: friihotel
-    discounted_price: 36000
+    discounted_price: 22500
     description: "10 % off of our king suite if you have a Maria tote bag from Bamboo blonde"
 
 
@@ -448,12 +448,30 @@ perks:
   #                         Purchases                           #
   ###############################################################
 
+purchases:
+  purchase_seven:
+   verified: true
+   user_id_slug: tony_stark
+   product_id_slug: unlimited_membership_pass
+   perk_id: perk_seven
 
+purchase_eight:
+   verified: true
+   user_id_slug: ronald_mcdonald
+   product_id_slug: pearl_diamond_buckle_belt
+   perk_id: perk_eight
 
+purchase_nine:
+   verified: true
+   user_id_slug: dead_mau5
+   product_id_slug: 1_month_pass_body_factory
+   perk_id: perk_nine
 
-
-
-
+purchase_ten:
+   verified: true
+   user_id_slug: chuck_norris
+   product_id_slug: king_suite
+   perk_id: perk_ten
 
 
 

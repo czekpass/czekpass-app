@@ -14,7 +14,7 @@
     <strong><%= purchase.product.description %></strong>
   </p>
 
-  Price: <p class="mb-0"><%= humanized_money_with_symbol(purchase.product.price_cents) %></p>
+  Price: <p class="mb-0"><%= humanized_money_with_symbol(purchase.product.price) %></p>
   <div class="border my-2"></div>
   Perk Expiration date:
   <% if purchase.expiration_date %>
