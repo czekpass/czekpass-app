@@ -225,12 +225,14 @@ businesses:
     logo:
     description: |
       Your passion is our inspiration. Enjoy the local charms, unique hotel concept with pleasant interior, comfy bed, peerless restaurant & bar. We welcome you Home, with a heartwarming experience.
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
     business_category_id: accomoations_category_slug
     user_id_slug: friihotel_admin
   connco:
     slug: connco
     name: Connco Co Working
     logo:
+    location: Pantai Batu Bolong Street No.91, Canggu, North Kuta, Badung Regency, Bali 80361
     description: |
       Giving you a home away from office experience plus the luxury and hospitality that you will not get anywhere else
     business_category_id_slug: cowork_category
@@ -238,6 +240,7 @@ businesses:
   bambooblonde:
     slug: bambooblonde
     name: "Bamboo Blonde"
+    location: Pantai Batu Bolong Street No.53b, Canggu, North Kuta, Badung Regency, Bali 80361
     description: |
       Bamboo Blonde presents a colourful fashion line for young ladies at its flagship store on Jalan Laksmana in Seminyak, featuring both international labels and its own. The bright pink signage bearing its name in all lowercase is hard to miss amongst the row of eclectic shops that line the street
     business_category_id_slug: clothing_category
@@ -267,7 +270,7 @@ products:
       business_id: lewagon
       price_cents: 200000
   bodyfactory:
-    product_three:
+    product_one:
       slug: 1_month_pass_body_factory
       name: "1 month unlimited pass at Body Factory"
       description:
@@ -275,8 +278,8 @@ products:
       photo:
       business_id: bodyfactory
       price_cents: 16000
-    friihotel:
-      product_four:
+  friihotel:
+      product_one:
         slug:
         name:
         description:
@@ -284,7 +287,7 @@ products:
         photo:
         business_id:
         price_cents:
-      product_five:
+      product_one:
         slug:
         name:
         description:
