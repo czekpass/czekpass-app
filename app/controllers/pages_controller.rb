@@ -42,6 +42,10 @@ class PagesController < ApplicationController
     # Get savings depending on chosen duration
     if params[:saving].present?
       @total_saving = calculate_savings(params[:saving])
+      respond_to do |format|
+        format.html { render :dashboard }
+        format.js
+      end
     end
     # the user savings of the last 7 days
     # @weekly_savings = @savings.select { |e| e.created_at >= Date.today - 7 }.pluck(:amount).inject(:+)
@@ -92,4 +96,8 @@ class PagesController < ApplicationController
     @savings = ids.collect { |i| Saving.where(purchase_id: i) }.flatten
     @calculated_savings = @savings.select { |e| e.created_at >= Date.today - saving.to_i }.pluck(:amount).inject(:+)
   end
+
+  def welcome
+  end
+
 end

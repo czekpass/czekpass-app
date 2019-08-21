@@ -1,4 +1,23 @@
-<div id="wrapper" name="page-top">
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1>Add your business to Czekpass!</h1>
+
+      <%= simple_form_for [@business] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :location %>
+        <%= f.input :logo %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- The code below was a placeholder, I'm implementing a simple form above, feel free to modify it. -->
+
+
+<!-- <div id="wrapper" name="page-top">
   <div class="d-flex flex-column" id="content-wrapper">
     <div id="content">
       <div class="container-fluid">
@@ -7,7 +26,7 @@
           <div class="col-lg-4">
             <div class="card mb-3">
               <div class="card-body text-center shadow">
-                <%= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4 profilephoto') %>
+                <%#= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4 profilephoto') %>
               </div>
             </div>
           </div>
@@ -58,3 +77,6 @@
       </div>
     </div>
   </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
+
+ -->
+
