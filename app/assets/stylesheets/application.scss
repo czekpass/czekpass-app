@@ -16,16 +16,3 @@
 // Myles' Partials
 @import "components/myles";
 @import "sb-admin";
-
-
-body {
-  background-color: black;
-}
-
-
-.alert {
-  position: fixed;
-  bottom: 16px;
-  right: 16px;
-  z-index: 1000;
-}

@@ -1,3 +1,5 @@
+import { easing } from "jquery.easing"
+
 const initSbAdmin = ($) => {
   "use strict"; // Start of use strict
 
