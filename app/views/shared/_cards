@@ -1,0 +1,12 @@
+<div class="card shadow mb-4">
+  <!-- Card Header - Accordion -->
+  <a class="d-block card-header py-3" role="button" aria-expanded="true" aria-controls="collapseCardExample" href="#collapseCardExample" data-toggle="collapse">
+    <h6 class="m-0 font-weight-bold text-primary">Collapsable Card</h6>
+  </a>
+  <!-- Card Content - Collapse -->
+  <div class="collapse show" id="collapseCardExample">
+    <div class="card-body">
+      Coolapsing Card Bootstrap. <strong>Click header</strong> Expanded!
+    </div>
+  </div>
+</div>
