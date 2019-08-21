@@ -1,0 +1,16 @@
+
+<% qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{params[:id]}") %>
+<% qr = qrcode.as_svg(
+      offset: 0,
+      color: '000',
+      shape_rendering: 'crispEdges',
+      module_size: 6
+    ) %>
+<% IO.write(Rails.root.join('app', 'assets', 'images', 'qrcode.svg'), qr.to_s) %>
+
+<div class="container">
+  <%= image_tag "qrcode.svg", alt: "alttext" %>
+</div>
+
+
+
