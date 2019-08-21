@@ -119,42 +119,42 @@ users:
       photo:
       password: "1234567"
     user_six:
-      slug: user_six
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: ronald_mcdonald
+      email: "ronald@mcdonalds.com"
+      first_name: "Ronald"
+      last_name: "Mcdonald"
       admin: false
       photo:
       password: "1234567"
     user_seven:
-      slug: user_seven
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: chuck_norris
+      email: "chuck@bruceleesucks.com"
+      first_name: "Chuck"
+      last_name: "Norris"
       admin: false
       photo:
       password: "1234567"
     user_eight:
-      slug: user_eight
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: dead_mau5
+      email: "liverat@deadmau5.com"
+      first_name: "Dead"
+      last_name: "Mau5"
       admin: false
       photo:
       password: "1234567"
     user_nine:
-      slug: user_nine
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: tony_stark
+      email: "ironman@thanoskilledme.com"
+      first_name: "Tony "
+      last_name: "Stark"
       admin: false
       photo:
       password: "1234567"
     user_ten:
-      slug: user_ten
-      email: "jack@inabox.com"
-      first_name: "Jack"
-      last_name: "Ina box"
+      slug: michelle_obama
+      email: "michelle@oneshouldbeagirl.com"
+      first_name: "Michelle"
+      last_name: "Obama"
       admin: false
       photo:
       password: "1234567"
@@ -278,63 +278,81 @@ products:
       photo:
       business_id: bodyfactory
       price_cents: 16000
+  bambooblonde:
+      product_one:
+        slug: avery_jumpsuit
+        name: "Avery jumpsuit"
+        description: "Long black and white jumpsuit for women"
+        category: clothing_category
+        photo:
+        business_id: bambooblonde
+        price_cents: 70000
+        product_two:
+        slug: maria_tote_bag
+        name: "Maria tote bag"
+        description: "Beautiful white and wood handle tote bag"
+        category: clothing_category
+        photo:
+        business_id: bambooblonde
+        price_cents: 100000
+        product_three:
+        slug: pearl_diamond_buckle_belt
+        name: "Pearl diamond buckle belt"
+        description: "Elegant designer belt"
+        category: clothing_category
+        photo:
+        business_id: bambooblonde
+        price_cents: 1000000
+  concco:
+      product_one:
+        slug: unlimited_membership_pass
+        name: "Unlimited membership pass"
+        description: "Unlimited access to our coworking facilities"
+        category: Coworking
+        photo:
+        business_id: concco
+        price_cents: 700000
+        product_two:
+        slug: night_owl_membership_pass
+        name: "Night owl membership pass"
+        description: "Unlimited off peak-hour membership pass"
+        category: Coworking
+        photo:
+        business_id: concco
+        price_cents: 400000
+        product_three:
+        slug: day_pass
+        name: "Day pass"
+        description: "One day unlimited access pass"
+        category: Coworking
+        photo:
+        business_id: concco
+        price_cents: 10000
   friihotel:
       product_one:
-        slug:
-        name:
-        description:
-        category:
+        slug: one_bedroom
+        name: "One bedroom"
+        description: "A standard one bedroom, one bathroom"
+        category: accomoations_category
         photo:
-        business_id:
-        price_cents:
-      product_one:
-        slug:
-        name:
-        description:
-        category:
+        business_id: friihotel
+        price_cents: 40000
+        product_two:
+        slug: king_suite
+        name: "King suite"
+        description: "Our most luxurious available room"
+        category: accomoations_category
         photo:
-        business_id:
-        price_cents:
-      product_six:
-        slug:
-        name:
-        description:
-        category:
+        business_id: friihotel
+        price_cents: 4000000
+        product_three:
+        slug: conference_room
+        name: "Conference room"
+        description: "Our amazing conference room"
+        category: accomoations_category
         photo:
-        business_id:
-        price_cents:
-      product_seven:
-        slug:
-        name:
-        description:
-        category:
-        photo:
-        business_id:
-        price_cents:
-      product_eight:
-        slug:
-        name:
-        description:
-        category:
-        photo:
-        business_id:
-        price_cents:
-      product_nine:
-        slug:
-        name:
-        description:
-        category:
-        photo:
-        business_id:
-        price_cents:
-      product_ten:
-        slug:
-        name:
-        description:
-        category:
-        photo:
-        business_id:
-        price_cents:
+        business_id: friihotel
+        price_cents: 10000000
 
 
   ###############################################################
@@ -384,7 +402,7 @@ perks:
     discounted_price:
     description:
   perk_six:
-    kind:
+    kind: percentage
     amount:
     patronized_business_id_slug:
     purchased_product_id_slug:
@@ -392,37 +410,38 @@ perks:
     discounted_price:
     description:
   perk_seven:
-    kind:
-    amount:
+    kind: amount
+    amount: 10
     patronized_business_id_slug:
     purchased_product_id_slug:
     business_id_slug:
-    discounted_price:
+    discounted_price: 10000
     description:
   perk_eight:
-    kind:
+    kind: free
     amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: pearl_diamond_buckle_belt
+    business_id_slug: bambooblonde
+    discounted_price: 0
+    description: "Free pearl diamond buckle belt if you've got a month long body pass factory membership"
   perk_nine:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: amount
+    amount: 20
+    patronized_business_id_slug: friihotel
+    purchased_product_id_slug: 1_month_pass_body_factory
+    business_id_slug: bodyfactory
+    discounted_price: 20000
+    description: "20$ off of our month long membership pass if you have booked Frii hotels one bedroom before"
   perk_ten:
-    kind:
-    amount:
-    patronized_business_id_slug:
-    purchased_product_id_slug:
-    business_id_slug:
-    discounted_price:
-    description:
+    kind: percentage
+    amount: 10
+    patronized_business_id_slug: bambooblonde
+    purchased_product_id_slug: king_suite
+    business_id_slug: friihotel
+    discounted_price: 36000
+    description: "10 % off of our king suite if you have a Maria tote bag from Bamboo blonde"
+
 
 
   ###############################################################
