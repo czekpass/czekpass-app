@@ -21,6 +21,8 @@ class PagesController < ApplicationController
     else
       redirect_to dashboard_page_path
     end
+
+
   end
 
   def dashboard
@@ -60,17 +62,27 @@ class PagesController < ApplicationController
     # Then push button that will find location, search for all businesses within range
     # render these businesses in a view below the button.
 
-    @location_info = request.location.city
+    # @location_info = request.location.city
     # @businesses = current_user.offering_businesses.geocoded
     @all_businesses = Business.geocoded
 
+    sql_query = "name ILIKE :query OR location ILIKE :query"
     if params[:query].present?
-      sql_query = "name ILIKE :query OR location ILIKE :query"
-      @businesses = current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").geocoded
+      if current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").empty? && current_user.offering_businesses.near(params[:query], 1000).geocoded.empty?
+        @businesses = current_user.offering_businesses.geocoded
+      end
+
+      if current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").empty? && !current_user.offering_businesses.near(params[:query], 1000).geocoded.empty?
+        @businesses = current_user.offering_businesses.near(params[:query], 1000).geocoded
+      end
+
+      if !current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%").empty?
+        @businesses = current_user.offering_businesses.where(sql_query, query: "%#{params[:query]}%")
+      end
     else
       @businesses = current_user.offering_businesses.geocoded
+      # redirect_to discover_path
     end
-
 
     @markers = @businesses.map do |business|
       {

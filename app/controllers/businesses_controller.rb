@@ -44,9 +44,18 @@ class BusinessesController < ApplicationController
   end
 
   def new_connection
+    @businesses = Business.all
     @business = Business.find(params[:id])
-    @product = @business.products.where("product.business = ?", @business).find(rand(Product.first.id..Product.last.id))
-    @perk = @business.perks.select { |perk| perk.business == @business }.find(rand(Perk.first.id..Perk.last.id))
+    @products = @business.products
+  end
+
+  def filter_new_connection
+    @business = Business.find(params[:business_id])
+    @products = @business.products
+    respond_to do |format|
+        format.html { redirect_to business_connection_path(business_id: params[:business_id]) }
+        format.js
+      end
   end
 
   def business_params

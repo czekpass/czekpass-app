@@ -1,0 +1,2 @@
+document.querySelector("#products").innerHTML = "";
+document.querySelector("#products").insertAdjacentHTML("afterbegin", "<%= j render 'products/product', products: @products %>");
