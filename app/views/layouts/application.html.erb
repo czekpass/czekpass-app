@@ -9,13 +9,21 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %>
     <%= favicon_link_tag asset_path('favicon.png') %>
+
   </head>
-  <body>
-    <a name="page-top"></a>
-    <%= render 'shared/navbar' %>
-    <%= render 'shared/flashes' %>
-    <%= yield %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
+
+  <body id="page-top">
+        <div id="wrapper" class="bg-gradient-primary">
+          <% if user_signed_in? %>
+          <%= render 'shared/nav' %>
+          <% end %>
+          <%= render 'shared/flashes' %>
+          <%= yield %>
+          <%= javascript_include_tag 'application' %>
+          <%= javascript_pack_tag 'application' %>
+        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
+        <%= render 'shared/footer' %>
+
   </body>
 </html>
