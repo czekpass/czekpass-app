@@ -1,0 +1,443 @@
+###############################################################
+#                            Users                            #
+###############################################################
+
+users:
+  demo_users:
+    business_user:
+      slug: admin_bodyfactory
+      email: "maria@bodyfactory.com"
+      first_name: "Maria"
+      last_name:  "Body Factory"
+      admin: true
+      photo:
+      password: "1234567"
+    user_user:
+      slug: user
+      email: "myles@hashtag.com"
+      first_name: "Myles"
+      last_name: "Kilgallon"
+      admin: false
+      photo:
+      password: "123456"
+
+  #               Users for other business owners               #
+  ###############################################################
+
+  business_owners:
+    lewagon_admin:
+      slug: lewagon_admin
+      email: "guido@lewagon.com"
+      first_name: "Guido"
+      last_name: "Caldera"
+      admin: true
+      photo:
+      password: "987654321"
+    czekpass_admin:
+      slug: czekpass_admin
+      email: "amir@czekpass.com"
+      first_name: "Amir"
+      last_name: "Amouralli"
+      admin: true
+      photo:
+      password: "1234567"
+    motion_admin:
+      slug: motion_admin
+      email: "hello@motionfitnessbali.com"
+      first_name: "John"
+      last_name: "Sunshine"
+      admin: true
+      photo:
+      password: "1234567"
+    connco_admin:
+      slug: connco_admin
+      email: "hello@connco.co"
+      first_name: "Suzanne"
+      last_name: "Night time"
+      admin: true
+      photo:
+      password: "1234567"
+    friihotel_admin:
+      slug: friihotel_admin
+      email: "hello@friihotel.com"
+      first_name: "Dewi"
+      last_name: "Lewis"
+      admin: true
+      photo:
+      password: "1234567"
+    bambooblonde_admin:
+      slug: bambooblonde_admin
+      email: "hello@friihotel.com"
+      first_name: "Blonde"
+      last_name: "Babe"
+      admin: true
+      photo:
+      password: "1234567"
+
+
+  #                  Regular users / purchasers                 #
+  ###############################################################
+  users:
+    user_one:
+      slug: user_one
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_two:
+      slug: user_two
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_three:
+      slug: user_three
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_four:
+      slug: user_four
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_five:
+      slug: user_five
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_six:
+      slug: user_six
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_seven:
+      slug: user_seven
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_eight:
+      slug: user_eight
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_nine:
+      slug: user_nine
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+    user_ten:
+      slug: user_ten
+      email: "jack@inabox.com"
+      first_name: "Jack"
+      last_name: "Ina box"
+      admin: false
+      photo:
+      password: "1234567"
+
+
+  ###############################################################
+  #                    Business categories                      #
+  ###############################################################
+business_categories:
+  fitness:
+    slug: fitness_category
+    name: Fitness
+  education:
+    slug: education_category
+    name: Education
+  restaurant:
+    slug: restautant_category
+    name: Restaurant
+  cafe:
+    slug: cafe_category
+    name: Cafe
+  accommodations:
+    slug: accomoations_category
+    name: Accommodations
+  cowork:
+    slug: cowork_category
+    name: Coworking
+  clothing:
+    slug: clothing_category
+    name: Clothes
+
+  ###############################################################
+  #                         Businesses                          #
+  ###############################################################
+
+businesses:
+  bodyfactory:
+    slug: bodyfactory
+    name: "Body Factory Bali"
+    logo:
+    description: |
+      Premium Gym Bali: All-Inclusive Approach to Lifestyle and Fitness |
+      A comprehensive approach to gym Bali. Body Factory Bali is an intelligent fitness, health, and wellness facility expertly delivered in our luxurious tropical location in Canggu.
+    location: Jl. Nelayan No.27, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: fitness_category_slug
+    user_id_slug: bodyfactory_admin
+  lewagon:
+    slug: lewagon
+    name: "Le Wagon Bali"
+    logo:
+    description: |
+      Le Wagon is an intensive 9-week coding bootcamp that teaches you how to code great tech products.
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: education_category_slug
+    user_id_slug: lewagon_admin
+  motioncafe:
+    slug: motioncafe
+    name: "Le Wagon Bali"
+    logo:
+    description: |
+      Motion is a fitness solution for anyone who is ready to take themselves to a higher level of health and wellbeing. We offer numerous services in Bali such as fitness classes, personal training, fitness challenges and fitness consultations. The focus remains on a high-energy, supportive, result driven environment for fitness fanatics and newcomers alike
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: cafe_category_slug
+    user_id_slug: motion_admin
+  friihotel:
+    slug: friihotel
+    name: Frii Hotel
+    logo:
+    description: |
+      Your passion is our inspiration. Enjoy the local charms, unique hotel concept with pleasant interior, comfy bed, peerless restaurant & bar. We welcome you Home, with a heartwarming experience.
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: accomoations_category_slug
+    user_id_slug: friihotel_admin
+  connco:
+    slug: connco
+    name: Connco Co Working
+    logo:
+    location: Pantai Batu Bolong Street No.91, Canggu, North Kuta, Badung Regency, Bali 80361
+    description: |
+      Giving you a home away from office experience plus the luxury and hospitality that you will not get anywhere else
+    business_category_id_slug: cowork_category
+    user_id: connco_admin
+  bambooblonde:
+    slug: bambooblonde
+    name: "Bamboo Blonde"
+    location: Pantai Batu Bolong Street No.53b, Canggu, North Kuta, Badung Regency, Bali 80361
+    description: |
+      Bamboo Blonde presents a colourful fashion line for young ladies at its flagship store on Jalan Laksmana in Seminyak, featuring both international labels and its own. The bright pink signage bearing its name in all lowercase is hard to miss amongst the row of eclectic shops that line the street
+    business_category_id_slug: clothing_category
+    user_id_slug: bambooblonde_admin
+
+
+  ###############################################################
+  #                          Products                           #
+  ###############################################################
+
+products:
+  lewagon:
+    product_one:
+      slug: 9_week_bootcamp
+      name: "9-week bootcamp"
+      description: "Intensive 9-week bootcamp in Bali. Learn everything you need to build awesome products."
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 700000
+    product_two:
+      slug: data_science_intensive
+      name: "Dats science intensive"
+      description: "Learn the basics of data science in 4 days"
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 200000
+  bodyfactory:
+    product_one:
+      slug: 1_month_pass_body_factory
+      name: "1 month unlimited pass at Body Factory"
+      description:
+      category: fitness_category
+      photo:
+      business_id: bodyfactory
+      price_cents: 16000
+  friihotel:
+      product_one:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_one:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_six:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_seven:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_eight:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_nine:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+      product_ten:
+        slug:
+        name:
+        description:
+        category:
+        photo:
+        business_id:
+        price_cents:
+
+
+  ###############################################################
+  #                            Perks                            #
+  ###############################################################
+
+
+perks:
+  perk_one:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_two:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_three:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_four:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_five:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_six:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_seven:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_eight:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_nine:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+  perk_ten:
+    kind:
+    amount:
+    patronized_business_id_slug:
+    purchased_product_id_slug:
+    business_id_slug:
+    discounted_price:
+    description:
+
+
+  ###############################################################
+  #                         Purchases                           #
+  ###############################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
