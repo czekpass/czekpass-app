@@ -1,0 +1,17 @@
+<!-- Proper implementation method to follow -->
+<!-- So make it right, link to it after a new user is made with devise...how?  Then link to right things within. -->
+<!-- Welcome them with proper welcome message. -->
+<!-- Prompt link to user discovery/dashboard to see what's available around them -->
+<!-- Prompt to register their new business to proper page if they are a business owner -->
+<!-- Footer/header? -->
+
+<div class="container">
+<h1>Welcome to Czekpass!</h1>
+
+
+<p>If you would like to explore the available businesses and perks around you, please click here:</p>
+<p> <%=  link_to "Explore", discover_path%> </p>
+
+<p>If you would like to sign your business up to Czekpass, please click here:</p>
+<p> <%= link_to "Register your business", new_business_path %> </p>
+</div>
