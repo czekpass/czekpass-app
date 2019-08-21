@@ -13,4 +13,18 @@ class Product < ApplicationRecord
   validates :description, presence: true
   validates :price_cents, presence: true
   validates :category, presence: true
+
+  def purchased_in_the_last_month
+     purchases = Purchase.where(verified: true, product_id: self.id)
+     purchases.where("created_at >= ?", Date.today - 30)
+  end
+
+  def purchased_in_the_last_year
+     purchases = Purchase.where(verified: true, product_id: self.id)
+     purchases.where("created_at >= ?", Date.today - 365)
+  end
+
+  def top_partner
+
+  end
 end
