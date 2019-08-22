@@ -18,39 +18,13 @@
       <li class="nav-item" role="presentation">
         <a class="nav-link" href="/business_dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Business Dashboard</span></a>
       </li>
-      <li class="nav-item" role="presentation">
-      
+      <li class="nav-item" role="presentation"> 
       <a class="nav-link" href="/businesses/<%= current_user.business.id %>/products/new">Create Product</a>
-
-
       </li>
-      <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a>
-      <%#= link_to "Create Perk", new_business_product_perk_path, class:'nav-link' %> 
-      
-        
-        
-        </li>
-      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Valid</a></li>
-      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Invalid</a></li>
       <% else %>
             <li class="nav-item" role="presentation">
         <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
       </li>
-
-
-                      <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="user_dashboard.html"><i class="fas fa-user"></i><span>User Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"></li>
-                    <li class="nav-item" role="presentation"></li>
-                </ul>
-                <ul class="nav navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="user_dashboard.html"><i class="fas fa-user-tie"></i><span>&nbsp;Business Dashboard</span></a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Create Product</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Valid</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Invalid</a></li>
-                    <li class="nav-item" role="presentation"></li>
-                </ul>
-
       <% end %>
       <li class="nav-item" role="presentation"></li>
     </ul>
@@ -60,11 +34,7 @@
 <div class="d-flex flex-column" id="content-wrapper">
   <div id="content">
     <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-      <div class="container-fluid">
-        <% unless current_page?(discover_path) or current_page?(dashboard_page_path) or current_page?(business_dashboard_path) %>
-          <%= link_to 'Back', :back, class: 'btn btn-info' %>
-        <% end %>
-        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+      <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
         <ul class="nav navbar-nav flex-nowrap ml-auto">
           <!--<li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>-->
 
