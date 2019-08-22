@@ -31,3 +31,6 @@ initChartBarRevenue();
 initDataTable($);
 initSbAdmin($);
 
+
+
+$('#dataTable').dataTable({searching: false, paging: false, info: false});
