@@ -1,0 +1,532 @@
+###############################################################
+#                            Users                            #
+###############################################################
+
+users:
+  demo_users:
+    business_user:
+      slug: admin_bodyfactory
+      email: "maria@bodyfactory.com"
+      first_name: "Maria"
+      last_name:  "Body Factory"
+      admin: true
+      photo:
+      password: "1234567"
+    user_user:
+      slug: user
+      email: "myles@hashtag.com"
+      first_name: "Myles"
+      last_name: "Kilgallon"
+      admin: false
+      photo:
+      password: "123456"
+
+  #               Users for other business owners               #
+  ###############################################################
+
+  business_owners:
+    lewagon_admin:
+      slug: lewagon_admin
+      email: "guido@lewagon.com"
+      first_name: "Guido"
+      last_name: "Caldera"
+      admin: true
+      photo:
+      password: "987654321"
+    czekpass_admin:
+      slug: czekpass_admin
+      email: "amirs@czekpass.com"
+      first_name: "Amir"
+      last_name: "Amouralli"
+      admin: true
+      photo:
+      password: "1234567"
+    motion_admin:
+      slug: motion_admin
+      email: "hello@motionfitnessbali.com"
+      first_name: "John"
+      last_name: "Sunshine"
+      admin: true
+      photo:
+      password: "1234567"
+    connco_admin:
+      slug: connco_admin
+      email: "hello@connco.co"
+      first_name: "Suzanne"
+      last_name: "Night time"
+      admin: true
+      photo:
+      password: "1234567"
+    friihotel_admin:
+      slug: friihotel_admin
+      email: "hello@friihotel.com"
+      first_name: "Dewi"
+      last_name: "Lewis"
+      admin: true
+      photo:
+      password: "1234567"
+    bambooblonde_admin:
+      slug: bambooblonde_admin
+      email: "hello@bambooblonde.com"
+      first_name: "Blonde"
+      last_name: "Babe"
+      admin: true
+      photo:
+      password: "1234567"
+
+
+  #                  Regular users / purchasers                 #
+  ###############################################################
+  users:
+    user_one:
+      slug: jack_ma
+      email: "jack@alibaba.com"
+      first_name: "Jack"
+      last_name: "Ma"
+      admin: false
+      photo:
+      password: "1234567"
+    user_two:
+      slug: crystal_fein
+      email: "crystal123@gmail.com"
+      first_name: "Crystal"
+      last_name: "Fein"
+      admin: false
+      photo:
+      password: "1234567"
+    user_three:
+      slug: lexi_murch
+      email: "lex@yahoo.com"
+      first_name: "Lexi"
+      last_name: "Murch"
+      admin: false
+      photo:
+      password: "1234567"
+    user_four:
+      slug: ben_dover
+      email: "benny@gmail.com"
+      first_name: "Ben"
+      last_name: "Dover"
+      admin: false
+      photo:
+      password: "1234567"
+    user_five:
+      slug: christopher_wallace
+      email: "big@gmail.com"
+      first_name: "Christopher"
+      last_name: "Wallace"
+      admin: false
+      photo:
+      password: "1234567"
+    user_six:
+      slug: ronald_mcdonald
+      email: "ronald@mcdonalds.com"
+      first_name: "Ronald"
+      last_name: "Mcdonald"
+      admin: false
+      photo:
+      password: "1234567"
+    user_seven:
+      slug: chuck_norris
+      email: "chuck@bruceleesucks.com"
+      first_name: "Chuck"
+      last_name: "Norris"
+      admin: false
+      photo:
+      password: "1234567"
+    user_eight:
+      slug: dead_mau5
+      email: "liverat@deadmau5.com"
+      first_name: "Dead"
+      last_name: "Mau5"
+      admin: false
+      photo:
+      password: "1234567"
+    user_nine:
+      slug: tony_stark
+      email: "ironman@thanoskilledme.com"
+      first_name: "Tony "
+      last_name: "Stark"
+      admin: false
+      photo:
+      password: "1234567"
+    # user_ten:
+    #   slug: michelle_obama
+    #   email: "michelle@oneshouldbeagirl.com"
+    #   first_name: "Michelle"
+    #   last_name: "Obama"
+    #   admin: false
+    #   photo:
+    #   password: "1234567"
+
+
+  ###############################################################
+  #                    Business categories                      #
+  ###############################################################
+business_categories:
+  fitness:
+    slug: fitness_category
+    name: Fitness
+  education:
+    slug: education_category
+    name: Education
+  restaurant:
+    slug: restautant_category
+    name: Restaurant
+  cafe:
+    slug: cafe_category
+    name: Cafe
+  accommodations:
+    slug: accomoations_category
+    name: Accommodations
+  cowork:
+    slug: cowork_category
+    name: Coworking
+  clothing:
+    slug: clothing_category
+    name: Clothes
+
+  ###############################################################
+  #                         Businesses                          #
+  ###############################################################
+
+businesses:
+  bodyfactory:
+    slug: bodyfactory
+    name: "Body Factory Bali"
+    logo:
+    description: |
+      Premium Gym Bali: All-Inclusive Approach to Lifestyle and Fitness |
+      A comprehensive approach to gym Bali. Body Factory Bali is an intelligent fitness, health, and wellness facility expertly delivered in our luxurious tropical location in Canggu.
+    location: Jl. Nelayan No.27, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: fitness_category_slug
+    user_id_slug: bodyfactory_admin
+  lewagon:
+    slug: lewagon
+    name: "Le Wagon Bali"
+    logo:
+    description: |
+      Le Wagon is an intensive 9-week coding bootcamp that teaches you how to code great tech products.
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: education_category_slug
+    user_id_slug: lewagon_admin
+  motioncafe:
+    slug: motioncafe
+    name: "Le Wagon Bali"
+    logo:
+    description: |
+      Motion is a fitness solution for anyone who is ready to take themselves to a higher level of health and wellbeing. We offer numerous services in Bali such as fitness classes, personal training, fitness challenges and fitness consultations. The focus remains on a high-energy, supportive, result driven environment for fitness fanatics and newcomers alike
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: cafe_category_slug
+    user_id_slug: motion_admin
+  friihotel:
+    slug: friihotel
+    name: Frii Hotel
+    logo:
+    description: |
+      Your passion is our inspiration. Enjoy the local charms, unique hotel concept with pleasant interior, comfy bed, peerless restaurant & bar. We welcome you Home, with a heartwarming experience.
+    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    business_category_id: accomoations_category_slug
+    user_id_slug: friihotel_admin
+  connco:
+    slug: connco
+    name: Connco Co Working
+    logo:
+    location: Pantai Batu Bolong Street No.91, Canggu, North Kuta, Badung Regency, Bali 80361
+    description: |
+      Giving you a home away from office experience plus the luxury and hospitality that you will not get anywhere else
+    business_category_id_slug: cowork_category
+    user_id: connco_admin
+  bambooblonde:
+    slug: bambooblonde
+    name: "Bamboo Blonde"
+    location: Pantai Batu Bolong Street No.53b, Canggu, North Kuta, Badung Regency, Bali 80361
+    description: |
+      Bamboo Blonde presents a colourful fashion line for young ladies at its flagship store on Jalan Laksmana in Seminyak, featuring both international labels and its own. The bright pink signage bearing its name in all lowercase is hard to miss amongst the row of eclectic shops that line the street
+    business_category_id_slug: clothing_category
+    user_id_slug: bambooblonde_admin
+
+
+  ###############################################################
+  #                          Products                           #
+  ###############################################################
+
+products:
+  lewagon_products:
+    product_one:
+      slug: 9_week_bootcamp
+      name: "9-week bootcamp"
+      description: "Intensive 9-week bootcamp in Bali. Learn everything you need to build awesome products."
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 700000
+    product_two:
+      slug: data_science_intensive
+      name: "Dats science intensive"
+      description: "Learn the basics of data science in 4 days"
+      category: education_category
+      photo:
+      business_id: lewagon
+      price_cents: 200000
+  bodyfactory_products:
+    product_one:
+      slug: 1_month_pass_body_factory
+      name: "1 month unlimited pass at Body Factory"
+      description: "unlimited access to our gym for one month"
+      category: fitness_category
+      photo:
+      business_id: bodyfactory
+      price_cents: 16000
+    product_two:
+      slug: 3_training_sessions
+      name: "3 training sessions"
+      description: "Three personal training sessions with our lifting specialists"
+      category: fitness_category
+      photo:
+      business_id: bodyfactory
+      price_cents: 10000
+  motioncafe_products:
+    product_one:
+      slug: 1_week_meal_plan
+      name: "1 week meal plan"
+      description: "customized meal plan for one week"
+      category: cafe_category
+      photo:
+      business_id: motioncafe
+      price_cents: 14700
+    product_two:
+      slug: 1_month_meal_plan
+      name: '1 month meal plan'
+      description: "customized meal plan for 1 month"
+      category: cafe_category
+      photo:
+      business_id: motioncafe
+      price_cents: 54800
+  bambooblonde_products:
+    product_one:
+      slug: avery_jumpsuit
+      name: "Avery jumpsuit"
+      description: "Long black and white jumpsuit for women"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 7000
+    product_two:
+      slug: maria_tote_bag
+      name: "Maria tote bag"
+      description: "Beautiful white and wood handle tote bag"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 10000
+    product_three:
+      slug: pearl_diamond_buckle_belt
+      name: "Pearl diamond buckle belt"
+      description: "Elegant designer belt"
+      category: clothing_category
+      photo:
+      business_id: bambooblonde
+      price_cents: 15000
+  concco_products:
+    product_one:
+      slug: unlimited_membership_pass
+      name: "Unlimited membership pass"
+      description: "Unlimited access to our coworking facilities"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 25000
+    product_two:
+      slug: night_owl_membership_pass
+      name: "Night owl membership pass"
+      description: "Unlimited off peak-hour membership pass"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 15000
+      product_three:
+      slug: day_pass
+      name: "Day pass"
+      description: "One day unlimited access pass"
+      category: Coworking
+      photo:
+      business_id: concco
+      price_cents: 1000
+  friihotel_products:
+    product_one:
+      slug: one_bedroom
+      name: "One bedroom"
+      description: "A standard one bedroom, one bathroom"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 10000
+    product_two:
+      slug: king_suite
+      name: "King suite"
+      description: "Our most luxurious available room"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 25000
+    product_three:
+      slug: conference_room
+      name: "Conference room"
+      description: "Our amazing conference room"
+      category: accomoations_category
+      photo:
+      business_id: friihotel
+      price_cents: 50000
+
+
+  ###############################################################
+  #                            Perks                            #
+  ###############################################################
+
+
+perks:
+  perk_one:
+    kind: "%"
+    amount: 40
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: 9_week_bootcamp
+    business_id_slug: bodyfactory
+    discounted_price: 6000
+    description: "40% off 1 month pass for Lewagon students"
+  perk_two:
+    kind: "%"
+    amount: 10
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: 9_week_bootcamp
+    business_id_slug: motioncafe
+    discounted_price: 13230
+    description: "10% off 1 week meal plan for Lewagon students"
+  perk_three:
+    kind: "%"
+    amount: 5
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: 1_month_pass_body_factory
+    business_id_slug: motioncafe
+    discounted_price: 13965
+    description: "5% off 1 week meal plan to body Factory 1 month pass customers "
+  perk_four:
+    kind: "$"
+    amount: 10
+    patronized_business_id_slug: lewagon
+    purchased_product_id_slug: data_science_intensive
+    business_id_slug: motioncafe
+    discounted_price: 13700
+    description: "10$ off 1 week meal plan for Lewwagon data-science students"
+  perk_five:
+    kind: "%"
+    amount: 5
+    patronized_business_id_slug: motioncafe
+    purchased_product_id_slug: 1_month_meal_plan
+    business_id_slug: bodyfactory
+    discounted_price: 15200
+    description: "5% off 1 month Body Factory for 1 month Motion meal plan"
+  perk_six:
+    kind: amount
+    amount: 10000
+    patronized_business_id_slug: concco
+    purchased_product_id_slug: data_science_intensive
+    business_id_slug: lewagon
+    discounted_price: 190000
+    description: "100$ off of our data science intensive course if you have the unlimited Concco pass"
+  perk_seven:
+    kind: percentage
+    amount: 10
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: unlimited_membership_pass
+    business_id_slug: concco
+    discounted_price: 22500
+    description: "10% off of your unlimited pass if you have a month long body factory membership."
+  perk_eight:
+    kind: free
+    amount:
+    patronized_business_id_slug: bodyfactory
+    purchased_product_id_slug: pearl_diamond_buckle_belt
+    business_id_slug: bambooblonde
+    discounted_price: 0
+    description: "Free pearl diamond buckle belt if you've got a month long body pass factory membership"
+  perk_nine:
+    kind: amount
+    amount: 20
+    patronized_business_id_slug: friihotel
+    purchased_product_id_slug: 1_month_pass_body_factory
+    business_id_slug: bodyfactory
+    discounted_price: 14000
+    description: "20$ off of our month long membership pass if you have booked Frii hotels one bedroom before"
+  perk_ten:
+    kind: percentage
+    amount: 10
+    patronized_business_id_slug: bambooblonde
+    purchased_product_id_slug: king_suite
+    business_id_slug: friihotel
+    discounted_price: 22500
+    description: "10 % off of our king suite if you have a Maria tote bag from Bamboo blonde"
+
+
+
+  ###############################################################
+  #                         Purchases                           #
+  ###############################################################
+
+  purchases:
+    purchase_one:
+      verfied: true
+      user_id_slug: ben_dover
+      product_slug_id: 9_week_bootcamp
+      perk_id: perk_one
+    purchase_two:
+      verfied: true
+      user_id_slug: ben_dover
+      product_id_slug: 9_week_bootcamp
+      perk_id: perk_two
+    purchase_three:
+      verfied: true
+      user_id_slug: crystal_fein
+      product_id_slug: 1_month_meal_plan
+      perk_id: perk_five
+    purchase_four:
+      verfied: true
+      user_id_slug: lexi_murch
+      product_id_slug: 1_month_pass_body_factory
+      perk_id: perk_three
+    purchase_five:
+      verfied: true
+      user_id_slug: jack_ma
+      product_id_slug: 1_month_pass_body_factory
+      perk_id: perk_three
+    purchase_six:
+      verfied: true
+      user_id_slug: christopher_wallace
+      product_id_slug: data_science_intensive
+      perk_id: perk_four
+    purchase_seven:
+       verified: true
+       user_id_slug: tony_stark
+       product_id_slug: unlimited_membership_pass
+       perk_id: perk_seven
+    purchase_eight:
+       verified: true
+       user_id_slug: ronald_mcdonald
+       product_id_slug: pearl_diamond_buckle_belt
+       perk_id: perk_eight
+    purchase_nine:
+       verified: true
+       user_id_slug: dead_mau5
+       product_id_slug: 1_month_pass_body_factory
+       perk_id: perk_nine
+    purchase_ten:
+       verified: true
+       user_id_slug: chuck_norris
+       product_id_slug: king_suite
+       perk_id: perk_ten
+
+
+
+
+
+
