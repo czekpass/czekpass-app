@@ -306,6 +306,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
                       <div></div>
                     </div>
                   </div>
+
                   <canvas class="chartjs-render-monitor" id="myBarChartRevenue" style="width: 385px; height: 320px; display: block;"></canvas>
                 </div>
               </div>
@@ -316,11 +317,20 @@ Files we're working on are the pages controller > business_dashboard actions, th
 
 <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 
-<% @perks.each do |p| %>
-  <% monthly_revenue = 100 %>
-  <% purchase_amount = 100 %>
-  <div class="purchase-info d-none" data-purchase-amount="<%= purchase_amount %>" data-monthly-revenue="<%= monthly_revenue %>"></div>
+<!-- choose months (x-axis)-->
+<!-- iterate through perk sales that match each month -->
+<!-- place the total revenue (y-axis)-->
+<!-- place the total # of sales on hover (y-bar) -->
+
+<% total_amounts = [] %>
+<% perk_description = [] %>
+<% @perks.each do |perk| %>
+  <% perk.product.activated_perks.each do |ap| %>
+    <% total_amounts << ap[:total_price] %>
+    <% perk_description << perk.description.slice(0, 30) %>
+  <% end %>
 <% end %>
+  <div class="purchase-info d-none" data-perks="<%= perk_description.uniq.join(',') %>" data-purchase-amount="<%= total_amounts.join(' ') %>"><%#= perk %></div>
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">

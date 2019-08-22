@@ -116,6 +116,4 @@ const initChartBar = () => {
   }
 }
 
-export {
-  initChartBar
-}
+export { initChartBar }
