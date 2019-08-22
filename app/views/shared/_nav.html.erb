@@ -67,7 +67,17 @@
           </li>
           <div class="d-none d-sm-block topbar-divider"></div>
           <li class="nav-item dropdown no-arrow" role="presentation">
-            <li class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= current_user.full_name %></span><img class="border rounded-circle img-profile" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80"></a>
+            <li class="nav-item dropdown no-arrow">
+              <a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">
+                <span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= current_user.full_name %>
+                </span>
+
+                <% if current_user && current_user.photo %>
+                  <%= cl_image_tag current_user.photo, class: 'avatar', alt: "user photo" %>
+                <% else %>
+                <img class="border rounded-circle img-profile" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=80">
+                <% end %>
+              </a>
 
             <!-- Avatar and dropdown menu items -->
 
