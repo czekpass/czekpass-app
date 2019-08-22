@@ -23,11 +23,11 @@ initMapbox();
 timeFormSubmission();
 // bootstrapStudio(jQuery);
 
-initChartArea()
-initChartPie()
-initChartPieRevCat()
-initChartBar()
-initChartBarRevenue()
-initDataTable($)
-initSbAdmin($)
+initChartArea();
+initChartPie();
+initChartPieRevCat();
+initChartBar();
+initChartBarRevenue();
+initDataTable($);
+initSbAdmin($);
 
