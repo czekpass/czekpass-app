@@ -14,12 +14,12 @@ import { initDataTable } from "../plugins/datatable"
 import { initSbAdmin } from "../plugins/sbadmin"
 // import { bootstrapStudio } from "../plugins/bootstrapstudio"
 
-// import { initMapbox } from '../plugins/init_mapbox';
+import { initMapbox } from '../plugins/init_mapbox';
 import { timeFormSubmission } from '../components/time_form';
 // import { initAutocomplete } from '../plugins/init_autocomplete';
 
 
-// initMapbox();
+initMapbox();
 timeFormSubmission();
 // bootstrapStudio(jQuery);
 
