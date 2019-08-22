@@ -150,8 +150,7 @@ seed["perks"].each do |perk|
       purchased_product_id: purchased_product_id,
       product_id: product_id,
       description: perk[1]["description"],
-      business_id: business_id,
-      discounted_price: perk[1]["discounted_price"]
+      business_id: business_id
       )
 
 end
