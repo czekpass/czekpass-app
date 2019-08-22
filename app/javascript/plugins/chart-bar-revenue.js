@@ -91,12 +91,12 @@ const initChartBarRevenue = () => {
             ticks: {
               maxTicksLimit: 6
             },
-            maxBarThickness: 25,
+            maxBarThickness: 150,
           }],
           yAxes: [{
             ticks: {
               min: 0,
-              max: 1500,
+              max: 500,
               maxTicksLimit: 5,
               padding: 10,
               // Include a dollar sign in the ticks
