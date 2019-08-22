@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to dashboard_page_path
     else
       render 'edit'
     end

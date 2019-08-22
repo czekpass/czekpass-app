@@ -22,7 +22,6 @@ initMapbox();
 timeFormSubmission();
 // bootstrapStudio(jQuery);
 
-
 initChartArea()
 initChartPie()
 initChartPieRevCat()

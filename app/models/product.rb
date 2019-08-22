@@ -27,4 +27,31 @@ class Product < ApplicationRecord
   def top_partner
 
   end
+
+  def activated_perks
+    perks = self.perks
+    results = []
+    perks.each do |perk|
+      info = {}
+      total_activations = 0
+      total_price = 0
+      connected_purchase = Purchase.where(product_id: perk.product_id)
+      count = connected_purchase.count
+      info[:description] = perk.description
+      info[:count] = count
+      connected_purchase.each do |connected|
+        total_activations += 1 if connected.verified?
+        total_price += (self.price_cents / 100) - perk.discounted_price if connected.verified?
+        # total_price = total_price - perk.discounted_price
+      end
+      info[:total_activations] = total_activations
+      info[:total_price] = total_price
+      results << info
+     end
+     results
+    end
 end
+
+
+
+
