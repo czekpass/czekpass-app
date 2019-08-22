@@ -15,7 +15,7 @@ import { initSbAdmin } from "../plugins/sbadmin"
 import { initMapbox } from '../plugins/init_mapbox';
 // import { initAutocomplete } from '../plugins/init_autocomplete';
 
-initMapbox();
+// initMapbox();
 // bootstrapStudio(jQuery);
 
 initChartArea()

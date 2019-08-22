@@ -2,7 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-const initChartBarRevenue = () => {
+const initChartPurchasesThisYear = () => {
 
   function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
@@ -32,7 +32,7 @@ const initChartBarRevenue = () => {
   // Bar Chart Example
   var ctx = document.getElementById("myBarChartRevenue");
   if (ctx) {
-    var myBarChartRevenue = new Chart(ctx, {
+    var myChartPurchasesThisYear = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ["Le Wagon", "Motion Cafe", "Frii Hotel", "Bamboo Blonde", "Connco Work Hub"],
