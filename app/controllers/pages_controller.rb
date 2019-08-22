@@ -14,6 +14,8 @@ class PagesController < ApplicationController
   end
 
   def business_dashboard
+    # step 1 define purchases in instance variable
+    @product_purchases = # NEED TO DEFINE
     # This is all perks available to the user
     if current_user.business.nil? == false
       @business = current_user.business

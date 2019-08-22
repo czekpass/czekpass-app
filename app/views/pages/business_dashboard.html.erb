@@ -287,3 +287,11 @@
             </div>
           </div>
         </div>
+
+<%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
+
+<% @perks.each do |p| %>
+  <% monthly_revenue = 100 %>
+  <% purchase_amount = 100 %>
+  <div class="purchase-info d-none" data-purchase-amount="<%= purchase_amount %>" data-monthly-revenue="<%= monthly_revenue %>"></div>
+<% end %>
