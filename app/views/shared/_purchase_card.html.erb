@@ -21,7 +21,7 @@
       Price: <%= humanized_money_with_symbol(purchase.product.price) %>
     </div>
 
-    <div class="card-footer align-self-baseline bg-white">
+    <div class="card-footer align-self-baseline bg-white border-left-success">
       Perk Expiration date:
       <% if purchase.expiration_date %>
         <strong><%= purchase.expiration_date.strftime("%B %d, %Y") %></strong>
