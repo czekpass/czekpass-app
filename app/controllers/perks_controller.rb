@@ -31,11 +31,10 @@ class PerksController < ApplicationController
 
   def create
 
-
-   @business = Business.find(params[:business_id])
-
-   valid = true
-   errors = []
+  if request.referer.include?("new_connection")
+    @business = Business.find(params[:business_id])
+    valid = true
+    errors = []
     params["perk"].each do |p|
       unless p["product_id"].empty?
         @perk = Perk.new
@@ -59,6 +58,18 @@ class PerksController < ApplicationController
       newline_errors = errors.join(", ")
       flash[:notice] = "#{newline_errors}"
     end
+  else
+    @perk = Perk.new()
+    @perk.patronized_business_id = params[:perk][:business]
+    @perk.purchased_product_id = params[:perk][:purchased_product_id]
+    @perk.product_id = params[:perk][:product_id]
+    @perk.discounted_price = params[:perk][:amount]
+    @business = Business.find(params[:business_id])
+    @perk.business_id = @business.id
+    if @perk.save
+      redirect_to business_dashboard_path
+    end
+  end
   end
 
   def edit

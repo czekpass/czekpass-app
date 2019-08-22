@@ -18,16 +18,19 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { timeFormSubmission } from '../components/time_form';
 // import { initAutocomplete } from '../plugins/init_autocomplete';
 
+
 initMapbox();
 timeFormSubmission();
 // bootstrapStudio(jQuery);
 
+initChartArea();
+initChartPie();
+initChartPieRevCat();
+initChartBar();
+initChartBarRevenue();
+initDataTable($);
+initSbAdmin($);
 
-initChartArea()
-initChartPie()
-initChartPieRevCat()
-initChartBar()
-initChartBarRevenue()
-initDataTable($)
-initSbAdmin($)
 
+
+$('#dataTable').dataTable({searching: false, paging: false, info: false});

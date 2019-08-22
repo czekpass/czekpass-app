@@ -1,10 +1,21 @@
-<div class="user-profile-header">
-  <h1>Hello <%= @user.first_name %>!</h1>
-  <%= link_to 'Edit your profile', edit_user_path(current_user) %>
-  <br>
-  <%= link_to 'Add your business', new_business_path(current_user) %>
-  <br>
-  <%= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
+<div class="user-profile-header pl-3 mb-3">
+
+  <div class="d-flex justify-content-between">
+    <h1>Hello <%= @user.first_name %>!</h1>
+    <div>
+      <%= link_to 'Edit your profile', edit_user_path(current_user), class: 'btn btn-info mr-3' %>
+    </div>
+  </div>
+
+
+
+
+  <% if current_user.business.nil? == false%>
+    <%= link_to 'Add your business', new_business_path(current_user) %>
+    <br>
+    <%= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
+    <br>
+  <% end %>
 </div>
 
 <nav>
@@ -23,29 +34,18 @@
   </div>
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <% @user.perks.each do |perk| %>
-      <div class="card">
-        <% if perk.kind == "percentage" %>
-        <%= "#{perk.amount} % off" %>
-        <% elsif perk.kind == "amount" %>
-        <!-- This needs to be refactored to adjust to any currency-->
-        <%= "#{perk.amount} $ off" %>
-        <% else %>
-        Free
-        <% end %>
-        <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
-
-        <%= perk.description%>
-        <%= humanized_money_with_symbol(perk.purchased_product.price) %>
-      </div>
-    <% end %>
+    <div class="grid-view">
+      <% @user.perks.each do |perk| %>
+        <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
+      <% end %>
+    </div>
   </div>
 
   <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <div class="grid-view">
     <% @user.purchases.each do |purchase| %>
-      <div>
         <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
-      </div>
     <% end %>
+    </div>
   </div>
 </div>

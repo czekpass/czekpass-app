@@ -15,6 +15,10 @@ class Perk < ApplicationRecord
       product_price = product.price # Either purchased_product OR product
       self.discounted_price = product_price * amount / 100
       save
+    elsif kind == "amount" && !product.nil?
+      product_price = product.price
+      self.discounted_price = product_price - amount
+      save
     end
   end
 end

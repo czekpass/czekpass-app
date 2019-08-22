@@ -1,11 +1,26 @@
-<div class="d-flex card-business m-2">
-    <div class="logo">
-    </div>
+<div class="card">
+   <div class="card-header">
+      <%= link_to business.name, business_path(business.id)%>
+  </div>
+  <div class="d-flex p-3">
+      <div>
+        <% if business.logo.present? %>
+          <%= cl_image_tag @business.logo, height: 140, width: 140 %>
+        <% else %>
+          <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1808/urfandadashov180801065/106295283-placeholder-company-logo-design-template-placeholder-logotype-vector-icon-business-corporative.jpg", height: 140, width: 140 %>
+        <% end %>
+      </div>
 
-  <div class="business-info">
-    <div>
-          <%= link_to business.name, business_path(business.id)%>
-          <p class="mb-0"><%= business.description.capitalize %></p>
-          <p><%= current_user.perks(business).count %> perk available</p>
-    </div>
+      <div class="ml-3 align-items-center">
+        <%= business.description.capitalize.slice(0, 100) %>...
+        <div>
+          <%= link_to business_path(business.id) do %>
+            <%= current_user.perks(business).count %> perk available
+          <% end %>
+        </div>
+
+      </div>
+
+  </div>
 </div>
+

@@ -4,10 +4,10 @@
 
 <div class="d-flex business-info">
   <div class="business-logo">
-    <% if @business.logo %>
+    <% if @business.logo.present? %>
       <%= cl_image_tag @business.logo, height: 140, width: 140 %>
     <% else %>
-      <%= image_tag "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_\"G\"_Logo.svg/1024px-Google_\"G\"_Logo.svg.png", height: 140, width: 140 %>
+      <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1808/urfandadashov180801065/106295283-placeholder-company-logo-design-template-placeholder-logotype-vector-icon-business-corporative.jpg", height: 140, width: 140 %>
     <% end %>
   </div>
   <div class="business-description col-8">

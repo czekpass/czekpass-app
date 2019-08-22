@@ -4,6 +4,31 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 const initChartBarRevenue = () => {
 
+  // retreive all divs with dataset attributes
+  const purchaseData = document.querySelector('.purchase-info')
+
+  // create empty arrays for data we'll need
+  const perksDescription = []
+  const purchaseAmount = []
+
+  console.log(purchaseData.dataset.purchaseAmount);
+  purchaseData.dataset.purchaseAmount.split(' ').forEach((amount) => {
+    purchaseAmount.push(amount);
+  });
+
+  console.log(purchaseData.dataset.perks)
+  purchaseData.dataset.perks.split(',').forEach((perk) => {
+    perksDescription.push(perk);
+  });
+  // iterate through our nodeList and populate the arrays with dataset
+  // purchaseData.forEach((purchase) => {
+  //   monthlyRevenue.push(purchase.dataset.monthlyRevenue)
+  //   purchaseAmount.push(purchase.dataset.purchaseAmount)
+  // })
+
+  // console.log(monthlyRevenue)
+  // const totalRevenue = // use the reduce method to get the SUM of monthly revenue
+
   function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
     // *     return: '1 234,56'
@@ -35,13 +60,13 @@ const initChartBarRevenue = () => {
     var myBarChartRevenue = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ["Le Wagon", "Motion Cafe", "Frii Hotel", "Bamboo Blonde", "Connco Work Hub"],
+        labels: perksDescription,
         datasets: [{
           label: "Connections",
           backgroundColor: "#1cc98a",
           hoverBackgroundColor: "#2e59d9",
           borderColor: "#4e73df",
-          data: [1600, 560, 222, 120, 1500],
+          data: purchaseAmount,
         }],
       },
       options: {
