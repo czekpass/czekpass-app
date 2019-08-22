@@ -111,6 +111,12 @@ Files we're working on are the pages controller > business_dashboard actions, th
                     <a class="nav-item nav-link" id="nav-partners-tab" data-toggle="tab" href="#nav-partners" role="tab" aria-controls="nav-contact" aria-selected="false">
                       <h6 class="m-0 font-weight-bold text-primary">Partners</h6>
                     </a>
+                    <a class="nav-item nav-link" id="nav-purchases-tab" data-toggle="tab" href="#nav-purchases" role="tab" aria-controls="nav-contact" aria-selected="false">
+                      <h6 class="m-0 font-weight-bold text-primary">Purchases</h6>
+                    </a>
+                    <a class="nav-item nav-link" id="nav-verification-tab" data-toggle="tab" href="#nav-verification" role="tab" aria-controls="nav-contact" aria-selected="false">
+                      <h6 class="m-0 font-weight-bold text-primary">Verifications</h6>
+                    </a>
                   </div>
                 </nav>
                 </div>
@@ -122,8 +128,13 @@ Files we're working on are the pages controller > business_dashboard actions, th
                     <div class="table-responsive">
                       <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
-                          <div class="col-sm-12 col-md-6">
+                          <div class="col">
                             <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                          </div>
+                          <div class="col d-flex justify-content-end pt-2">
+                            <div>
+                              <%= link_to "Add a product", new_business_product_path(current_user.business.id), class:'btn btn-info'%>
+                            </div>
                           </div>
                         </div>
                         <div class="row">
@@ -238,9 +249,15 @@ Files we're working on are the pages controller > business_dashboard actions, th
                     <div class="table-responsive">
                       <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                         <div class="row">
-                          <div class="col-sm-12 col-md-6">
+                          <div class="col">
                             <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
                           </div>
+                          <div class="col d-flex justify-content-end pt-2">
+                            <div>
+                              <%= link_to "Create a new connection", business_connection_path(current_user.business.id), class:'btn btn-info'%>
+                            </div>
+                          </div>
+
                         </div>
                         <div class="row">
                           <div class="col-sm-12">
@@ -286,40 +303,147 @@ Files we're working on are the pages controller > business_dashboard actions, th
                     </div>
                   </div>
 
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-          <div class="col-lg-6 mb-4">
-            <!-- Top Partners by Revenue Bar Chart -->
-            <div class="card shadow mb-4">
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Purchases This Year</h6>
-              </div>
-              <div class="card-body">
-                <div class="chart-bar-revenue">
-                  <div class="chartjs-size-monitor">
-                    <div class="chartjs-size-monitor-expand">
-                      <div></div>
-                    </div>
-                    <div class="chartjs-size-monitor-shrink">
-                      <div></div>
+                  <!-- Purchases -->
+                    <div class="tab-pane fade" id="nav-purchases" role="tabpanel" aria-labelledby="nav-purchases-tab">
+                    <div class="table-responsive">
+                      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                          <div class="col">
+                            <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"  style="width: 100%;">
+                              <thead>
+                                <tr role="row">
+                                  <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 188px;">Date</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 285px;">Product Number</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Revenue</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Number of Purchases</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <% @purchases.each do |purchase| %>
+                                  <tr role="row" class="odd">
+                                    <td class="sorting_1"><%= purchase.product.name %></td>
+                                    <td class="sorting_1"><%#= Perk.where(patronized_business_id: Business.where(id: perk.patronized_business_id) ).count %></td>
+                                    <td class="sorting_1"><%#= rand(200..400) %>$</td>
+                                    <td class="sorting_1"><%#= rand(20..40) %>$</td>
+                                  </tr>
+                              <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                <!-- Verifications -->
+                <div class="tab-pane fade" id="nav-purchases" role="tabpanel" aria-labelledby="nav-purchases-tab">
+                    <div class="table-responsive">
+                      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                          <div class="col">
+                            <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                          </div>
+                          </div>
 
-                  <canvas class="chartjs-render-monitor" id="myBarChartRevenue" style="width: 385px; height: 320px; display: block;"></canvas>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"  style="width: 100%;">
+                              <thead>
+                                <tr role="row">
+                                  <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 188px;">Name</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 285px;">Perks Number</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Revenue</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Number of Purchases</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <% @business.products.each do |product| %>
+                                <% product.perks.each do |perk| %>
+                                  <tr role="row" class="odd">
+                                    <td class="sorting_1"><%= Business.where(id: perk.patronized_business_id).first.name %></td>
+                                    <td class="sorting_1"><%= Perk.where(patronized_business_id: Business.where(id: perk.patronized_business_id) ).count %></td>
+                                    <td class="sorting_1"><%= rand(200..400) %>$</td>
+                                    <td class="sorting_1"><%= rand(20..40) %>$</td>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                <!-- Verifications -->
+                    <div class="tab-pane fade" id="nav-verification" role="tabpanel" aria-labelledby="nav-verification-tab">
+                    <div class="table-responsive">
+                      <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                          <div class="col">
+                            <div class="dataTables_length" id="dataTable_length"><label>Show <select name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
+                          </div>
+                          </div>
+
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid"  style="width: 100%;">
+                              <thead>
+                                <tr role="row">
+                                  <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 188px;">Name</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 285px;">Perks Number</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Revenue</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Number of Purchases</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                              <% @business.products.each do |product| %>
+                                <% product.perks.each do |perk| %>
+                                  <tr role="row" class="odd">
+                                    <td class="sorting_1"><%= Business.where(id: perk.patronized_business_id).first.name %></td>
+                                    <td class="sorting_1"><%= Perk.where(patronized_business_id: Business.where(id: perk.patronized_business_id) ).count %></td>
+                                    <td class="sorting_1"><%= rand(200..400) %>$</td>
+                                    <td class="sorting_1"><%= rand(20..40) %>$</td>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 mb-4">
+        <!-- Top Partners by Revenue Bar Chart -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Purchases This Year</h6>
+          </div>
+          <div class="card-body">
+            <div class="chart-bar-revenue">
+              <div class="chartjs-size-monitor">
+                <div class="chartjs-size-monitor-expand">
+                  <div></div>
+                </div>
+                <div class="chartjs-size-monitor-shrink">
+                  <div></div>
                 </div>
               </div>
+
+              <canvas class="chartjs-render-monitor" id="myBarChartRevenue" style="width: 385px; height: 320px; display: block;"></canvas>
             </div>
           </div>
         </div>
-
+      </div>
 
 <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 

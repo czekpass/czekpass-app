@@ -1,13 +1,15 @@
 <div class="card">
 
   <div class="">
-    <div class="p-3 purchase-card-content">
+    <div class="p-3 purchase-card-content bg-light">
       <div>
         <strong>Purchase date:</strong> <%= purchase.created_at.strftime("%B %d, %Y") %>
         <div>
-          <%= link_to purchase.product.name, business_product_path(purchase.product.business, purchase.product) %>
+          <h6 class="m-0 font-weight-bold text-primary">
+          <%= link_to purchase.product.business.name, business_path(purchase.product.business) %>
+          </h6>
         </div>
-        </div><%= purchase.product.business.name %><div>
+          <%= purchase.product.name %>
       </div>
 
       <div><%= purchase.product.description %></div>
@@ -19,7 +21,7 @@
       Price: <%= humanized_money_with_symbol(purchase.product.price) %>
     </div>
 
-    <div class="card-footer align-self-baseline">
+    <div class="card-footer align-self-baseline bg-white">
       Perk Expiration date:
       <% if purchase.expiration_date %>
         <strong><%= purchase.expiration_date.strftime("%B %d, %Y") %></strong>

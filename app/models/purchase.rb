@@ -9,4 +9,8 @@ class Purchase < ApplicationRecord
   def expiration_date
     # self.created_at + rand(15..35).days.from_now
   end
+
+  def business_id
+    self.product.business_id
+  end
 end
