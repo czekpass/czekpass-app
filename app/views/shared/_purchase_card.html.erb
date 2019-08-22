@@ -1,0 +1,26 @@
+<div class="card-purchase">
+<!--   <div class="photo">
+    <p><%#= purchase.product.photo %></p>
+  </div>
+-->
+<div class="card-product-infos">
+  <p>Purchase date: <%= purchase.created_at.strftime("%B %d, %Y") %></p>
+  <h2>Product: <%= link_to purchase.product.name, business_product_path(purchase.product.business, purchase.product) %></h2>
+  <h3>Business:  <%= purchase.product.business.name %></h3>
+  <% purchase.product.perks.each do |perk| %>
+  <p>Unlocked Perk:  <%= link_to perk.description, business_product_perk_path(purchase.product.business, purchase.product, perk) %></p>
+  <% end %>
+  <p class="mb-0"> Product Description:
+    <strong><%= purchase.product.description %></strong>
+  </p>
+
+  Price: <p class="mb-0"><%= humanized_money_with_symbol(purchase.product.price) %></p>
+  <div class="border my-2"></div>
+  Perk Expiration date:
+  <% if purchase.expiration_date %>
+    <strong><%= purchase.expiration_date.strftime("%B %d, %Y") %></strong>
+  <% else %>
+    <strong><%= purchase.expiration_date %></strong>
+  <% end %>
+</div>
+</div>

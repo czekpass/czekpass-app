@@ -1,75 +1,51 @@
-<div>
-        <ul class="nav nav-tabs">
-            <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Savings</a></li>
-            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Perks</a></li>
-            <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3">Purchases</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active" role="tabpanel" id="tab-1">
-                <div id="wrapper">
-                    <div class="d-flex flex-column" id="content-wrapper">
-                        <div id="content">
-                            <div class="container-fluid">
-                                <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                                    <h3 class="text-dark mb-0"><%= @user.first_name %>'s Dashboard</h3>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-lg-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">Card 1</h6>
-                                            </div>
-                                            <div class="card-body">
-                                              <% 10.times do %>
-  <% @user.perks.each do |perk| %>
-      <%#= render partial: 'shared/perk_card', locals: {perk: perk} %>
+<div class="user-profile-header">
+  <h1>Hello <%= @user.first_name %>!</h1>
+  <%= link_to 'Add your business', new_business_path(current_user) %>
+  <br>
+  <%= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
+  <br>
+  <%= link_to 'Edit your profile', edit_user_path(current_user) %>
+</div>
 
-      <div class="custom-card">
+<nav>
+  <div class="nav nav-tabs nav-pills nav-fill sticky" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Savings</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perks</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+  <%= render partial: 'shared/saving_card', locals: { saving_dollars_amount: @saving_dollars_amount, discounted_price_total: @discounted_price_total, total_saving: @total_saving } %>
+  <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
+  <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
+  </div>
+
+  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <% @user.perks.each do |perk| %>
+      <div class="card">
         <% if perk.kind == "percentage" %>
-          <%= "#{perk.amount} % off" %>
+        <%= "#{perk.amount} % off" %>
         <% elsif perk.kind == "amount" %>
         <!-- This needs to be refactored to adjust to any currency-->
-          <%= "#{perk.amount} $ off" %>
+        <%= "#{perk.amount} $ off" %>
         <% else %>
-          Free
+        Free
         <% end %>
-         <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
+        <%= link_to perk.purchased_product.name, business_product_perk_path(perk.purchased_product.business, perk.purchased_product, perk) %>
 
-        <div><%= perk.description%></div>
-        <div>
-          <span class="discounted-initial-price">
-            <%= humanized_money_with_symbol(perk.purchased_product.price) %>
-          </span>
-        </div>
+        <%= perk.description%>
+        <%= humanized_money_with_symbol(perk.purchased_product.price) %>
       </div>
+    <% end %>
+  </div>
 
-
-  <% end %>
-
-<% end %>
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-6">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary font-weight-bold m-0">Card 2</h6>
-                                            </div>
-                                            <div class="card-body"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
-            </div>
-            <div class="tab-pane" role="tabpanel" id="tab-2">
-                <p>Content for tab 2.</p>
-            </div>
-            <div class="tab-pane" role="tabpanel" id="tab-3">
-                <p>Content for tab 3.</p>
-            </div>
-        </div>
-    </div>
+  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <% @user.purchases.each do |purchase| %>
+      <div>
+        <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="card-body">
+    <%= simple_form_for @business do |f| %>
+    <%= f.input :name %>
+    <%= f.input :business_category, collection: BusinessCategory.all, selected: @business.business_category.id %>
+    <%= f.input :location %>
+    <%= f.input :description %>
+    <%= f.input :logo, label: "Change Logo" %>
+    <%= f.input :logo_cache, as: :hidden %>
+    <%= f.button :submit, class: 'btn btn-primary edit-button', value: 'Update Business' %>
+    <% end %>
+</div>

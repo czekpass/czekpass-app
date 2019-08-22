@@ -1,8 +1,19 @@
-<div class="card-product custom-card">
+<!-- <div class="card-product custom-card"> -->
+
+<div class="card-product">
+
   <div class="photo">
     <p><%= product.photo %></p>
   </div>
   <div class="card-product-infos">
-    <h2><%= link_to product.name, business_product_path(@business, product) %>/h2>
+    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <%= product.name %>
+  </a>
+
+    <div class="collapse" id="collapseExample">
+      <%= render partial: 'products/product_show', locals: {product: product}%>
+    </div>
+
     <p><%= humanized_money_with_symbol(product.price) %></p>
   </div>
+</div>

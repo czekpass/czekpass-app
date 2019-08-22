@@ -1,7 +1,9 @@
+
 <%# Bar Chart Logic:
 1. Define a variable in the Business Dashboard Controller Action specifying exactly what data we want (purchase.count, purchase.revenue & purchase.date)
 2. While in the View (here) iterate through the object and store 3 data attributes as "purchase_month", purchase_month_quantity and "purchase_month_revenue" 
 3. The Javascript will retrieve the attributes and use them (all set up)
+
 
 Files we're working on are the pages controller > business_dashboard actions, the business_dashboard.html.erb and the chart-bar-revenue.js file.
 %>
@@ -311,6 +313,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
           </div>
         </div>
 
+<<<<<<< HEAD
 <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 
 <% @perks.each do |p| %>
@@ -318,3 +321,11 @@ Files we're working on are the pages controller > business_dashboard actions, th
   <% purchase_amount = 100 %>
   <div class="purchase-info d-none" data-purchase-amount="<%= purchase_amount %>" data-monthly-revenue="<%= monthly_revenue %>"></div>
 <% end %>
+=======
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+
+>>>>>>> 64a4495d8e5793ebfad63cf198ffdde82a3f2e1b

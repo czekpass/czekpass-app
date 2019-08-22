@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to @user
+      redirect_to dashboard_page_path
     else
       render 'edit'
     end
@@ -30,11 +30,14 @@ class UsersController < ApplicationController
 
   def validate
     @user = User.find(params[:id])
-    @perk = Perk.find(params[:pid])
-    @product = @perk.product
-    @product_ids = @user.products
-    @validated = @product_ids.include?(@perk.purchased_product)
-    # raise
+    if params[:pid].nil?
+      @validated = "No perk"
+    else
+      @perk = Perk.find(params[:pid])
+      @product = @perk.product
+      @product_ids = @user.products
+      @validated = @product_ids.include?(@perk.purchased_product)
+    end
   end
 
 
