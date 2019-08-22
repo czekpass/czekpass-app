@@ -19,7 +19,7 @@ users:
       last_name: "Kilgallon"
       admin: false
       photo:
-      password: "123456"
+      password: "1234567"
 
   #               Users for other business owners               #
   ###############################################################
@@ -35,7 +35,7 @@ users:
       password: "987654321"
     czekpass_admin:
       slug: czekpass_admin
-      email: "amirs@czekpass.com"
+      email: "amir@czekpass.com"
       first_name: "Amir"
       last_name: "Amouralli"
       admin: true
@@ -150,14 +150,14 @@ users:
       admin: false
       photo:
       password: "1234567"
-    # user_ten:
-    #   slug: michelle_obama
-    #   email: "michelle@oneshouldbeagirl.com"
-    #   first_name: "Michelle"
-    #   last_name: "Obama"
-    #   admin: false
-    #   photo:
-    #   password: "1234567"
+    user_ten:
+      slug: michelle_obama
+      email: "michelle@oneshouldbeagirl.com"
+      first_name: "Michelle"
+      last_name: "Obama"
+      admin: false
+      photo:
+      password: "1234567"
 
 
   ###############################################################
@@ -198,7 +198,7 @@ businesses:
     description: |
       Premium Gym Bali: All-Inclusive Approach to Lifestyle and Fitness |
       A comprehensive approach to gym Bali. Body Factory Bali is an intelligent fitness, health, and wellness facility expertly delivered in our luxurious tropical location in Canggu.
-    location: Jl. Nelayan No.27, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    location: Canggu
     business_category_id_slug: fitness_category
     user_id_slug: bodyfactory_admin
   lewagon:
@@ -207,7 +207,7 @@ businesses:
     logo:
     description:
       Le Wagon is an intensive 9-week coding bootcamp that teaches you how to code great tech products.
-    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    location: Canggu
     business_category_id_slug: education_category
     user_id_slug: lewagon_admin
   motioncafe:
@@ -216,7 +216,7 @@ businesses:
     logo:
     description: |
       Motion is a fitness solution for anyone who is ready to take themselves to a higher level of health and wellbeing. We offer numerous services in Bali such as fitness classes, personal training, fitness challenges and fitness consultations. The focus remains on a high-energy, supportive, result driven environment for fitness fanatics and newcomers alike
-    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    location: Canggu
     business_category_id_slug: cafe_category
     user_id_slug: motion_admin
   friihotel:
@@ -225,14 +225,14 @@ businesses:
     logo:
     description: |
       Your passion is our inspiration. Enjoy the local charms, unique hotel concept with pleasant interior, comfy bed, peerless restaurant & bar. We welcome you Home, with a heartwarming experience.
-    location: Jl. Munduk Catu No.32, Canggu, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
+    location: Canggu
     business_category_id_slug: accomoations_category
     user_id_slug: friihotel_admin
   connco:
     slug: connco
     name: Connco Co Working
     logo:
-    location: Pantai Batu Bolong Street No.91, Canggu, North Kuta, Badung Regency, Bali 80361
+    location: Canggu
     description: |
       Giving you a home away from office experience plus the luxury and hospitality that you will not get anywhere else
     business_category_id_slug: cowork_category
@@ -240,7 +240,7 @@ businesses:
   bambooblonde:
     slug: bambooblonde
     name: "Bamboo Blonde"
-    location: Pantai Batu Bolong Street No.53b, Canggu, North Kuta, Badung Regency, Bali 80361
+    location: Kuta
     description: |
       Bamboo Blonde presents a colourful fashion line for young ladies at its flagship store on Jalan Laksmana in Seminyak, featuring both international labels and its own. The bright pink signage bearing its name in all lowercase is hard to miss amongst the row of eclectic shops that line the street
     business_category_id_slug: clothing_category
@@ -515,28 +515,69 @@ purchases:
     product_id_slug: data_science_intensive
     perk_id_slug: perk_four
   purchase_seven:
-     verified: true
-     user_id_slug: tony_stark
-     product_id_slug: unlimited_membership_pass
-     perk_id_slug: perk_seven
+    verified: true
+    user_id_slug: tony_stark
+    product_id_slug: unlimited_membership_pass
+    perk_id_slug: perk_seven
   purchase_eight:
-     verified: true
-     user_id_slug: ronald_mcdonald
-     product_id_slug: pearl_diamond_buckle_belt
-     perk_id_slug: perk_eight
+    verified: true
+    user_id_slug: ronald_mcdonald
+    product_id_slug: pearl_diamond_buckle_belt
+    perk_id_slug: perk_eight
   purchase_nine:
-     verified: true
-     user_id_slug: dead_mau5
-     product_id_slug: 1_month_pass_body_factory
-     perk_id_slug: perk_nine
+    verified: true
+    user_id_slug: dead_mau5
+    product_id_slug: 1_month_pass_body_factory
+    perk_id_slug: perk_nine
   purchase_ten:
-     verified: true
-     user_id_slug: chuck_norris
-     product_id_slug: king_suite
-     perk_id_slug: perk_ten
-
-
-
-
+    verified: true
+    user_id_slug: chuck_norris
+    product_id_slug: king_suite
+    perk_id_slug: perk_ten
+  purchase_11:
+    verified: true
+    user_id_slug: bodyfactory_admin
+    product_id_slug: pearl_diamond_buckle_belt
+    perk_id_slug: perk_eight
+  purchase_12:
+    verified: true
+    user_id_slug: bodyfactory_admin
+    product_id_slug: king_suite
+    perk_id_slug: perk_ten
+  purchase_13:
+    verfied: true
+    user_id_slug: user
+    product_id_slug: 9_week_bootcamp
+    perk_id_slug: perk_one
+  purchase_15:
+    verfied: true
+    user_id_slug: user
+    product_id_slug: 1_month_meal_plan
+    perk_id_slug: perk_five
+  purchase_17:
+    verfied: true
+    user_id_slug: user
+    product_id_slug: 1_month_pass_body_factory
+    perk_id_slug: perk_three
+  purchase_18:
+    verfied: true
+    user_id_slug: user
+    product_id_slug: data_science_intensive
+    perk_id_slug: perk_four
+  purchase_19:
+    verified: true
+    user_id_slug: user
+    product_id_slug: unlimited_membership_pass
+    perk_id_slug: perk_seven
+  purchase_20:
+    verified: true
+    user_id_slug: user
+    product_id_slug: pearl_diamond_buckle_belt
+    perk_id_slug: perk_eight
+  purchase_22:
+    verified: true
+    user_id_slug: user
+    product_id_slug: king_suite
+    perk_id_slug: perk_ten
 
 
