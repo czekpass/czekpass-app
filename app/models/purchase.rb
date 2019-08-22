@@ -5,4 +5,8 @@ class Purchase < ApplicationRecord
 
   # validates :expiration_date, presence: true
   # validates :verified, inclusion: { in: [true, false] }
+
+  def expiration_date
+    # self.created_at + rand(15..35).days.from_now
+  end
 end

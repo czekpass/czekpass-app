@@ -1,5 +1,6 @@
 <div class="card">
 
+<div class="p-3">
 <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     <% if perk.kind == "percentage" %>
       <%= perk.amount %> % off
@@ -12,7 +13,7 @@
   </a>
 
   <div class="collapse" id="collapseExample">
-  <%= render partial:  'perks/perk_show', locals: {perk: perk}%>
+    <%= render partial:  'perks/perk_show', locals: {perk: perk}%>
   </div>
 
   <div>
@@ -20,4 +21,5 @@
       <%= humanized_money_with_symbol(perk.product.price) %>
     </span>
   </div>
+</div>
 </div>

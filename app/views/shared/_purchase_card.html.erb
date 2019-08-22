@@ -1,37 +1,31 @@
 <div class="card">
 
+  <div class="">
+    <div class="p-3 purchase-card-content">
+      <div>
+        <strong>Purchase date:</strong> <%= purchase.created_at.strftime("%B %d, %Y") %>
+        <div>
+          <%= link_to purchase.product.name, business_product_path(purchase.product.business, purchase.product) %>
+        </div>
+        </div><%= purchase.product.business.name %><div>
+      </div>
 
+      <div><%= purchase.product.description %></div>
 
+      <%# purchase.product.perks.each do |perk| %>
+        <!-- <p class="border p-2">Unlocked Perk:  <%#= link_to perk.description, business_product_perk_path(purchase.product.business, purchase.product, perk) %></p> -->
+      <%# end %>
 
-<div class="card-product-infos p-3">
-  <div>
-    <strong>Purchase date:</strong> <%= purchase.created_at.strftime("%B %d, %Y") %>
+      Price: <%= humanized_money_with_symbol(purchase.product.price) %>
+    </div>
+
+    <div class="card-footer align-self-baseline">
+      Perk Expiration date:
+      <% if purchase.expiration_date %>
+        <strong><%= purchase.expiration_date.strftime("%B %d, %Y") %></strong>
+      <% else %>
+        <strong><%= purchase.created_at.strftime("%B %d, %Y") %></strong>
+      <% end %>
+    </div>
   </div>
-
-
-  <%= purchase.product.business.name %>
-  <div>
-   <%= link_to purchase.product.name, business_product_path(purchase.product.business, purchase.product) %>
-  </div>
-
-  <div><%= purchase.product.description %></div>
-
-
-  <% purchase.product.perks.each do |perk| %>
-
-    <p class="border p-2">Unlocked Perk:  <%= link_to perk.description, business_product_perk_path(purchase.product.business, purchase.product, perk) %></p>
-    <% end %>
-
-  <p class="mb-0"> Product Description:
-  </p>
-
-  Price: <p class="mb-0"><%= humanized_money_with_symbol(purchase.product.price) %></p>
-  <div class="border my-2 card-footer"></div>
-  Perk Expiration date:
-  <% if purchase.expiration_date %>
-    <strong><%= purchase.expiration_date.strftime("%B %d, %Y") %></strong>
-  <% else %>
-    <strong><%= purchase.expiration_date %></strong>
-  <% end %>
-</div>
 </div>
