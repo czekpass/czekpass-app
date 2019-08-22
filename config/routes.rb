@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :businesses do
+  resources :businesses, except: [:index] do
     resources :employees
     resources :perks, only: [:new, :create]
     resources :products do
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :perk_templates, only: [:new, :create]
   end
 
-  resources :users, except: [:new, :create]
+  resources :users, except: [:new, :create, :index, :show]
 
   resources :purchases, except: [:edit, :update, :destroy]
 
