@@ -6,13 +6,15 @@
     <p><%= product.photo %></p>
   </div>
   <div class="card-product-infos p-3">
-    <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    <%= product.name %>
-  </a>
 
-    <div class="collapse" id="collapseExample">
+<%= tag.a aria: {expanded: "false", controls: "collapseExample#{index}"}, href: "#collapseExample#{index}", role: "button", data: {toggle: "collapse"} do %>
+    <%= product.name %>
+<% end %>
+
+
+    <%= tag.div class: 'collapse p-4', id: "collapseExample#{index}" do%>
       <%= render partial: 'products/product_show', locals: {product: product}%>
-    </div>
+    <% end %>
 
     <p><%= humanized_money_with_symbol(product.price) %></p>
   </div>
