@@ -12,15 +12,43 @@
     <ul class="nav navbar-nav text-light" id="accordionSidebar">
       <% if current_user.admin %>
       <li class="nav-item" role="presentation">
+        <a class="nav-link" href="/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
+      </li>
+      <li class="nav-item" role="presentation">
         <a class="nav-link" href="/business_dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Business Dashboard</span></a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" href="/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
+      
+      <a class="nav-link" href="/businesses/<%= current_user.business.id %>/products/new">Create Product</a>
+      
       </li>
+      <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a>
+      <%#= link_to "Create Perk", new_business_product_perk_path, class:'nav-link' %> 
+      
+        
+        
+        </li>
+      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Valid</a></li>
+      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Invalid</a></li>
       <% else %>
             <li class="nav-item" role="presentation">
         <a class="nav-link" href="/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
       </li>
+
+
+                      <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="user_dashboard.html"><i class="fas fa-user"></i><span>User Dashboard</span></a></li>
+                    <li class="nav-item" role="presentation"></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
+                <ul class="nav navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="user_dashboard.html"><i class="fas fa-user-tie"></i><span>&nbsp;Business Dashboard</span></a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Create Product</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Create Perk</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Valid</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="#">Invalid</a></li>
+                    <li class="nav-item" role="presentation"></li>
+                </ul>
 
       <% end %>
       <li class="nav-item" role="presentation"></li>
