@@ -11,9 +11,9 @@
                 <!--<img class="rounded-circle mb-3 mt-4" src="https://scontent.fjog1-1.fna.fbcdn.net/v/t1.0-9/53121420_157141011864141_7733435971928064000_n.png?_nc_cat=107&amp;_nc_oc=AQkDPscvlPqt8x91rV4VlttdfDPqL2jcrJwMAxsk3zuZGItxdDfzX_VdpIJTMvWVCxY&amp;_nc_ht=scontent.fjog1-1.fna&amp;oh=c78dc92a9e7a3bc742333f744f690884&amp;oe=5DDF1C63"-->
                 <!--  width="160" height="160" alt="Business.logo">-->
               <% if !@business.logo.blank? %>
-                <%= cl_image_tag( @business.logo, class: 'rounded-circle mb-3 mt-4') %>
+                <%= cl_image_tag( @business.logo, class: 'rounded-circle mb-3 mt-4', height: 300, width: 300) %>
               <% else %>
-                <%= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4') %>
+                <%= cl_image_tag("npuoiegpmbgsbwcpy0hh", class: 'rounded-circle mb-3 mt-4', height: 300, width: 300) %>
               <% end %>
 
                 <div class="mb-3">
