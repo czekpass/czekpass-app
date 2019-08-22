@@ -12,14 +12,23 @@
     <ul class="nav navbar-nav text-light" id="accordionSidebar">
       <% if current_user.admin %>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" href="/business_dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Business Dashboard</span></a>
+        <a class="nav-link pb-0" href="/business_dashboard" id="business-nav">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>Business Dashboard</span>
+        </a>
+        <a class="nav-link pt-3" id="business-nav-nest" href="/businesses/<%= current_user.business.id %>/products/new">
+          <i class="fas fa-tachometer-alt"></i>Add a product
+        </a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" href="/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
+        <a class="nav-link" href="/dashboard">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>User Dashboard</span>
+        </a>
       </li>
       <% else %>
             <li class="nav-item" role="presentation">
-        <a class="nav-link" href="/dashboard.html"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
+        <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i><span>User Dashboard</span></a>
       </li>
 
       <% end %>
@@ -72,10 +81,10 @@
                 <span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= current_user.full_name %>
                 </span>
 
-                <% if current_user && current_user.photo %>
+                <% if current_user && current_user.photo.present? %>
                   <%= cl_image_tag current_user.photo, class: 'avatar', alt: "user photo" %>
                 <% else %>
-                <img class="border rounded-circle img-profile" src="https://www.belr.com/wp-content/uploads/2017/06/avatar-placeholder-generic-1.jpg">
+                  <img class="border rounded-circle img-profile" src="https://www.belr.com/wp-content/uploads/2017/06/avatar-placeholder-generic-1.jpg">
                 <% end %>
               </a>
 
@@ -98,3 +107,25 @@
         </ul>
       </div>
     </nav>
+<!--
+<script>
+  const businessNav = document.getElementById('business-nav');
+  const businessNavNest = document.getElementById('business-nav-nest');
+  console.log(businessNav)
+  businessNav.addEventListener('mouseover', (e) => {
+    businessNavNest.classList.toggle('d-none');
+  });
+
+</script> -->
+<style>
+  @media only screen and (min-width: 1024px) {
+    #business-nav-nest {
+      opacity: 0;
+    }
+
+    #business-nav:hover ~ #business-nav-nest {
+      opacity: 1;
+      transition: all 1s ease;
+    }
+  }
+</style>
