@@ -76,10 +76,12 @@
       ></div>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <% @businesses.each do |business| %>
-            <div>
-                <%= render partial: 'shared/business_card', locals: {business: business} %>
-            </div>
-          <% end %>
+        <div class="container my-4">
+        <div class="grid-view">
+            <% @businesses.each do |business| %>
+                  <%= render partial: 'shared/business_card', locals: {business: business} %>
+            <% end %>
+          </div>
+        </div>
     </div>
   </div>
