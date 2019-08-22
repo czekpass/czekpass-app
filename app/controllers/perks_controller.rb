@@ -30,44 +30,46 @@ class PerksController < ApplicationController
 
 
   def create
-  @perk = Perk.new(perk_params)
-  @perk.patronized_business_id = params[:perk][:business]
-  @perk.purchased_product_id = params[:perk][:purchased_product_id]
-  @perk.product_id = params[:perk][:product_id]
-  @perk.discounted_price = params[:perk][:amount]
-  @business = Business.find(params[:business_id])
-  @perk.business_id = @business.id
-  if @perk.save
-    redirect_to business_dashboard_path
+
+  if request.referer.include?("new_connection")
+    @business = Business.find(params[:business_id])
+    valid = true
+    errors = []
+    params["perk"].each do |p|
+      unless p["product_id"].empty?
+        @perk = Perk.new
+        @perk.product = Product.find(p[:product_id])
+        @perk.business = @business
+        @perk.patronized_business = Business.find(p[:patronized_business_id])
+        @perk.purchased_product = Product.find(p[:purchased_product_id])
+        @perk.description = p[:description]
+        @perk.kind = p[:kind]
+        @perk.amount = p[:amount]
+        valid = false if !@perk.save
+        errors << @perk.errors.full_messages
+      end
+    end
+    if valid
+      redirect_to business_dashboard_path
+      flash[:notice] = "Perks created successfully!"
+    else
+      redirect_to "/businesses/#{@business.id}/new_connection?bid=#{params['perk'].first[:patronized_business_id]}"
+
+      newline_errors = errors.join(", ")
+      flash[:notice] = "#{newline_errors}"
+    end
+  else
+    @perk = Perk.new()
+    @perk.patronized_business_id = params[:perk][:business]
+    @perk.purchased_product_id = params[:perk][:purchased_product_id]
+    @perk.product_id = params[:perk][:product_id]
+    @perk.discounted_price = params[:perk][:amount]
+    @business = Business.find(params[:business_id])
+    @perk.business_id = @business.id
+    if @perk.save
+      redirect_to business_dashboard_path
+    end
   end
-   # @business = Business.find(params[:business_id])
-
-   # valid = true
-   # errors = []
-   #  params["perk"].each do |p|
-   #    unless p["product_id"].empty?
-   #      @perk = Perk.new
-   #      @perk.product = Product.find(p[:product_id])
-   #      @perk.business = @business
-   #      @perk.patronized_business = Business.find(p[:patronized_business_id])
-   #      @perk.purchased_product = Product.find(p[:purchased_product_id])
-   #      @perk.description = p[:description]
-   #      @perk.kind = p[:kind]
-   #      @perk.amount = p[:amount]
-   #      valid = false if !@perk.save
-   #      errors << @perk.errors.full_messages
-   #    end
-   #  end
-   #  if valid
-   #    redirect_to business_dashboard_path
-   #    flash[:notice] = "Perks created successfully!"
-   #  else
-   #    redirect_to "/businesses/#{@business.id}/new_connection?bid=#{params['perk'].first[:patronized_business_id]}"
-
-   #    newline_errors = errors.join(", ")
-   #    flash[:notice] = "#{newline_errors}"
-   #  end
-
   end
 
   def edit
@@ -94,9 +96,8 @@ class PerksController < ApplicationController
   private
 
   def perk_params
-    # params.require(:perk).map do |p|
-    #   p.permit(:kind, :purchased_product_id, :amount, :product_id, :description, :business_id, :patronized_business_id)
-    # end
-    params.require(:perk).permit(:kind, :discounted_price, :purchased_product_id, :amount, :product_id, :description, :business_id, :patronized_business_id)
+    params.require(:perk).map do |p|
+      p.permit(:kind, :purchased_product_id, :amount, :product_id, :description, :business_id, :patronized_business_id)
     end
+  end
 end
