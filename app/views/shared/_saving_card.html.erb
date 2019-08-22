@@ -1,19 +1,19 @@
-    <div class="saving-card", >
-      <div class="form-time">
-        View how much you've saved for:
-        <form action="/dashboard" id="time-form" data-remote="true">
-          <select name="saving">
-            <option value="7">This week</option>
-            <option value="30">This month</option>
-            <option value="90">Last 3 months</option>
-          </select>
-        </form>
-      </div>
+<div class="saving-card">
+  <div class="form-time">
+    View how much you've saved for:
+    <form action="/dashboard" id="time-form" data-remote="true">
+      <select name="saving">
+        <option value="7">This week</option>
+        <option value="30">This month</option>
+        <option value="90">Last 3 months</option>
+      </select>
+    </form>
+  </div>
 
-      <% if saving_dollars_amount.nil? %>
-      You have no savings! Get busy!
-      <% else %>
-      <p>Your total savings to date are: $<%= saving_dollars_amount + discounted_price_total %></p>
-      <p id="total-timed-savings">Your savings for the selected period of time are: $<%= total_saving %></p>
-      <% end %>
-    </div>
+  <% if saving_dollars_amount.nil? %>
+  You have no savings! Get busy!
+  <% else %>
+  <p>Your total savings to date are: $<%= saving_dollars_amount + discounted_price_total %></p>
+  <p id="total-timed-savings">Your savings for the selected period of time are: $<%= total_saving %></p>
+  <% end %>
+</div>

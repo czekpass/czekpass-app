@@ -44,22 +44,22 @@
               <% end %>
            </div>
         </div>
-<!-- Iterate throguh current bus perks -->
-    <% @business.perks.each do |perk| %>
-      <% total = 0 %>
-      <!-- Find where that perk matches the purchase of an away business product -->
-        <% @connected_purchase = Purchase.where(id: perk.purchased_product_id) %>
 
-        <%  @connected_purchase.each do |connect| %>
 
-          <% if connect.verified? %>
-            <% total += perk.amount %>
-          <p>Business partner: <%= perk.patronized_business.name %></p>
-        <p>Revenue: <%= total %></p>
-          <% end %>
+<div class="container">
+   <h3>Bus-stats</h3>
+  <% @business.products.each do |product| %>
+   <% product.activated_perks.each do |result| %>
+   <div class="card">
+      <p>Perk description: <%= result[:description] %></p>
+      <p>Total perks put out? : <%= result[:count] %></p>
+      <p>Total revenue? : <%= result[:total_price] %></p>
+      <p>Total activations: <%= result[:total_activations] %></p>
+   </div>
+   <% end %>
+  <% end %>
+</div>
 
-      <% end %>
-    <% end %>
 
 
 
@@ -567,4 +567,5 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
 
