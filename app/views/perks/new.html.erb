@@ -1,22 +1,46 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h1>Create a new perk for your product</h1>
+<div id="wrapper">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
 
-      <%= simple_form_for([@business, @perk]) do |f| %>
-      <%= f.input :description %>
-      <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
-      <%= f.input :amount %>
-      <%= f.hidden_field :product_id, value: @product.id  %>
-      <%= f.label :business, 'Patronized business?*' %>
-      <%= f.input :business, collection: Business.all, label: false %>
-      <%= f.label :purchased_product_id, 'Purchased Product' %>
-      <%= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
-      <%= f.button :submit, class: 'btn btn-primary' %>
-      <% end %>
+        <!-- Content Row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+            
+              <div class="card-body">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-md-8">
+                      <h1>Create a new perk for your product</h1>
+
+                      <%= simple_form_for([@business, @perk]) do |f| %>
+                      <%= f.input :description %>
+                      <%= f.input :kind, as: :select, collection: ['amount', 'percentage', 'free'] %>
+                      <%= f.input :amount %>
+                      <%= f.hidden_field :product_id, value: @product.id  %>
+                      <%= f.label :business, 'Patronized business?*' %>
+                      <%= f.input :business, collection: Business.all, label: false %>
+                      <%= f.label :purchased_product_id, 'Purchased Product' %>
+                      <%= f.input :purchased_product_id, as: :select, collection: Product.all, label: false %>
+                      <%= f.button :submit, class: 'btn btn-primary' %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
 
 
 <script>
