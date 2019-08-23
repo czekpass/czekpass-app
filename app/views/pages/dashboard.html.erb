@@ -1,51 +1,58 @@
 <div class="user-profile-header pl-3 mb-3">
 
-  <div class="d-flex justify-content-between">
-    <h1>Hello <%= @user.first_name %>!</h1>
+  <div class="d-flex">
     <div>
-      <%= link_to 'Edit your profile', edit_user_path(current_user), class: 'btn btn-info mr-3' %>
+      <%= cl_image_tag current_user.photo, width: 90, height: 90, crop: :thumb, gravity: :face, class: 'avatar-huge', alt: "user photo" %>
+    </div>
+
+    <div class="ml-3">
+      <h1>Hello <%= @user.first_name %>!</h1>
+      <div>
+        <%= link_to 'Edit your profile', edit_user_path(current_user) %>
+      </div>
     </div>
   </div>
 
+  <%# if current_user.business.nil? == false%>
+    <%#= link_to 'Add your business', new_business_path(current_user) %>
+    <!-- <br> -->
+    <%#= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
+    <!-- <br> -->
+  <%# end %>
 
-
-
-  <% if current_user.business.nil? == false%>
-    <%= link_to 'Add your business', new_business_path(current_user) %>
-    <br>
-    <%= link_to 'View your business dashboard', business_dashboard_path(current_user) %>
-    <br>
-  <% end %>
 </div>
+<div class="p-3">
+  <div class="card">
+    <nav>
+      <div class="nav nav-tabs nav-pills nav-fill bg-light sticky" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Savings</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perks</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
+      </div>
+    </nav>
 
-<nav>
-  <div class="nav nav-tabs nav-pills nav-fill sticky" id="nav-tab" role="tablist">
-    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Savings</a>
-    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Perks</a>
-    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Purchases</a>
-  </div>
-</nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active bg-white" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <%= render partial: 'shared/saving_card', locals: { saving_dollars_amount: @saving_dollars_amount, discounted_price_total: @discounted_price_total, total_saving: @total_saving } %>
+      <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
+      <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
+      </div>
 
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-  <%= render partial: 'shared/saving_card', locals: { saving_dollars_amount: @saving_dollars_amount, discounted_price_total: @discounted_price_total, total_saving: @total_saving } %>
-  <!--     <p>In the past week you have saved: <%#= @weekly_savings %>$!</p>
-  <p>In the past month you have saved: <%#= @monthly_savings %>$!</p>-->
-  </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="grid-view">
+          <% @user.perks.each_with_index do |perk, index| %>
+            <%= render partial: 'shared/perk_card', locals: {perk: perk, index: index} %>
+          <% end %>
+        </div>
+      </div>
 
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <div class="grid-view">
-      <% @user.perks.each do |perk| %>
-        <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-    <div class="grid-view">
-    <% @user.purchases.each do |purchase| %>
-        <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
-    <% end %>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="grid-view">
+        <% @user.purchases.each do |purchase| %>
+            <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+        <% end %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

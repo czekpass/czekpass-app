@@ -14,6 +14,8 @@ class PagesController < ApplicationController
   end
 
   def business_dashboard
+    @products = Product.where(business_id: current_user.business.id )
+    @purchases = Purchase.where(product_id: @products.ids)
     # step 1 define purchases in instance variable
     @product_purchases = # NEED TO DEFINE
     # This is all perks available to the user
