@@ -432,13 +432,15 @@ Files we're working on are the pages controller > business_dashboard actions, th
           </div>
         </div>
       </div>
-
+    </div>
+    <div class="row">
       <div class="col-lg-6 mb-4">
         <!-- Top Partners by Revenue Bar Chart -->
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Purchases This Year</h6>
           </div>
+
           <div class="card-body">
             <div class="chart-bar-revenue">
               <div class="chartjs-size-monitor">
@@ -453,7 +455,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
             </div>
           </div>
         </div>
-
+        </div>
 
         <div class="col-lg-6 mb-4">
             <!-- Top Partners by Revenue Bar Chart -->
@@ -461,6 +463,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Revenue by Partner Category</h6>
               </div>
+
               <div class="card-body">
                 <div class="chart-pie-rev-cat">
                   <div class="chartjs-size-monitor">
@@ -474,12 +477,16 @@ Files we're working on are the pages controller > business_dashboard actions, th
                   <canvas class="chartjs-render-monitor" id="myPieChartRevCat" style="width: 385px; height: 320px; display: block;"></canvas>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
 
 
-<%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
+
+<%
+=begin%>
+ <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 
 <!-- choose months (x-axis)-->
 <!-- iterate through perk sales that match each month -->
@@ -494,10 +501,22 @@ Files we're working on are the pages controller > business_dashboard actions, th
     <% perk_description << perk.description.slice(0, 30) %>
   <% end %>
 <% end %>
-  <div class="purchase-info d-none" data-perks="<%= perk_description.uniq.join(',') %>" data-purchase-amount="<%= total_amounts.join(' ') %>"><%#= perk %></div>
+  <div class="purchase-info d-none" data-perks="<%= perk_description.uniq.join(',') %>" data-purchase-amount="<%= total_amounts.join(' ') %>"><%#= perk %></div> 
+<%
+=end%>
+
+<%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
+
+<% @perks.each do |p| %>
+  <% monthly_revenue = 100 %>
+  <% purchase_amount = 100 %>
+  <div class="purchase-info d-none" data-purchase-amount="<%= purchase_amount %>" data-monthly-revenue="<%= monthly_revenue %>"></div>
+<% end %>
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+ 
+<%
 
