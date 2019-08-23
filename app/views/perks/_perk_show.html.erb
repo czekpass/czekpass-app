@@ -19,7 +19,7 @@ td {
 </style>
 
 
-<% @qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{params[:id]}") %>
+<% @qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{perk.id}") %>
 
 <div class="w-50 mx-auto">
   <%= raw @qrcode.as_html %>
