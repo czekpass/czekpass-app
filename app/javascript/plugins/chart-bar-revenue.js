@@ -10,13 +10,15 @@ const initChartBarRevenue = () => {
   // create empty arrays for data we'll need
   const perksDescription = []
   const purchaseAmount = []
-  purchaseData.dataset.perks.split(',').forEach((perk) => {
-    perksDescription.push(perk);
-  });
+  if (purchaseData) {
+    purchaseData.dataset.perks.split(',').forEach((perk) => {
+      perksDescription.push(perk);
+    });
 
-  purchaseData.dataset.purchaseAmount.split(' ').forEach((purchase) => {
-    purchaseAmount.push(purchase);
-  });
+    purchaseData.dataset.purchaseAmount.split(' ').forEach((purchase) => {
+      purchaseAmount.push(purchase);
+    });
+  }
   // iterate through our nodeList and populate the arrays with dataset
   // purchaseData.forEach((purchase) => {
   //   monthlyRevenue.push(purchase.dataset.monthlyRevenue)
