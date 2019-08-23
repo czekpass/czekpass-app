@@ -7,4 +7,5 @@
   <%= f.input :price_cents %>
   <%= f.submit class: 'btn btn-primary' %>
   <% end %>
+  <%= link_to "Delete this product", business_product_path, method: :delete, data: { confirm: "Are you sure?" } %>
 </div>

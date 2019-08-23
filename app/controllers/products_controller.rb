@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     @business = Business.find(params[:business_id])
     @product.business = @business
     if @product.save
-      redirect_to business_product_path(@business, @product)
+      redirect_to business_dashboard_path
     else
       render :new
     end
@@ -36,10 +36,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @product = Product.find(params[:id])
-    @product.destroy
-    redirect_to products
+    @product.delete
+    redirect_to business_dashboard_path
   end
 
   def edit

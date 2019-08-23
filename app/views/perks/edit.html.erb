@@ -22,6 +22,7 @@
   <%= f.input :amount %>
   <%= f.submit class: 'btn btn-primary' %>
   <% end %>
+  <%= link_to "Delete this perk", business_product_perk_path(@business, @product, @perk), method: :delete, data: { confirm: "Are you sure?" } %>
 </div>
 
                     </div>
