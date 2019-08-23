@@ -1,6 +1,9 @@
-<div class="card">
+<div class="card bg-light">
 
-<a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+<div class="p-3">
+
+<%= tag.a aria: {expanded: "false", controls: "collapseExample#{index}"}, href: "#collapseExample#{index}", role: "button", data: {toggle: "collapse"} do %>
+  <h6 class="m-0 font-weight-bold text-primary">
     <% if perk.kind == "percentage" %>
       <%= perk.amount %> % off
     <% elsif perk.kind == "amount" %>
@@ -8,16 +11,18 @@
     <% else %>
       Free
     <% end %>
-    <%= perk.product.name %>
-  </a>
+    <%= perk.product.name %></h6>
+<% end %>
 
-  <div class="collapse" id="collapseExample">
-  <%= render partial:  'perks/perk_show', locals: {perk: perk}%>
-  </div>
+
+  <%= tag.div class: 'collapse p-4', id: "collapseExample#{index}" do%>
+    <%= render partial:  'perks/perk_show', locals: {perk: perk}%>
+  <% end %>
 
   <div>
     <span class="discounted-initial-price">
       <%= humanized_money_with_symbol(perk.product.price) %>
     </span>
   </div>
+</div>
 </div>

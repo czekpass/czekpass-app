@@ -1,56 +1,67 @@
 
-<% if @validated == true %>
-  <div class="validated">
+  <div class="col-lg-6 col-sm-12 mx-auto">
     <div class="user-info">
-      <div>
-        <%= cl_image_tag(@user.photo, class: 'rounded-circle mb-3 mt-4', width: 150, crop: :fill) %>
+      <div class="d-flex m-4">
+        <%= cl_image_tag current_user.photo, width: 150, height: 150, crop: :thumb, gravity: :face, class: 'avatar-huge', alt: "user photo" %>
+        <h3 class="ml-4 align-items-center"><%= @user.first_name %> <%= @user.last_name %> </h3>
       </div>
-      <h3 style="margin-left: 20px; "><%= @user.first_name %> <%= @user.last_name %> </h3>
-    </div>
-    <div style="height: 20px"></div>
-    <div class="product-card-test">
-      <div>
-        <%= @product.name %>
-      </div>
-      <div>
-        <%= @product.description %>
-      </div>
-      <div style="color:red; text-decoration: line-through;">
-        <%= humanized_money_with_symbol(@product.price) %>
-      </div>
-      <div>
-        <strong>New price</strong> 5000
-      </div>
-    </div>
-
-    <%= simple_form_for Purchase.new do |f| %>
-      <%= f.hidden_field :product_id, value: @product.id %>
-      <%= f.hidden_field :user_id, value: @user.id %>
-      <%= f.hidden_field :perk_id, value: @perk.id %>
-      <%= f.button :submit, class: 'btn btn-secondary mt-4 w-100' %>
-    <% end %>
-
   </div>
-  <% elsif @validated == "No perk"  %>
-    <div class="bg-warning">
-       <div class="user-info">
-      <div>
-        <%= cl_image_tag(@user.photo, class: 'rounded-circle mb-3 mt-4', width: 150, crop: :fill) %>
-      </div>
-      <h3 style="margin-left: 20px; "><%= @user.first_name %> <%= @user.last_name %> </h3>
-    </div>
-    <div class="bg-white p-4">
-      <div class="card p-4 bg-light mb-4">Perk not found</div>
-      <p><strong>Available perks:</strong></p>
-      <% @user.perks.each do |p| %>
-        <div class="card p-2 m-2 col-2 text-center">
-          <%= link_to p.description, "?pid=#{p.id}" %>
+
+  <% if @validated == true %>
+
+    <div class="validated">
+      <div class="bg-white p-4">
+        <div class="card p-4 bg-success mb-4">
+          <h5 class="text-white text-center">This perk can be redeemed!</h5>
         </div>
+        <h4>Product:</h4>
+        <div class="card">
+            <%= render partial: 'shared/product_card', locals: {product: @product, index: 0} %>
+        </div>
+
+
+        <% if @purchases.count > 1  %>
+          <h4 class="mt-4">Past purchases:</h4>
+        <% else %>
+          <h4 class="mt-4">Past purchase:</h4>
+        <% end %>
+
+          <% @purchases.each do |purchase| %>
+            <div class="mb-3">
+            <%= render partial: 'shared/purchase_card', locals: {purchase: purchase} %>
+            </div>
+          <% end %>
+      </div>
+
+
+
+      <%= simple_form_for Purchase.new do |f| %>
+        <%= f.hidden_field :product_id, value: @product.id %>
+        <%= f.hidden_field :user_id, value: @user.id %>
+        <%= f.hidden_field :perk_id, value: @perk.id %>
+        <%= f.button :submit, class: 'btn btn-primary my-4 w-100 btn-lg' %>
       <% end %>
-    </div>
 
     </div>
-  <% else %>
-    <div class="invalidated">
-    </div>
-<% end %>
+    <% elsif @validated == "No perk"  %>
+      <div class="col-8 mx-auto">
+
+      </div>
+      <div class="bg-white p-4">
+        <div class="card p-4 bg-warning mb-4">
+          <h5>No perk found</h5>
+        </div>
+        <p><strong>Available perks:</strong></p>
+        <% @user.perks.each do |p| %>
+          <div class="card p-2 m-2 text-center">
+            <%= link_to p.description, "?pid=#{p.id}" %>
+          </div>
+        <% end %>
+      </div>
+
+      </div>
+    <% else %>
+      <div class="invalidated">
+      </div>
+  <% end %>
+
