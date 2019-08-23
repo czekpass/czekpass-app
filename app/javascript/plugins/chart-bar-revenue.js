@@ -21,10 +21,10 @@ const initChartBarRevenue = () => {
     perksDescription.push(perk);
   });
   // iterate through our nodeList and populate the arrays with dataset
-  purchaseData.forEach((purchase) => {
-    monthlyRevenue.push(purchase.dataset.monthlyRevenue)
-    purchaseAmount.push(purchase.dataset.purchaseAmount)
-  })
+  // purchaseData.forEach((purchase) => {
+  //   monthlyRevenue.push(purchase.dataset.monthlyRevenue)
+  //   purchaseAmount.push(purchase.dataset.purchaseAmount)
+  // })
 
   // console.log(monthlyRevenue)
   // const totalRevenue = // use the reduce method to get the SUM of monthly revenue
@@ -64,7 +64,7 @@ const initChartBarRevenue = () => {
         datasets: [{
           label: "Connections",
           backgroundColor: "#1cc98a",
-          hoverBackgroundColor: "#2e59d9",
+          hoverBackgroundColor: "##19b47c",
           borderColor: "#4e73df",
           data: purchaseAmount,
         }],
