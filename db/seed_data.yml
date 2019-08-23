@@ -428,7 +428,7 @@ perks:
     description: "5% off 1 month Body Factory for 1 month Motion meal plan"
   perk_six:
     kind: percentage
-    amount: 10000
+    amount: 10
     patronized_business_id_slug: connco
     purchased_product_id_slug: unlimited_membership_pass
     business_id_slug: lewagon

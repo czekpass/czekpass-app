@@ -28,18 +28,22 @@
 
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
-    <% @user.perks(@business).each do |perk| %>
-      <div>
-        <%= render partial: 'shared/perk_card', locals: {perk: perk} %>
-      </div>
-    <% end %>
+    <div class="grid-view">
+      <% @user.perks(@business).each_with_index do |perk, index| %>
+        <div>
+          <%= render partial: 'shared/perk_card', locals: {perk: perk, index: index} %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <% @business.products.each do |product| %>
-      <div>
-        <%= render partial: 'shared/product_card', locals: {product: product} %>
-      </div>
-    <% end %>
+    <div class="grid-view">
+      <% @business.products.each_with_index do |product, index| %>
+
+          <%= render partial: 'shared/product_card', locals: {product: product, index: index} %>
+
+      <% end %>
+    </div>
   </div>
 </div>
 

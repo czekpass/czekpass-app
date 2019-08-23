@@ -64,7 +64,7 @@ const initChartBarRevenue = () => {
         datasets: [{
           label: "Connections",
           backgroundColor: "#1cc98a",
-          hoverBackgroundColor: "#2e59d9",
+          hoverBackgroundColor: "##19b47c",
           borderColor: "#4e73df",
           data: purchaseAmount,
         }],
