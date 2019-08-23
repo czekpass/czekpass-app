@@ -202,7 +202,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
                                   <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 188px;">Description</th>
                                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 285px;">Redemptions</th>
                                   <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Revenue</th>
-                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;">Edit</th>
+                                  <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 137px;"></th>
                                 </tr>
                               </thead>
                               <tbody>
@@ -219,7 +219,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
                                     <%# raise %>
                                     <td class="sorting_1"><%= perk[:total_activations] %></td>
                                     <td class="sorting_1">$<%= perk[:total_price] %></td>
-                                    <td class="sorting_1"><%#= link_to "Edit Perk", edit_business_product_perk_path(@business, product, perk), class: "btn btn-sm btn-primary" %></td>
+                                    <td class="sorting_1"><%= link_to "Edit Perk", edit_business_product_perk_path(@business, product, Perk.find_by(description: perk[:description])), class: "btn btn-sm btn-primary" %></td>
                                   </tr>
                                 <% end %>
                               <% end %>
