@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   monetize :price_cents
   belongs_to :business
+  mount_uploader :photo, PhotoUploader
 
   # I don't understand these validations.
   # has_many :providing_products, foreign_key: "providing_product_id", class_name: "Perk"

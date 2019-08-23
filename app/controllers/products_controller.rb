@@ -1,4 +1,3 @@
-
 class ProductsController < ApplicationController
   def index
     @business = Business.find(params[:business_id])

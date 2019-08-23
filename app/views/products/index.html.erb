@@ -7,9 +7,7 @@
     <div class="content">
       <div class="products pl-5 card-grid-3c">
        <% @products.each do |product| %>
-       <div>
-        <%= render partial: 'shared/product_card', locals: {product: product} %>
-      </div>
+         <%= link_to product.name, edit_business_product_path(product.business, product) %>
       <% end %>
     </div>
   </div>
