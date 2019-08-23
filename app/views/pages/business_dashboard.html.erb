@@ -285,7 +285,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
                                 <% product.perks.each do |perk| %>
                                   <tr role="row" class="odd">
 
-                                    <td class="sorting_1">!!<%= Business.where(id: perk.patronized_business_id).first.name %></td>
+                                    <td class="sorting_1"><%= Business.where(id: perk.patronized_business_id).first.name %></td>
                                     <td class="sorting_1"><%= Perk.where(patronized_business_id: Business.where(id: perk.patronized_business_id) ).count %></td>
                                     <td class="sorting_1"><%= rand(200..400) %>$</td>
                                     <td class="sorting_1"><%= rand(20..40) %>$</td>
