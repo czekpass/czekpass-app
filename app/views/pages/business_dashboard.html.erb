@@ -484,8 +484,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
 
 
 
-<%
-=begin%>
+
  <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 
 <!-- choose months (x-axis)-->
@@ -501,22 +500,21 @@ Files we're working on are the pages controller > business_dashboard actions, th
     <% perk_description << perk.description.slice(0, 30) %>
   <% end %>
 <% end %>
+
   <div class="purchase-info d-none" data-perks="<%= perk_description.uniq.join(',') %>" data-purchase-amount="<%= total_amounts.join(' ') %>"><%#= perk %></div> 
-<%
-=end%>
+
 
 <%# REPLACE PERKS WITH @PURCHASE_PRODUCTS WHEN YOU DEFINE IT %>
 
-<% @perks.each do |p| %>
+
+ <% @perks.each do |p| %>
   <% monthly_revenue = 100 %>
   <% purchase_amount = 100 %>
   <div class="purchase-info d-none" data-purchase-amount="<%= purchase_amount %>" data-monthly-revenue="<%= monthly_revenue %>"></div>
-<% end %>
+<% end %> 
+
 
   <!-- Scroll to Top Button-->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
- 
-<%
-
