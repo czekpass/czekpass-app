@@ -1,49 +1,70 @@
-<div class="d-flex business-info">
-  <div class="business-logo">
-    <% if @business.logo.present? %>
-      <%= cl_image_tag @business.logo, height: 140, width: 140 %>
-    <% else %>
-      <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1808/urfandadashov180801065/106295283-placeholder-company-logo-design-template-placeholder-logotype-vector-icon-business-corporative.jpg", height: 140, width: 140 %>
-    <% end %>
-  </div>
-  <div class="business-description col-8">
-    <div>
-      <h5><%= @business.name %></h5>
-      <%= @business.description %>
-      <%= @business.location %>
-    </div>
-    <% if current_user.business == Business.find(params[:id]) %>
-      <%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
-    <% end %>
-  </div>
-</div>
+<div id="wrapper">
+<div id="content-wrapper" class="d-flex flex-column">
+<div id="content">
+<div class="container-fluid">
 
-<!-- Tabbed view -->
-  <nav class="mt-3">
-    <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-perks" role="tab" aria-controls="nav-home" aria-selected="true">Perks</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-products" role="tab" aria-controls="nav-profile" aria-selected="false">Products</a>
+  <div class="d-flex business-info">
+    <div class="business-logo">
+      <% if @business.logo.present? %>
+        <%= cl_image_tag @business.logo, height: 140, width: 140 %>
+      <% else %>
+        <%= image_tag "https://previews.123rf.com/images/urfandadashov/urfandadashov1808/urfandadashov180801065/106295283-placeholder-company-logo-design-template-placeholder-logotype-vector-icon-business-corporative.jpg", height: 140, width: 140 %>
+      <% end %>
     </div>
-  </nav>
+    <div class="business-description col-8">
+      <div>
+        <h5><%= @business.name %></h5>
+        <%= @business.description %>
+        <%= @business.location %>
+      </div>
+      <% if current_user.business == Business.find(params[:id]) %>
+        <%= link_to "edit", edit_business_path, class: 'btn btn-secondary' %>
+      <% end %>
+    </div>
+  </div>
 
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
-    <div class="grid-view">
-      <% @user.perks(@business).each_with_index do |perk, index| %>
-        <div>
-          <%= render partial: 'shared/perk_card', locals: {perk: perk, index: index} %>
+  <!-- Tabbed view -->
+  <div class="row mt-4">
+    <div class="col-lg-12 mb-4">
+      <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        <nav>
+          <div class="nav nav-tabs  nav-fill" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-perks" role="tab" aria-controls="nav-home" aria-selected="true">Perks</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-products" role="tab" aria-controls="nav-profile" aria-selected="false">Products</a>
+          </div>
+        </nav>
         </div>
-      <% end %>
+
+        <div class="card-body">
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="grid-view">
+                <% @user.perks(@business).each_with_index do |perk, index| %>
+                  <div>
+                    <%= render partial: 'shared/perk_card', locals: {perk: perk, index: index} %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
+              <div class="grid-view">
+                <% @business.products.each_with_index do |product, index| %>
+
+                    <%= render partial: 'shared/product_card', locals: {product: product, index: index} %>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="tab-pane fade" id="nav-products" role="tabpanel" aria-labelledby="nav-profile-tab">
-    <div class="grid-view">
-      <% @business.products.each_with_index do |product, index| %>
 
-          <%= render partial: 'shared/product_card', locals: {product: product, index: index} %>
-
-      <% end %>
-    </div>
-  </div>
 </div>
+</div>
+</div>
+</div>
+
 

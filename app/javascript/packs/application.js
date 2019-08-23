@@ -31,6 +31,18 @@ initChartBarRevenue();
 initMapbox();
 
 
+const table = document.querySelector("#dataTable")
+if(table){
+  $('#dataTable').dataTable({autoWidth: true, searching: false, paging: false, info: false, scrollX: false});
+}
 
-$('#dataTable').dataTable({autoWidth: true, searching: false, paging: false, info: false, scrollX: false});
+const btn = document.querySelector("#sidebarToggleTop")
 
+if (btn){
+  const mapElement = document.getElementById('map');
+  if(mapElement){
+    btn.addEventListener("click", ()=>{
+      showmap.resize()
+    })
+  }
+}

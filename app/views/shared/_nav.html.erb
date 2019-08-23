@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0">
+<nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion toggled bg-gradient-primary p-0">
   <div class="container-fluid d-flex flex-column p-0">
     <!--<a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href=" ">-->
       <%= link_to root_path, class: "navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" do %>
@@ -26,7 +26,7 @@
 
       <%
 =begin%>
- <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a> 
+ <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a>
 <%
 =end%>
 
@@ -48,41 +48,10 @@
   <div id="content">
     <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
       <div class="container-fluid">
+        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
         <% unless current_page?(discover_path) or current_page?(dashboard_page_path) or current_page?(business_dashboard_path) %>
           <%= link_to 'Back', :back, class: 'btn btn-info' %>
         <% end %>
-        <div class="d-flex justify-content-end flex-grow-1">
-          <% if current_user.business.present? and current_page?(business_dashboard_path) == false %>
-            <%= link_to business_dashboard_path, class: 'btn btn-light btn-icon-split' do %>
-                <span class="icon text-gray-600 px-1">
-                  <small>
-                      <span class="text font-weight-light py-0">Switch to Business View</span>
-
-                      <i class="fas fa-user-tie"></i>
-                    </small>
-                </span>
-            <% end %>
-          <% elsif current_user.business.present? %>
-            <%= link_to discover_path, class: 'btn btn-light btn-icon-split' do %>
-                <span class="icon text-gray-600 px-1">
-                  <small>
-                      <span class="text font-weight-light py-0">Switch to Customer View</span>
-                      <i class="fas fa-user mr-2"></i>
-                    </small>
-                </span>
-            <% end %>
-            <% elsif current_user.business.present? == false %>
-              <%= link_to discover_path, class: 'btn btn-light btn-icon-split' do %>
-                <span class="icon text-gray-600 px-1">
-                  <small>
-                      <span class="text font-weight-light py-0">Add a business</span>
-                      <i class="fas fa-store-alt"></i>
-                    </small>
-                </span>
-              <% end %>
-            <% end %>
-        </div>
-        <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
         <ul class="nav navbar-nav flex-nowrap ml-auto">
           <!--<li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#"><i class="fas fa-search"></i></a>-->
 
@@ -139,6 +108,35 @@
                 <%= link_to discover_path, class: "dropdown-item", role: "presentation"  do%>
                   <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Perks
                 <% end %>
+
+
+
+              <% if current_user.business.present? and current_page?(business_dashboard_path) == false %>
+
+
+                <%= link_to business_dashboard_path, class: 'dropdown-item', role: "presentation" do %>
+                  <i class="fas fa-user-tie fa-sm fa-fw mr-2 text-gray-400"></i>Switch to Business View
+                <% end %>
+
+              <% elsif current_user.business.present? %>
+                <%= link_to discover_path, class: 'dropdown-item' do %>
+                      <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Switch to Customer View</span>
+            <% end %>
+            <% elsif current_user.business.present? == false %>
+              <%= link_to discover_path, class: 'dropdown-item' do %>
+                <i class="fas fa-store-alt fa-sm fa-fw mr-2 text-gray-400"></i>Add a business
+              <% end %>
+            <% end %>
+
+
+
+
+
+
+
+
+
+
                 <div class="dropdown-divider"></div>
                 <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item", role: "presentation"  do%>
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Logout
