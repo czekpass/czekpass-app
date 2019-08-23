@@ -33,3 +33,4 @@ initMapbox();
 
 
 $('#dataTable').dataTable({autoWidth: true, searching: false, paging: false, info: false, scrollX: false});
+

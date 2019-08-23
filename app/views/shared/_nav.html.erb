@@ -24,12 +24,15 @@
       <a class="nav-link" href="/businesses/<%= current_user.business.id %>/products/new">Create Product</a>
       </li>
 
-      <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a>
-      <%#= link_to "Create Perk", new_business_product_perk_path, class:'nav-link' %>
+      <%
+=begin%>
+ <li class="nav-item" role="presentation"><a class="nav-link" href="/businesses/<%= current_user.business.id %>/perks/new">Create Perk</a> 
+<%
+=end%>
 
         </li>
-      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Valid</a></li>
-      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Invalid</a></li>
+      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Verified Purchase</a></li>
+      <li class="nav-item" role="presentation"><a class="nav-link" href="#">Non-Verified Purchase</a></li>
 
       <% else %>
             <li class="nav-item" role="presentation">
