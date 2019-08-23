@@ -39,11 +39,11 @@
         <div class="card-body">
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-perks" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="grid-view">
+              <div class="grid-view ">
                 <% @user.perks(@business).each_with_index do |perk, index| %>
-                  <div>
+
                     <%= render partial: 'shared/perk_card', locals: {perk: perk, index: index} %>
-                  </div>
+
                 <% end %>
               </div>
             </div>

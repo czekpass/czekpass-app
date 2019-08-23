@@ -21,7 +21,7 @@ td {
 
 <% @qrcode = RQRCode::QRCode.new("czekpass.com/users/#{current_user.id}/validate?pid=#{perk.id}") %>
 
-<div class="w-50 mx-auto">
+<div class="d-flex justify-content-center align-items-center">
   <%= raw @qrcode.as_html %>
 </div>
 
