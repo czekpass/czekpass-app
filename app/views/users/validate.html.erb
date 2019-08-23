@@ -1,8 +1,8 @@
 
-  <div class="col-lg-6 col-sm-12 mx-auto">
+  <div class="col-lg-6   col-sm-12 mx-auto">
     <div class="user-info">
       <div class="d-flex m-4">
-        <%= cl_image_tag current_user.photo, width: 150, height: 150, crop: :thumb, gravity: :face, class: 'avatar-huge', alt: "user photo" %>
+        <%= cl_image_tag @user.photo, width: 150, height: 150, crop: :thumb, gravity: :face, class: 'avatar-huge', alt: "user photo" %>
         <h3 class="ml-4 align-items-center"><%= @user.first_name %> <%= @user.last_name %> </h3>
       </div>
   </div>
@@ -32,8 +32,6 @@
             </div>
           <% end %>
       </div>
-
-
 
       <%= simple_form_for Purchase.new do |f| %>
         <%= f.hidden_field :product_id, value: @product.id %>
