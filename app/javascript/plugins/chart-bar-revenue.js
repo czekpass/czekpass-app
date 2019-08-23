@@ -11,20 +11,20 @@ const initChartBarRevenue = () => {
   const perksDescription = []
   const purchaseAmount = []
 
-  // console.log(purchaseData.dataset.purchaseAmount);
-  // purchaseData.dataset.purchaseAmount.split(' ').forEach((amount) => {
-  //   purchaseAmount.push(amount);
-  // });
+  console.log(purchaseData.dataset.purchaseAmount);
+  purchaseData.dataset.purchaseAmount.split(' ').forEach((amount) => {
+    purchaseAmount.push(amount);
+  });
 
-  // console.log(purchaseData.dataset.perks)
-  // purchaseData.dataset.perks.split(',').forEach((perk) => {
-  //   perksDescription.push(perk);
-  // });
+  console.log(purchaseData.dataset.perks)
+  purchaseData.dataset.perks.split(',').forEach((perk) => {
+    perksDescription.push(perk);
+  });
   // iterate through our nodeList and populate the arrays with dataset
-  // purchaseData.forEach((purchase) => {
-  //   monthlyRevenue.push(purchase.dataset.monthlyRevenue)
-  //   purchaseAmount.push(purchase.dataset.purchaseAmount)
-  // })
+  purchaseData.forEach((purchase) => {
+    monthlyRevenue.push(purchase.dataset.monthlyRevenue)
+    purchaseAmount.push(purchase.dataset.purchaseAmount)
+  })
 
   // console.log(monthlyRevenue)
   // const totalRevenue = // use the reduce method to get the SUM of monthly revenue
