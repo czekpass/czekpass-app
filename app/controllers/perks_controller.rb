@@ -87,10 +87,10 @@ class PerksController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @perk = Perk.find(params[:id])
     @perk.destroy
-    redirect_to business_product_path(@perk.patronized_business, @perk.purchased_product)
+    redirect_to business_dashboard_path
   end
 
   private
