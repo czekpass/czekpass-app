@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       @perk = Perk.find(params[:pid])
       @product = @perk.product
       @product_ids = @user.products
+      @purchases = Purchase.where(["product_id = ? and perk_id = ?", @perk.purchased_product, @perk.id ])
       @validated = @product_ids.include?(@perk.purchased_product)
     end
   end
