@@ -123,7 +123,7 @@
                       <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Switch to Customer View</span>
             <% end %>
             <% elsif current_user.business.present? == false %>
-              <%= link_to discover_path, class: 'dropdown-item' do %>
+              <%= link_to new_business_path, class: 'dropdown-item' do %>
                 <i class="fas fa-store-alt fa-sm fa-fw mr-2 text-gray-400"></i>Add a business
               <% end %>
             <% end %>
