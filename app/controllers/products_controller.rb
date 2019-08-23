@@ -29,7 +29,7 @@ class ProductsController < ApplicationController
   def update
     @product = Product.find(params[:id])
     if @product.update(product_params)
-      redirect_to business_product_path(@product.business, @product) #get from rails routes
+      redirect_to business_dashboard_path #get from rails routes
     else
       render 'edit'
     end
@@ -55,6 +55,6 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :price_cents, :category, :photo)
+    params.require(:product).permit(:name, :description, :price, :category, :photo)
   end
 end
