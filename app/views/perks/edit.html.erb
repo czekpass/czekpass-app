@@ -1,4 +1,20 @@
-<div class="container">
+<div id="wrapper">
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+
+        <!-- Content Row -->
+        <div class="row">
+          <div class="col-12">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="container">
+                  <div class="row justify-content-center">
+                    <div class="col-md-8">
+                      <div class="container">
   <h1>Edit your perk</h1>
   <%= simple_form_for [@business, @product, @perk] do |f| %>
   <%= f.input :description %>
@@ -7,4 +23,17 @@
   <%= f.submit class: 'btn btn-primary' %>
   <% end %>
   <%= link_to "Delete this perk", business_product_perk_path(@business, @product, @perk), method: :delete, data: { confirm: "Are you sure?" } %>
+</div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
