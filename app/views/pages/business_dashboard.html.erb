@@ -152,11 +152,13 @@ Files we're working on are the pages controller > business_dashboard actions, th
                               </thead>
                             <tbody>
                               <% @business.products.each do |product| %>
+                              <%# product.activated_perks.each do |perk| %>
                                 <tr role="row" class="odd">
+                                  <%# raise %>
                                   <td class="sorting_1"><%= product.name %></td>
                                   <td class="sorting_1"><%= product.price %></td>
                                   <td class="sorting_1"><%= product.purchases.size %></td>
-                                  <td class="sorting_1"><%= rand(100..4000) %>$</td>
+                                  <td class="sorting_1">$<%= product.purchases.size * product.price %></td>
                                   <td class="sorting_1"><%= link_to "Edit product", edit_business_product_path(@business, product), class: "btn btn-sm btn-primary" %></td>
                                   <td class="sorting_1"><%= link_to "Add a Perk", new_business_product_perk_path(@business, product), class: "btn btn-sm btn-primary" %></td>
                                 </tr>
@@ -205,15 +207,23 @@ Files we're working on are the pages controller > business_dashboard actions, th
                               </thead>
                               <tbody>
                               <% @business.products.each do |product| %>
-                                <% product.perks.each do |perk| %>
+                              <% product.activated_perks.each do |perk| %>
+
+                              <%# raise %>
+                                <%# product.perks.each do |perk| %>
+                                  <%# product.activated_perks.each do |activated|  %>
                                   <tr role="row" class="odd">
-                                    <td class="sorting_1"><%= perk.description %></td>
-                                    <td class="sorting_1"><%=rand(2..10) %></td>
-                                    <td class="sorting_1"><%= rand(200..400) %></td>
-                                    <td class="sorting_1"><%= link_to "Edit Perk", edit_business_product_perk_path(@business, product, perk), class: "btn btn-sm btn-primary" %></td>
+                                    <%# raise %>
+                                    <td class="sorting_1"><%= perk[:description] %></td>
+
+                                    <%# raise %>
+                                    <td class="sorting_1"><%= perk[:total_activations] %></td>
+                                    <td class="sorting_1">$<%= perk[:total_price] %></td>
+                                    <td class="sorting_1"><%#= link_to "Edit Perk", edit_business_product_perk_path(@business, product, perk), class: "btn btn-sm btn-primary" %></td>
                                   </tr>
                                 <% end %>
                               <% end %>
+                              <%# end %>
                               </tbody>
                               <tfoot>
                                 <tr>
@@ -274,7 +284,8 @@ Files we're working on are the pages controller > business_dashboard actions, th
                               <% @business.products.each do |product| %>
                                 <% product.perks.each do |perk| %>
                                   <tr role="row" class="odd">
-                                    <td class="sorting_1"><%= Business.where(id: perk.patronized_business_id).first.name %></td>
+
+                                    <td class="sorting_1">!!<%= Business.where(id: perk.patronized_business_id).first.name %></td>
                                     <td class="sorting_1"><%= Perk.where(patronized_business_id: Business.where(id: perk.patronized_business_id) ).count %></td>
                                     <td class="sorting_1"><%= rand(200..400) %>$</td>
                                     <td class="sorting_1"><%= rand(20..40) %>$</td>
@@ -442,7 +453,7 @@ Files we're working on are the pages controller > business_dashboard actions, th
             </div>
           </div>
         </div>
-      </div>
+
 
         <div class="col-lg-6 mb-4">
             <!-- Top Partners by Revenue Bar Chart -->
